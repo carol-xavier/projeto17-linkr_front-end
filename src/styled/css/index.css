@@ -16,6 +16,10 @@
 	--font-weight-bold: 700;
 	--font-weight-regular: 400;
 	--font-weight-small: 300;
+
+	--main-screen-padding-inline: 0px;
+
+	box-sizing: border-box;
 }
 
 
