@@ -1,0 +1,48 @@
+* {
+	--font-logo: 'Oxygen', sans-serif;
+	--font-main: 'Oxygen', sans-serif;
+
+	--color-1: #1877F2;
+	--color-2: #151515;
+	--color-3: #333333; 
+	--color-4: #FFFFFF;
+  --color-red: #AC0000;
+
+
+
+	--text-color-main: #fff;
+  --text-color-secudary: #B7B7B7;
+  --text-color-tertiary: #9B9595;
+	--text-color-placeholder: #9F9F9F;
+
+	--font-weight-bold: 700;
+	--font-weight-regular: 400;
+	--font-weight-small: 300;
+}
+
+
+
+body {
+	width: 100vw;
+	height: 100vh;
+	
+	display: flex;
+	flex-direction: column;
+	
+	font-family: var(--font-main);
+	background-color: var(--color-3);
+  color: var(--text-color-main);	
+}
+
+.root{  
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	width: 100vw;
+	height: 100vh;
+
+	font-family: var(--font-main);
+	font-size: var(--font-size-main);
+	
+}
