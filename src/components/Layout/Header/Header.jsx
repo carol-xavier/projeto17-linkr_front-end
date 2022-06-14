@@ -19,8 +19,8 @@ const HeaderContainer = styled.header`
   align-items: center;
 
   width: 100%;
-  height: 2.5rem;
-  padding: 10px;
+  height: var(--heigth-header);
+  padding-inline: 10px;
 
   background-color: var(--color-2);
 

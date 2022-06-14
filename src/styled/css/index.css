@@ -18,6 +18,7 @@
 	--font-weight-small: 300;
 
 	--main-screen-padding-inline: 0px;
+	--heigth-header: 3rem;
 
 	box-sizing: border-box;
 }
