@@ -1,0 +1,68 @@
+import { useState, useEffect } from 'react';
+import { api } from '../utils/api';
+import styled from 'styled-components';
+//#TODO: ## Get **token** from contextAPI
+
+function TrendingBox() {
+
+    const [hashtagList, setHashtagList] = useState([]);
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        };
+
+        api
+            .get('/hashtags', config)
+            .then((res) => setHashtagList(res.data))
+            .catch((err) => console.error(err));
+    }, [token]);
+
+    return (
+        <Box>
+            <h1>trending</h1>
+            <div />
+            <Article>
+                {hashtagList.map((str, index) => <p key={index}># {str}</p>)}
+            </Article>
+        </Box>
+    )
+};
+
+export default TrendingBox;
+
+const Box = styled.div`
+  width: 301px;
+  height: 406px;
+  border-radius: 16px;
+  background-color: var(--color-5);
+  position: relative;
+
+  h1{
+    font-family: var(--font-header);
+    font-size: 27px;
+    position:absolute;
+    top:12px;
+    left:16px;
+  }
+
+  div{
+    width: 100%;
+    border: 1px solid var(--color-6);
+    position: absolute;
+    top: 61px;
+  }
+`;
+
+const Article = styled.article`
+    position: absolute;
+    height: 293px;
+    top: 83px;
+    left: 16px;
+    
+    p{
+        margin-bottom: 10px;
+    }
+`;

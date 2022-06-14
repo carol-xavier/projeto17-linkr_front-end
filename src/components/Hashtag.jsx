@@ -16,5 +16,5 @@ const Hashtag = (props) => (
   export default Hashtag;
 
   const StyledHashtag = styled.a`
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
   `;

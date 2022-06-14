@@ -1,12 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Oswald:wght@700&display=swap');
+
 * {
 	--font-logo: 'Oxygen', sans-serif;
 	--font-main: 'Oxygen', sans-serif;
+	--font-header: 'Oswald', sans-serif;
 
 	--color-1: #1877F2;
 	--color-2: #151515;
 	--color-3: #333333; 
 	--color-4: #FFFFFF;
+	--color-5: #171717;
+	--color-6: #484848; 
   --color-red: #AC0000;
+
 
 
 
