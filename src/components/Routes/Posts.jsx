@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import MainScreen from "../Layout/MainScreen";
 
 function Posts() {
   return(
@@ -10,6 +11,6 @@ function Posts() {
 
 export default Posts;
 
-const PostContainer = styled.section`
-  display: flex;
+const PostContainer = styled(MainScreen)`
+
 `
