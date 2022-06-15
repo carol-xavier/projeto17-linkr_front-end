@@ -2,11 +2,13 @@ import styled from "styled-components";
 import Header from "./Header/Header";
 
 function MainScreen(prop) {
+  const { children } = prop;
+
   return(
     <MainScreenContainer>
       <Header />
       <main>
-        {prop.children}
+        {children}
       </main>      
     </MainScreenContainer>
   );
