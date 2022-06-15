@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { api } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
+import { api } from './../utils/api';
 import styled from 'styled-components';
 //#TODO: ## Get **token** from contextAPI
 
 function TrendingBox() {
-
+    const navigate = useNavigate();
     const [hashtagList, setHashtagList] = useState([]);
 
     useEffect(() => {
-        
+
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -16,17 +17,19 @@ function TrendingBox() {
         };
 
         api
-            .get('/hashtags')
+            .get('/hashtags',config)
             .then((res) => setHashtagList(res.data))
             .catch((err) => console.error(err));
-    }, [token]);
+    }, [token]); 
 
     return (
         <Box>
             <h1>trending</h1>
             <div />
             <Article>
-                {hashtagList.map((str, index) => <p key={index}># {str}</p>)}
+                {hashtagList.map((str, index) =>
+                       <p onClick={() => navigate(`hashtag/${str}`)}># {str}</p>
+                )}
             </Article>
         </Box>
     )
@@ -65,5 +68,6 @@ const Article = styled.article`
     
     p{
         margin-bottom: 10px;
+        font-weight: var(--font-weight-bold);
     }
 `;
