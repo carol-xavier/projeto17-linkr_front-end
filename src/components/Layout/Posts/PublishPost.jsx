@@ -1,17 +1,31 @@
+import { useState } from "react";
 import styled from "styled-components";
+import image from "../../../assets/img/usericon.png";
 
 function PublishPost() {
-  const img = 'https://avatars3.githubusercontent.com/u/527098?v=3&s=460';
+  const [loading, setLoading] = useState(false);
+  const [postData, setPostData] = useState({
+    link: "",
+    postBody: "",
+    hashtags: [],
+  });
+
+  function handleChange(e) {
+    setPostData({
+      ...postData,
+      [e.target.name]: e.target.value,
+    });
+  }
 
   return(
     <PublishPostContainer>
       <section>
-        <img src={img} alt="" />
+        <img src={image} alt="" />
       </section>
       <section className="post-body">
         <p>What are you going to share today?</p>
-        <input type="text" placeholder="http://..." />
-        <textarea placeholder="Awesome article about #javascript"></textarea>
+        <input type="text" placeholder="http://..." name="link" onChange={handleChange} />
+        <textarea placeholder="Awesome article about #javascript" name="postBody" onChange={handleChange} />
         <button>Publish</button>
       </section>
     </PublishPostContainer>
@@ -57,6 +71,13 @@ const PublishPostContainer = styled.article`
     width: 100%;
 
     background: none;
+
+    &>p {
+      width: 100%;
+      font-size: 1.2rem;
+      color: #707070;
+      margin-bottom: 1rem;
+    }
 
     &>input {
       width: 100%;
