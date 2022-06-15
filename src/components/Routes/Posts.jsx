@@ -16,7 +16,6 @@ function Posts() {
   useEffect(() => {
     axios.get(`${apiUrl}/timeline`)
       .then(res => {
-        console.log(res.data);
         setPosts(res.data);
       })
       .catch(e => console.log(e));
@@ -35,12 +34,21 @@ function Posts() {
 export default Posts;
 
 const PostsContainer = styled.section`
+  
   display: flex;
   flex-direction: column;
   width: 100%;
-
+  
   h1 {
     padding-block: 0.8rem;
     font-size: 1.8rem;
+    padding-left: 0;
+ 
+    @media (max-width: 500px) {      
+      padding-left: 0.8rem;
+    }
   }
+
 `;
+
+

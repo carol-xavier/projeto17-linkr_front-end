@@ -2,10 +2,11 @@
 import imgDefault from "../../../assets/img/usericon.png";
 import { BsHeart } from "react-icons/bs";
 import styled from "styled-components";
+import LinkPreview from "./LinkPreview";
 
 
 function UserPost({postData}){
-  const {name, postBody, link} = postData;
+  const {name, postBody, metadata} = postData;
   const image = postData.image || imgDefault;
 
   function handleLikes() {
@@ -19,25 +20,16 @@ function UserPost({postData}){
     )
   }
 
-  function showPreviwLink() {
-
-    return (
-      <a href={link} target="_blank" rel="noopener">
-        <h3>link aqui</h3>
-      </a>
-    );
-  }
-
   return (
     <PostContainer>
       <section>
-        <img src={image} alt="" />
+        <img className="user" src={image} alt="" />
         {handleLikes()}
       </section>
       <section className="post-body">
         <h2>{name}</h2>
         <p>{postBody}</p>
-        {showPreviwLink()}
+        <LinkPreview metaData={metadata} />
       </section>
     </PostContainer>
   )
@@ -50,6 +42,7 @@ const PostContainer = styled.article`
   width: 100%;
   height: auto;
   padding: 1rem;
+  overflow: hidden;
 
   background-color: var(--color-2);
 
@@ -58,7 +51,7 @@ const PostContainer = styled.article`
     flex-direction: column;
     padding-right: 1rem;
     
-    img {
+    img.user {
       --size-icon: 2.5rem;
       width: var(--size-icon);
       height: var(--size-icon);
