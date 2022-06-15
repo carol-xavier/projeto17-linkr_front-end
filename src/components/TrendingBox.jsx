@@ -8,6 +8,7 @@ function TrendingBox() {
     const [hashtagList, setHashtagList] = useState([]);
 
     useEffect(() => {
+        
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -15,7 +16,7 @@ function TrendingBox() {
         };
 
         api
-            .get('/hashtags', config)
+            .get('/hashtags')
             .then((res) => setHashtagList(res.data))
             .catch((err) => console.error(err));
     }, [token]);
