@@ -15,8 +15,12 @@ function Posts() {
     if(loading){
       return <ThreeDots color="#fff" width={'100%'} height={'1.5rem'} />
     }
-    
-    return posts.map(post => <UserPost postData={post} /> );
+
+    if(posts.length === 0){
+      return <h2>There are no posts yet</h2>
+    }
+
+    return posts.map((post, id) => <UserPost key={id} postData={post} /> );
   }
 
   function errorGetPosts(e) {
@@ -60,6 +64,11 @@ const PostsContainer = styled.section`
     @media (max-width: 500px) {      
       padding-left: 0.8rem;
     }
+  }
+
+  &>h2 {
+    padding: 0.8rem;
+    color: var(--text-color-secodary);
   }
 
 `;

@@ -43,8 +43,13 @@ const PostContainer = styled.article`
   height: auto;
   padding: 1rem;
   overflow: hidden;
-
+  margin-bottom: 1rem;
   background-color: var(--color-2);
+
+ 
+  @media (min-width: 500px) {      
+    border-radius: 0.8rem;
+  }
 
   &>section {
     display: flex;
@@ -87,7 +92,7 @@ const PostContainer = styled.article`
 
     p {
       font-size: 0.9rem;
-      color: var(--text-color-secudary);
+      color: var(--text-color-secodary);
       margin-bottom: 0.8rem;
 
       span {
