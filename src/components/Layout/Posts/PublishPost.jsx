@@ -1,13 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
 import image from "../../../assets/img/usericon.png";
+import { ThreeDots } from "react-loader-spinner";
+import { getContext } from "../../../hooks/ContextAPI";
+import axios from "axios";
 
 function PublishPost() {
+  const { apiUrl } = getContext();
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({
     link: "",
-    postBody: "",
-    hashtags: [],
+    postBody: ""
   });
 
   function handleChange(e) {
@@ -17,17 +20,60 @@ function PublishPost() {
     });
   }
 
+  function handlePost(e) {
+    e.preventDefault();
+    setLoading(true);
+    const body = {
+      link: postData.link,
+      postBody: getTextWhithoutHashtags(postData.postBody),
+      hashtags: getHashtags(postData.postBody)
+    }
+
+    axios.post(`${apiUrl}/timeline/post`, body)
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+        console.log(e);
+        window.alert("An error occurred while trying to publish your link.");
+      });
+  }
+
+  function buttonLogin() {
+    if(loading){
+      return <button><ThreeDots color="#fff" width={'100%'} height={'0.8rem'} /></button>;
+    }
+    return <button type="submit">Publish</button>;
+  }
+
+  function getHashtags(text) {
+    const hashtags = text.match(/#\w+/g);
+    if(hashtags){
+      return hashtags.map(hashtag => hashtag.slice(1));
+    }
+    return [];
+  }
+
+  function getTextWhithoutHashtags(text) {
+    const hashtags = text.match(/#\w+/g);
+    if(hashtags){
+      return text.replace(/#\w+/g, '');
+    }
+    return text;
+  }
+
   return(
     <PublishPostContainer>
       <section>
         <img src={image} alt="" />
       </section>
-      <section className="post-body">
+      <form onSubmit={handlePost}>
         <p>What are you going to share today?</p>
-        <input type="text" placeholder="http://..." name="link" onChange={handleChange} />
+        <input type="text" placeholder="http://..." name="link" onChange={handleChange} required />
         <textarea placeholder="Awesome article about #javascript" name="postBody" onChange={handleChange} />
-        <button>Publish</button>
-      </section>
+        {buttonLogin()}
+      </form>
     </PublishPostContainer>
   )
 }
@@ -63,7 +109,7 @@ const PublishPostContainer = styled.article`
     }
   }
 
-  &>section.post-body {
+  &>form {
     --background-input: #dcdcdc;
     display: flex;
     flex-direction: column;
