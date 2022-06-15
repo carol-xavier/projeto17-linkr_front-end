@@ -54,15 +54,11 @@ const ShowUserContainer = styled.article`
     img {
       width: var(--heigth-header);
       height: var(--heigth-header);
-
       padding: 0.3rem;
 
       object-fit: cover;
       object-position: center;
-      background-size: cover;
       background-repeat: no-repeat;
-      background-position: center;
-
 
       border-radius: 50%;
     }
