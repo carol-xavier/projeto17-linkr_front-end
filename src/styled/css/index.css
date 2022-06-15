@@ -8,16 +8,19 @@
 	--color-4: #FFFFFF;
   --color-red: #AC0000;
 
-
-
 	--text-color-main: #fff;
-  --text-color-secudary: #B7B7B7;
+  --text-color-secodary: #B7B7B7;
   --text-color-tertiary: #9B9595;
 	--text-color-placeholder: #9F9F9F;
 
 	--font-weight-bold: 700;
 	--font-weight-regular: 400;
 	--font-weight-small: 300;
+
+	--main-screen-padding-inline: 0px;
+	--heigth-header: 3rem;
+
+	box-sizing: border-box;
 }
 
 
