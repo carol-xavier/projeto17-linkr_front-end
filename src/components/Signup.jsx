@@ -29,8 +29,12 @@ function Signup() {
                 window.location = "/";
             })
             .catch((err) => {
-                setDisable("");
+                if (err.response.data === "email already in use" || "user name already in use"){
+                    alert(err.response.data);
+                }
+                setDisable("");  
                 console.log(err)
+                console.log(err.response.data)
             });
     }
 
@@ -46,29 +50,33 @@ function Signup() {
                         type='email'
                         placeholder='e-mail'
                         value={email}
+                        required
                         onChange={e => setEmail(e.target.value)}
                     />
                     <input className='input-auth'
                         type='password'
                         placeholder='password'
                         value={password}
+                        required
                         onChange={e => setPassword(e.target.value)}
                     />
                     <input className='input-auth'
                         type='text'
                         placeholder='username'
                         value={name}
+                        required
                         onChange={e => setName(e.target.value)}
                     />
                     <input className='input-auth'
                         type='url'
                         placeholder='picture url'
                         value={imgUrl}
+                        required
                         onChange={e => setimgUrl(e.target.value)}
                     />
                     {disable === "" ?
-                        (<button type="submit">Sing Up</button>) :
-                        (<button type="submit" className='disable-button' disabled = {disable}>Loading</button>)
+                        (<button type="submit" className='button-auth'>Sing Up</button>) :
+                        (<button type="submit" className='disable-button button-auth' disabled = {disable}>Loading</button>)
                     }                                        
                 </form>
                 <Link className='link' to="/">Switch back to log in</Link>
@@ -85,13 +93,15 @@ const Box = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    
 `
 
 const TitleContainer = styled.div`
     width: 77%;
     height: 100%;
-    padding-top: 301px;
-    padding-left: 144px;
+    display: flex;
+    padding: 80px 0 0 120px;
+    flex-direction: column;
     background-color: var(--color-2);
     
 
@@ -101,8 +111,7 @@ const TitleContainer = styled.div`
         font-family: var(--font-logo-login);
     }
     p {
-        width: 350px;
-        height: 128px;
+        width: 320px;
         font-size: 30px;
         font-family: var(--font-logo-login-secundary);
         font-weight: var(--font-weight-bold);
@@ -111,17 +120,26 @@ const TitleContainer = styled.div`
 
 const FormsContainer = styled.div`
     height: 100%;
+    padding: 0 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 
     form {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        
     }
+
+    .link {
+        margin-top: 13px;
+        text-decoration: underline;
+        color: var(--color-4);
+    }
+
+    
     
 `

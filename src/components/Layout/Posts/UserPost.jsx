@@ -1,5 +1,5 @@
 
-import imgDefault from "../../../assets/img/usericon.png";
+import imgDefault from "../../../assets/new_avatar.png"
 import { BsHeart } from "react-icons/bs";
 import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
