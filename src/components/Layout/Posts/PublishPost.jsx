@@ -4,6 +4,8 @@ import image from "../../../assets/img/usericon.png";
 import { ThreeDots } from "react-loader-spinner";
 import { getContext } from "../../../hooks/ContextAPI";
 import axios from "axios";
+import getHashtags from "../../../utils/getHashtags";
+import getTextWithoutHashtags from "../../../utils/getTextWhithoutHashtags";
 
 function PublishPost() {
   const { apiUrl } = getContext();
@@ -25,7 +27,7 @@ function PublishPost() {
     setLoading(true);
     const body = {
       link: postData.link,
-      postBody: getTextWhithoutHashtags(postData.postBody),
+      postBody: getTextWithoutHashtags(postData.postBody),
       hashtags: getHashtags(postData.postBody)
     }
 
@@ -47,22 +49,6 @@ function PublishPost() {
     return <button type="submit">Publish</button>;
   }
 
-  function getHashtags(text) {
-    const hashtags = text.match(/#\w+/g);
-    if(hashtags){
-      return hashtags.map(hashtag => hashtag.slice(1));
-    }
-    return [];
-  }
-
-  function getTextWhithoutHashtags(text) {
-    const hashtags = text.match(/#\w+/g);
-    if(hashtags){
-      return text.replace(/#\w+/g, '');
-    }
-    return text;
-  }
-
   return(
     <PublishPostContainer>
       <section>
@@ -70,7 +56,13 @@ function PublishPost() {
       </section>
       <form onSubmit={handlePost}>
         <p>What are you going to share today?</p>
-        <input type="text" placeholder="http://..." name="link" onChange={handleChange} required />
+        <input 
+          className={}
+          type="text" 
+          placeholder="http://..." 
+          name="link" onChange={handleChange} 
+          required 
+        />
         <textarea placeholder="Awesome article about #javascript" name="postBody" onChange={handleChange} />
         {buttonLogin()}
       </form>
