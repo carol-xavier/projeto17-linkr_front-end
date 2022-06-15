@@ -5,6 +5,7 @@ import axios from "axios";
 import { getContext } from "../../hooks/ContextAPI";
 import UserPost from "../Layout/Posts/UserPost";
 import { ThreeDots } from "react-loader-spinner";
+import PublishPost from "../Layout/Posts/PublishPost";
 
 function Posts() {
   const {apiUrl} = getContext();
@@ -42,6 +43,7 @@ function Posts() {
     <MainScreen >
       <PostsContainer>
         <h1>timeline</h1>
+        <PublishPost />
         {assemblyPosts()}
       </PostsContainer>
     </MainScreen>
