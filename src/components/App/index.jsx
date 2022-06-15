@@ -5,6 +5,7 @@ import "../../styled/css/query.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "../../hooks/ContextAPI";
 import Posts from "../Routes/Posts";
+import Signup from "../Signup";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Posts />} />
+          <Route path="/sign-up" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </Provider>

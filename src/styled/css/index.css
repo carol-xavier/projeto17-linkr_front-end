@@ -1,6 +1,8 @@
 * {
 	--font-logo: 'Oxygen', sans-serif;
 	--font-main: 'Oxygen', sans-serif;
+	--font-logo-login: 'Passion One', cursive;
+	--font-logo-login-secundary: 'Oswald', sans-serif;
 
 	--color-1: #1877F2;
 	--color-2: #151515;
@@ -18,6 +20,7 @@
 	--font-weight-bold: 700;
 	--font-weight-regular: 400;
 	--font-weight-small: 300;
+	box-sizing: border-box;
 }
 
 
@@ -32,6 +35,7 @@ body {
 	font-family: var(--font-main);
 	background-color: var(--color-3);
   color: var(--text-color-main);	
+  
 }
 
 .root{  
@@ -45,4 +49,19 @@ body {
 	font-family: var(--font-main);
 	font-size: var(--font-size-main);
 	
+}
+
+.input-auth {
+        width: 429px;
+        height: 65px;
+        margin-top: 13px;
+        padding: 0 17px;
+        background: var(--color-4);
+        border: 1px solid var(--text-color-placeholder);
+        box-sizing: border-box;
+        border-radius: 6px;
+        font-size: 27px;
+        line-height: 25px;
+        color: var(--text-color-placeholder);
+        font-family: var(--font-logo-login-secundary);
 }
