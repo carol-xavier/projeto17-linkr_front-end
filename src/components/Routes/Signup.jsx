@@ -93,6 +93,10 @@ const Box = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
     
 `
 
@@ -115,6 +119,20 @@ const TitleContainer = styled.div`
         font-size: 30px;
         font-family: var(--font-logo-login-secundary);
         font-weight: var(--font-weight-bold);
+    }
+
+    @media (max-width: 600px) {
+        width: 100%;
+        height: 40%;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+
+        p {
+            font-size: 25px;
+            width: 270px;
+            text-align: center;
+        }
     }
 `
 
@@ -140,6 +158,11 @@ const FormsContainer = styled.div`
         color: var(--color-4);
     }
 
-    
-    
+    @media (max-width: 600px) {
+        justify-content: flex-start;
+
+        form {
+            margin-top: 40px;
+        }
+    } 
 `

@@ -6,7 +6,9 @@ import { ThreeDots } from "react-loader-spinner";
 import PublishPost from "../Layout/Posts/PublishPost";
 import { api } from "../../utils/api";
 
+
 function Posts() {
+  
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,6 +31,7 @@ function Posts() {
   }
 
   useEffect(() => {
+  
     api.get('/timeline')
 			.then(res => {
         setLoading(false);
