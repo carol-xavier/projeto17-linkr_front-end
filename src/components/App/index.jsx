@@ -5,6 +5,7 @@ import "../../styled/css/query.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "../../hooks/ContextAPI";
 import Posts from "../Routes/Posts";
+import Signup from "../Signup";
 import HashtagPage from "../Routes/HashtagPage";
 import UserPage from "../Routes/UserPage.jsx";
 
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Posts />} />
+          <Route path="/sign-up" element={<Signup />} />
           <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
           <Route path="/user/:userId" element={<UserPage />} />
         </Routes>
