@@ -78,7 +78,8 @@ const PostContainer = styled.article`
     }
 
     p {
-      font-size: 0.8rem;
+      width: 100%;
+      font-size: 70%;
     }
   }
 

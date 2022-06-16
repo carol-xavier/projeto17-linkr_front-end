@@ -4,14 +4,14 @@ import "../../styled/css/query.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "../../hooks/ContextAPI";
-import Posts from "../Routes/Posts";
+import Home from "../Routes/Home";
 
 function App() {
   return (
     <Provider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Posts />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </Provider>

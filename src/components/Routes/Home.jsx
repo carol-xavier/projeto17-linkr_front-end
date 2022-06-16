@@ -42,9 +42,14 @@ function Posts() {
   return(
     <MainScreen >
       <PostsContainer>
-        <h1>timeline</h1>
-        <PublishPost />
-        {assemblyPosts()}
+        <section>
+          <h1>timeline</h1>
+          <PublishPost />
+          {assemblyPosts()}
+        </section>
+        <aside>
+          {/* local para exibir as hastags */}
+        </aside>
       </PostsContainer>
     </MainScreen>
   );
@@ -53,26 +58,48 @@ function Posts() {
 export default Posts;
 
 const PostsContainer = styled.section`
-  
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
+
+  &>section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    
+    h1 {
+      width: 100%;
+      padding-block: 0.8rem;
+      font-size: 1.8rem;
+      padding-left: 0;
   
-  h1 {
-    padding-block: 0.8rem;
-    font-size: 1.8rem;
-    padding-left: 0;
- 
-    @media (max-width: 500px) {      
-      padding-left: 0.8rem;
+      @media (max-width: 500px) {      
+        padding-left: 0.8rem;
+      }
+    }
+
+    &>h2 {
+      padding: 0.8rem;
+      color: var(--text-color-secodary);
     }
   }
+  
+  &>aside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    min-width: 18rem;
+    height: 10rem;
 
-  &>h2 {
-    padding: 0.8rem;
-    color: var(--text-color-secodary);
+    margin-left: 3rem;
+    margin-top: 3.8rem;
+
+    background-color: blue;
   }
-
 `;
 
 

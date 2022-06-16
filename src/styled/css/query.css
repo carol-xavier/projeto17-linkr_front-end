@@ -7,7 +7,7 @@
 
 @media (min-width: 700px) {
   * {
-    --main-screen-padding-inline: 4rem;
+    --main-screen-padding-inline: 8rem;
 
   }
 }

@@ -6,16 +6,16 @@ import { getContext } from "../../../hooks/ContextAPI";
 import axios from "axios";
 import getHashtags from "../../../utils/getHashtags";
 import getTextWithoutHashtags from "../../../utils/getTextWhithoutHashtags";
+import isValidUrl from "../../../utils/isValidUrl";
 
 function PublishPost() {
   const { apiUrl } = getContext();
   const [loading, setLoading] = useState(false);
-  const [postData, setPostData] = useState({
-    link: "",
-    postBody: ""
-  });
+  const [postData, setPostData] = useState({ link: "", postBody: "" });
+  const [linkError, setLinkError] = useState(false);
 
   function handleChange(e) {
+    setLinkError(false);
     setPostData({
       ...postData,
       [e.target.name]: e.target.value,
@@ -24,16 +24,26 @@ function PublishPost() {
 
   function handlePost(e) {
     e.preventDefault();
+    if(!isValidUrl(postData.link)){
+      setLinkError(true);
+      return;
+    }
+
     setLoading(true);
+    
     const body = {
       link: postData.link,
       postBody: getTextWithoutHashtags(postData.postBody),
       hashtags: getHashtags(postData.postBody)
     }
-
+    
     axios.post(`${apiUrl}/timeline/post`, body)
       .then(() => {
         setLoading(false);
+        setPostData({
+          link: "",
+          postBody: ""
+        });
       })
       .catch((e) => {
         setLoading(false);
@@ -44,7 +54,11 @@ function PublishPost() {
 
   function buttonLogin() {
     if(loading){
-      return <button><ThreeDots color="#fff" width={'100%'} height={'0.8rem'} /></button>;
+      return (
+        <button>
+          <ThreeDots color="#fff" width={'100%'} height={'0.8rem'} />
+        </button>
+      );
     }
     return <button type="submit">Publish</button>;
   }
@@ -57,7 +71,7 @@ function PublishPost() {
       <form onSubmit={handlePost}>
         <p>What are you going to share today?</p>
         <input 
-          className={}
+          className={linkError ? "error" : ""}
           type="text" 
           placeholder="http://..." 
           name="link" onChange={handleChange} 
@@ -125,6 +139,10 @@ const PublishPostContainer = styled.article`
       padding-left: 0.8rem;
       margin-bottom: 0.8rem;
       background-color: var(--background-input);
+    }
+
+    &>input.error {
+      color: #ff0000;
     }
 
     &>textarea {
