@@ -6,6 +6,7 @@
     "@mdnm/react-hashtag": "^3.0.2",
     "axios": "^0.27.2",
     "react": "^18.1.0",
+    "react-debounce-input": "^3.3.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",
     "react-loader-spinner": "^5.1.5",
