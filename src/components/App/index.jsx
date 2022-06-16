@@ -2,10 +2,10 @@ import "../../styled/css/reset.css";
 import "../../styled/css/index.css";
 import "../../styled/css/query.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "../../hooks/ContextAPI";
-import Posts from "../Routes/Posts";
-import Signup from "../Signup";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "../Routes/Home";
+import Signup from "../Routes/Signup";
 import HashtagPage from "../Routes/HashtagPage";
 import UserPage from "../Routes/UserPage.jsx";
 
@@ -15,8 +15,9 @@ function App() {
     <Provider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Posts />} />
+          <Route path="/timeline" element={<Home />} />
           <Route path="/sign-up" element={<Signup />} />
+          <Route path="/" element={<Home />} />
           <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
           <Route path="/user/:userId" element={<UserPage />} />
         </Routes>

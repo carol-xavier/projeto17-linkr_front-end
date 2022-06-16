@@ -8,7 +8,7 @@ import { getContext } from "../../hooks/ContextAPI";
 
 import MainScreen from "../Layout/MainScreen";
 import UserPost from "../Layout/Posts/UserPost";
-import TrendingBox from "../TrendingBox";
+import TrendingBox from "../Layout/TrendingBox";
 
 export default function UserPage() {
     const { apiUrl } = getContext();

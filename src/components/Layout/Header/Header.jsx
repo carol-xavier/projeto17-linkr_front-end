@@ -4,33 +4,39 @@ import ShowUser from "./ShowUser";
 import SearchUser from "./SearchUser";
 
 function Header() {
-    return (
-        <>
-            <HeaderContainer>
-                <h1>linkr</h1>
-                <SearchUser className="desktop" />
-                <ShowUser />
-            </HeaderContainer>
-        </>
-    );
+	return (
+		<>
+			<HeaderContainer>
+				<h1>linkr</h1>
+				<SearchUser className="desktop" />
+				<ShowUser />
+			</HeaderContainer>
+		</>
+	);
 }
 
 export default Header;
 
 const HeaderContainer = styled.header`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position:relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    width: 100%;
-    height: var(--heigth-header);
-    padding-inline: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 
-    background-color: var(--color-2);
+  width: 100%;
+  height: var(--heigth-header);
+  padding-inline: 10px;
 
-    & > h1 {
-        font-weight: var(--font-weight-bold);
-        font-size: 1.5rem;
-    }
-`;
+  background-color: var(--color-2);
+
+  &>h1 {
+	font-weight: var(--font-weight-bold);
+	font-size: 1.5rem;
+  }
+
+`

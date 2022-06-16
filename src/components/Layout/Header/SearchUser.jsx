@@ -6,101 +6,101 @@ import { useState } from "react";
 import { getContext } from "../../../hooks/ContextAPI";
 
 export default function SearchUser() {
-    const { apiUrl } = getContext();
-    const [users, setUsers] = useState(null);
+	const { apiUrl } = getContext();
+	const [users, setUsers] = useState(null);
 
-    function getUsers(name) {
-        if (name.length < 3) {
-            setUsers(null);
-            return;
-        }
-        const promise = axios.get(`${apiUrl}/users/${name}`);
-        promise.then((res) => {
-            setUsers(res.data);
-        });
-        promise.catch((err) => {
-            if (err.response.status === 404) {
-                setUsers([]);
-                return;
-            }
-            console.log(err);
-            alert("Erro ao procurar usuários");
-        });
-    }
+	function getUsers(name) {
+		if (name.length < 3) {
+			setUsers(null);
+			return;
+		}
+		const promise = axios.get(`${apiUrl}/users/${name}`);
+		promise.then((res) => {
+			setUsers(res.data);
+		});
+		promise.catch((err) => {
+			if (err.response.status === 404) {
+				setUsers([]);
+				return;
+			}
+			console.log(err);
+			alert("Erro ao procurar usuários");
+		});
+	}
 
-    function showUsers(users) {
-        if (users.length > 0) {
-            return users.map((user) => {
-                return (
-                    <div key={user.id}>
-                        <img src={user.image} alt="" />
-                        <p>{user.name}</p>
-                    </div>
-                );
-            });
-        } else {
-            return <p>Nenhum usuário encontrado!</p>;
-        }
-    }
+	function showUsers(users) {
+		if (users.length > 0) {
+			return users.map((user) => {
+				return (
+					<div key={user.id}>
+						<img src={user.image} alt="" />
+						<p>{user.name}</p>
+					</div>
+				);
+			});
+		} else {
+			return <p>Nenhum usuário encontrado!</p>;
+		}
+	}
 
-    return (
-        <Container>
-            <DebounceInput
-                minLength={3}
-                debounceTimeout={300}
-                type="text"
-                placeholder="Search for people"
-                onChange={(e) => getUsers(e.target.value)}
-            />
-            {users ? <div>{showUsers(users)}</div> : <></>}
-        </Container>
-    );
+	return (
+		<Container>
+			<DebounceInput
+				minLength={3}
+				debounceTimeout={300}
+				type="text"
+				placeholder="Search for people"
+				onChange={(e) => getUsers(e.target.value)}
+			/>
+			{users ? <div>{showUsers(users)}</div> : <></>}
+		</Container>
+	);
 }
 
 const Container = styled.div`
-    position: absolute;
-    left: calc(50% - 280px);
-    top: 13px;
-    width: 563px;
+	height: 70%;
+	width: 563px;
+	margin-left: 15px;
+	margin-right: 10px;
 
-    input {
-        width: 100%;
-        height: 45px;
-        border-radius: 8px;
-        padding: 14px;
-        font-size: 19px;
-    }
+	input {
+		width: 100%;
+		height: 100%;
+		border-radius: 8px;
+		padding: 14px;
+		font-size: 19px;
+	}
 
-    input::placeholder {
-        color: #c6c6c6;
-    }
-    & > div {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 14px 17px 10px;
-        border-radius: 0 0 8px 8px;
-        background-color: #e7e7e7;
-    }
+	input::placeholder {
+		color: #c6c6c6;
+	}
+	& > div {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 14px 17px 10px;
+		border-radius: 0 0 8px 8px;
+		background-color: #e7e7e7;
+	}
 
-    div div {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
+	div div {
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+	}
 
-    div div img {
-        width: 39px;
-        height: 39px;
-        margin-right: 12px;
-        object-fit: cover;
-        object-position: center;
-        background-repeat: no-repeat;
-        border-radius: 50%;
-    }
+	div div img {
+		width: 39px;
+		height: 39px;
+		margin-right: 12px;
+		object-fit: cover;
+		object-position: center;
+		background-repeat: no-repeat;
+		border-radius: 50%;
+	}
 
-    p {
-        color: #515151;
-        font-size: 19px;
-    }
+	p {
+		color: #515151;
+		font-size: 19px;
+	}
 `;

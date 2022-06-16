@@ -2,7 +2,7 @@ import { React, useState} from 'react';
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
 
-import { api } from '../utils/api'
+import { api } from '../../utils/api';
 import styled from 'styled-components';
 
 function Signup() {
