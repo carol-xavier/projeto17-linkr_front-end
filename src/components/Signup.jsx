@@ -29,7 +29,7 @@ function Signup() {
                 window.location = "/";
             })
             .catch((err) => {
-                if (err.response.data === "email already in use" || "user name already in use"){
+                if (err.response.status === 409){
                     alert(err.response.data);
                 }
                 setDisable("");  
