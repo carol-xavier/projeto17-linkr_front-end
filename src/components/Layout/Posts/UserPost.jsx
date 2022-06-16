@@ -1,5 +1,5 @@
 
-import imgDefault from "../../../assets/img/usericon.png";
+// import imgDefault from "../../../assets/img/usericon.png";
 import { BsHeart } from "react-icons/bs";
 import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
@@ -7,8 +7,8 @@ import LinkPreview from "./LinkPreview";
 
 function UserPost({postData}){
   const {name, postBody, metadata} = postData;
-  const image = postData.image || imgDefault;
-
+  // const image = postData.image || imgDefault;
+const image = 'teste';
   function handleLikes() {
     return (
       <>

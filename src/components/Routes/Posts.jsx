@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import MainScreen from "../Layout/MainScreen";
-import TrendingBox from "../TrendingBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getContext } from "../../hooks/ContextAPI";
