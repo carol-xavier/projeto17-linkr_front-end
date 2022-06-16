@@ -24,6 +24,9 @@ const MainScreenContainer = styled.section`
   width: 100%;
   height: 100%;
 
+  padding-top: var(--heigth-header);
+    
+  overflow-y: auto;
   
   &>main {
     display: flex;
@@ -32,6 +35,7 @@ const MainScreenContainer = styled.section`
 
     width: 100%;
     height: 100%;
+    
     padding-inline: var(--main-screen-padding-inline);
   }
 `
