@@ -1,15 +1,13 @@
 import styled from "styled-components";
 import MainScreen from "../Layout/MainScreen";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { getContext } from "../../hooks/ContextAPI";
 import UserPost from "../Layout/Posts/UserPost";
 import { ThreeDots } from "react-loader-spinner";
 import PublishPost from "../Layout/Posts/PublishPost";
 import TrendingBox from "../Layout/TrendingBox";
+import { api } from "../../utils/api";
 
 function Posts() {
-  const {apiUrl} = getContext();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -32,13 +30,13 @@ function Posts() {
   }
 
   useEffect(() => {
-    axios.get(`${apiUrl}/timeline`)
-      .then(res => {
+    api.get('/timeline')
+			.then(res => {
         setLoading(false);
         setPosts(res.data);
       })
-      .catch(errorGetPosts);
-  },[apiUrl])
+			.catch(errorGetPosts);
+  },[])
 
   return(
     <MainScreen >
@@ -50,7 +48,6 @@ function Posts() {
         </section>
         <aside>
           <TrendingBox />
-         {/*  <div className="box"></div> */}
         </aside>
       </PostsContainer>
     </MainScreen>
@@ -108,7 +105,7 @@ const PostsContainer = styled.section`
     }
 
     &>div.box {
-      min-width: 10rem;
+      min-width: 15rem;
       height: 10rem;
       background-color: var(--color-1);
     }

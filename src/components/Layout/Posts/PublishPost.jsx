@@ -2,14 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import image from "../../../assets/img/usericon.png";
 import { ThreeDots } from "react-loader-spinner";
-import { getContext } from "../../../hooks/ContextAPI";
-import axios from "axios";
 import getHashtags from "../../../utils/getHashtags";
-import getTextWithoutHashtags from "../../../utils/getTextWhithoutHashtags";
 import isValidUrl from "../../../utils/isValidUrl";
+import { api } from "../../../utils/api";
 
 function PublishPost() {
-  const { apiUrl } = getContext();
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({ link: "", postBody: "" });
   const [linkError, setLinkError] = useState(false);
@@ -36,7 +33,7 @@ function PublishPost() {
       hashtags: getHashtags(postData.postBody)
     }
     
-    axios.post(`${apiUrl}/timeline/post`, body)
+    api.post('/timeline/post', body)
       .then(() => {
         setLoading(false);
         setPostData({
