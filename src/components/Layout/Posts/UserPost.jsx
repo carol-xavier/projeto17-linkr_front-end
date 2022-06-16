@@ -38,9 +38,12 @@ export default UserPost;
 
 const PostContainer = styled.article`
 	display: flex;
-	flex-direction: column;
-	width: 4rem;
-	padding-right: 1rem;
+	width: 100%;
+	height: auto;
+	padding: 1rem;
+	overflow: hidden;
+	margin-bottom: 1rem;
+	background-color: var(--color-2);
 
 	@media (min-width: 500px) {
 			border-radius: 0.8rem;

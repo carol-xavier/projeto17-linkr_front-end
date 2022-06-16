@@ -11,10 +11,10 @@ export function Provider(props) {
       value={{
         apiUrl
       }}
-
     >
       {props.children}
     </context.Provider>
   );
 }
 export const getContext = () => react.useContext(context);
+

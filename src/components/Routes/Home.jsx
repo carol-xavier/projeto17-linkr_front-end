@@ -38,7 +38,7 @@ function Posts() {
   },[])
 
   return(
-    <MainScreen >
+    <MainScreen route="/timeline" >
         <h1>timeline</h1>
         <PublishPost />
     </MainScreen>

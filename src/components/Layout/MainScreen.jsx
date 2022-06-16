@@ -6,7 +6,7 @@ import Header from "./Header/Header";
 import UserPost from "./Posts/UserPost";
 import TrendingBox from "./TrendingBox";
 
-function MainScreen({rote, children}) {
+function MainScreen({route, children}) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,13 +29,13 @@ function MainScreen({rote, children}) {
   }
 
   useEffect(() => {
-    api.get('/timeline')
+    api.get(route)
 			.then(res => {
         setLoading(false);
         setPosts(res.data);
       })
 			.catch(errorGetPosts);
-  },[])
+  },[route])
 
   return(
     <MainScreenContainer>
@@ -60,8 +60,6 @@ const MainScreenContainer = styled.section`
   align-items: flex-start;
 
   width: 100%;
-  height: 100%;
-
   padding-top: var(--heigth-header);
     
   overflow-y: auto;
@@ -70,12 +68,12 @@ const MainScreenContainer = styled.section`
   &>main {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
 
     width: 100%;
     height: 100%;
-    
+
     padding-inline: var(--main-screen-padding-inline);
   }
 `
@@ -83,9 +81,9 @@ const MainScreenContainer = styled.section`
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  width: 70%;
 
   &>h1 {
     width: 100%;
