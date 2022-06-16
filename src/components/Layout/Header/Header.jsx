@@ -1,14 +1,18 @@
 import styled from "styled-components";
+
 import ShowUser from "./ShowUser";
+import SearchUser from "./SearchUser";
 
 function Header() {
-
-  return (
-    <HeaderContainer>
-      <h1>linkr</h1>
-      <ShowUser />
-    </HeaderContainer>
-  )
+	return (
+		<>
+			<HeaderContainer>
+				<h1>linkr</h1>
+				<SearchUser className="desktop" />
+				<ShowUser />
+			</HeaderContainer>
+		</>
+	);
 }
 
 export default Header;
@@ -31,8 +35,8 @@ const HeaderContainer = styled.header`
   background-color: var(--color-2);
 
   &>h1 {
-    font-weight: var(--font-weight-bold);
-    font-size: 1.5rem;
+	font-weight: var(--font-weight-bold);
+	font-size: 1.5rem;
   }
 
 `

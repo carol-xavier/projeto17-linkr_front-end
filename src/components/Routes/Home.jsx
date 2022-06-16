@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import UserPost from "../Layout/Posts/UserPost";
 import { ThreeDots } from "react-loader-spinner";
 import PublishPost from "../Layout/Posts/PublishPost";
-import TrendingBox from "../Layout/TrendingBox";
 import { api } from "../../utils/api";
+import TrendingBox from "../Layout/TrendingBox";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
