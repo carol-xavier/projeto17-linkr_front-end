@@ -6,6 +6,8 @@ import { getContext } from "../../hooks/ContextAPI";
 import UserPost from "../Layout/Posts/UserPost";
 import { ThreeDots } from "react-loader-spinner";
 
+import TrendingBox from "./../TrendingBox";
+
 function Posts() {
   const {apiUrl} = getContext();
   const [posts, setPosts] = useState([]);
@@ -44,6 +46,7 @@ function Posts() {
         <h1>timeline</h1>
         {assemblyPosts()}
       </PostsContainer>
+      <TrendingBox />
     </MainScreen>
   );
 }

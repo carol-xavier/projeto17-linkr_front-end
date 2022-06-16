@@ -2,11 +2,13 @@
     --font-logo: "Oxygen", sans-serif;
     --font-main: "Oxygen", sans-serif;
 
-    --color-1: #1877f2;
-    --color-2: #151515;
-    --color-3: #333333;
-    --color-4: #ffffff;
-    --color-red: #ac0000;
+	--color-1: #1877F2;
+	--color-2: #151515;
+	--color-3: #333333; 
+	--color-4: #FFFFFF;
+	--color-5: #171717;
+	--color-6: #484848;
+  --color-red: #AC0000;
 
     --text-color-main: #fff;
     --text-color-secodary: #b7b7b7;
