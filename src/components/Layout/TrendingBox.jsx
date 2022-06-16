@@ -38,8 +38,9 @@ function TrendingBox() {
 export default TrendingBox;
 
 const Box = styled.div`
-  width: 301px;
-  height: 406px;
+	width: 15rem;
+	min-width: 15rem;
+	height: 10rem;
   border-radius: 16px;
   background-color: var(--color-5);
   position: relative;
@@ -53,10 +54,11 @@ const Box = styled.div`
   }
 
   div{
-	width: 100%;
-	border: 1px solid var(--color-6);
-	position: absolute;
-	top: 61px;
+		display: flex;
+		width: 100%;
+		border: 1px solid var(--color-6);
+		position: absolute;
+		top: 61px;
   }
 `;
 

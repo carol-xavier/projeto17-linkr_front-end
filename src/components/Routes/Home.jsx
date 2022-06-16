@@ -50,6 +50,7 @@ function Posts() {
         </section>
         <aside>
           <TrendingBox />
+         {/*  <div className="box"></div> */}
         </aside>
       </PostsContainer>
     </MainScreen>
@@ -61,7 +62,7 @@ export default Posts;
 const PostsContainer = styled.section`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   width: 100%;
 
@@ -70,6 +71,10 @@ const PostsContainer = styled.section`
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+    @media (min-width: 700px) {
+      width: 75%;
+    }
     
     h1 {
       width: 100%;
@@ -93,11 +98,20 @@ const PostsContainer = styled.section`
     flex-direction: column;
     align-items: center;
     
-    min-width: 18rem;
-    height: 10rem;
+    width: auto;
 
     margin-left: 3rem;
     margin-top: 3.8rem;
+
+    @media (max-width: 700px) {
+      display: none;
+    }
+
+    &>div.box {
+      min-width: 10rem;
+      height: 10rem;
+      background-color: var(--color-1);
+    }
   }
 `;
 

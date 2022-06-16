@@ -27,6 +27,7 @@ const MainScreenContainer = styled.section`
   padding-top: var(--heigth-header);
     
   overflow-y: auto;
+  overflow-x: hidden;
   
   &>main {
     display: flex;

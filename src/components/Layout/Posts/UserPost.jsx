@@ -55,6 +55,7 @@ const PostContainer = styled.article`
   &>section {
     display: flex;
     flex-direction: column;
+    width: 4rem;
     padding-right: 1rem;
     
     img.user {
@@ -85,6 +86,7 @@ const PostContainer = styled.article`
   }
 
   &>section.post-body {
+    width: calc(100% - 4rem);
     font-weight: var(--font-weight-regular);
     
     h2 {
