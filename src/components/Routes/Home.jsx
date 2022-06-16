@@ -103,12 +103,6 @@ const PostsContainer = styled.section`
     @media (max-width: 700px) {
       display: none;
     }
-
-    &>div.box {
-      min-width: 15rem;
-      height: 10rem;
-      background-color: var(--color-1);
-    }
   }
 `;
 
