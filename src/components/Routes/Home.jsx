@@ -6,6 +6,7 @@ import { getContext } from "../../hooks/ContextAPI";
 import UserPost from "../Layout/Posts/UserPost";
 import { ThreeDots } from "react-loader-spinner";
 import PublishPost from "../Layout/Posts/PublishPost";
+import TrendingBox from "../Layout/TrendingBox";
 
 function Posts() {
   const {apiUrl} = getContext();
@@ -48,7 +49,7 @@ function Posts() {
           {assemblyPosts()}
         </section>
         <aside>
-          {/* local para exibir as hastags */}
+          <TrendingBox />
         </aside>
       </PostsContainer>
     </MainScreen>
@@ -97,8 +98,6 @@ const PostsContainer = styled.section`
 
     margin-left: 3rem;
     margin-top: 3.8rem;
-
-    background-color: blue;
   }
 `;
 

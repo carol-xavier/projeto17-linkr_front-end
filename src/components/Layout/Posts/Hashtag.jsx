@@ -1,4 +1,4 @@
-import ReactHashtag from 'react-hashtag';
+import ReactHashtag from '@mdnm/react-hashtag';
 import styled from 'styled-components';
 
 const Hashtag = (props) => (
@@ -11,10 +11,10 @@ const Hashtag = (props) => (
     >
       {props.children}
     </ReactHashtag>
-  );
+);
 
-  export default Hashtag;
+export default Hashtag;
 
-  const StyledHashtag = styled.a`
-    font-weight: 700;
-  `;
+const StyledHashtag = styled.a`
+  font-weight: 700;
+`;

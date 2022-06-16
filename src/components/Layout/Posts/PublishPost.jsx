@@ -32,8 +32,7 @@ function PublishPost() {
     setLoading(true);
     
     const body = {
-      link: postData.link,
-      postBody: getTextWithoutHashtags(postData.postBody),
+      ...postData,
       hashtags: getHashtags(postData.postBody)
     }
     
