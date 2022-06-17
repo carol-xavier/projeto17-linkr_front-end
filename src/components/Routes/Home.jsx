@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getContext } from "../../hooks/ContextAPI";
+import {api} from "./../../utils/api";
+import { ThreeDots } from "react-loader-spinner";
+import styled from "styled-components";
 import MainScreen from "../Layout/MainScreen";
+import UserPost from "../Layout/Posts/UserPost";
 import PublishPost from "../Layout/Posts/PublishPost";
 
 
@@ -37,9 +42,9 @@ function Posts() {
   },[])
 
   return(
-    <MainScreen route="/timeline" refresh={refresh} >
+    <MainScreen route="/timeline" >
         <h1>timeline</h1>
-        <PublishPost refresh={refresh} setRefresh={setRefresh} />
+        <PublishPost />
     </MainScreen>
   );
 }
