@@ -4,8 +4,6 @@ import PublishPost from "../Layout/Posts/PublishPost";
 
 
 function Posts() {
-  const [refresh, setRefresh] = useState(false);
-  console.log(refresh);
   
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
