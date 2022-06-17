@@ -4,12 +4,13 @@ import { FaTrash } from "react-icons/fa"
 import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
+//#TO DO ##CSS do handleToken
 
 function UserPost({ postData }) {
 	const { name, postBody, metadata } = postData;
 	const image = postData.image;
 
-	function handleLikes() {
+	function handleLikes() { 
 		return (
 			<>
 				<button>
@@ -20,12 +21,12 @@ function UserPost({ postData }) {
 		);
 	};
 
-	function deletePost(){
+	function deletePost() {
 		return (
 			<>
-			<button>
-				<FaTrash />
-			</button>
+				<button>
+					<FaTrash />
+				</button>
 			</>
 		)
 	};
@@ -35,8 +36,8 @@ function UserPost({ postData }) {
 			<section>
 				<img className="user" src={image} alt="" />
 				{handleLikes()}
-				{deletePost}
 			</section>
+			{deletePost()}
 			<section className="post-body">
 				<h2>{name}</h2>
 				<p><Hashtag>{postBody}</Hashtag></p>

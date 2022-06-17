@@ -21,7 +21,7 @@ function TrendingBox() {
     };
 
     api
-      .get('/hashtags', config)
+      .get('/hashtags',config)
       .then((res) => setHashtagList(res.data))
       .catch((err) => console.error(err));
   }, [token]);
@@ -32,7 +32,7 @@ function TrendingBox() {
       <div />
       <Article>
         {hashtagList.map((str, index) =>
-          <p onClick={() => navigate(`hashtag/${str}`)}># {str}</p>
+          <p onClick={() => navigate(`/hashtag/${str}`)}># {str}</p>
         )}
       </Article>
     </Box>
@@ -43,8 +43,8 @@ export default TrendingBox;
 
 const Box = styled.div`
   margin-top: 3.4rem;
-  margin-left: 3rem;
-  width:17rem;
+  margin-left: 2rem;
+  width:30%;
   height: auto;
   border-radius: 16px;
   background-color: var(--color-5);

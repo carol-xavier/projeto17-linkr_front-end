@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
-import styled from "styled-components";
 import { api } from "../../utils/api";
+import { getContext } from '../../hooks/ContextAPI';
+import styled from "styled-components";
 import Header from "./Header/Header";
 import UserPost from "./Posts/UserPost";
 import TrendingBox from "./TrendingBox";
 
 function MainScreen({refresh, route, children}) {
+  const { token } = getContext();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,8 +31,14 @@ function MainScreen({refresh, route, children}) {
   }
 
   useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    };
+
     setLoading(true);
-    api.get(route)
+    api.get(route,config)
 			.then(res => {
         setLoading(false);
         setPosts(res.data);
