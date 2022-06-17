@@ -6,9 +6,10 @@ import LinkPreview from "./LinkPreview";
 
 
 function UserPost({postData}){
-  const {name, postBody, metadata} = postData;
-  // const image = postData.image || imgDefault;
-const image = 'teste';
+  console.log(postData);
+  const {name, postBody, metadata } = postData;
+  const image = postData.image;
+
   function handleLikes() {
     return (
       <>
@@ -100,6 +101,4 @@ const PostContainer = styled.article`
       }
     }
   }
-
-  
 `

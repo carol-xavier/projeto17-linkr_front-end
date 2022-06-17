@@ -46,7 +46,6 @@ function Posts() {
         <h1>timeline</h1>
         {assemblyPosts()}
       </PostsContainer>
-      <TrendingBox />
     </MainScreen>
   );
 }

@@ -11,16 +11,16 @@ function TrendingBox() {
     useEffect(() => {
 
         const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
+            // headers: {
+            //     Authorization: `Bearer ${token}`,
+            // }
         };
 
         api
             .get('/hashtags',config)
             .then((res) => setHashtagList(res.data))
             .catch((err) => console.error(err));
-    }, [token]); 
+    }, []); 
 
     return (
         <Box>
@@ -38,25 +38,31 @@ function TrendingBox() {
 export default TrendingBox;
 
 const Box = styled.div`
-  width: 301px;
-  height: 406px;
+  margin-top: 3.8rem;
+  margin-left: 3rem;
+  width:12rem;
+  height: auto;
   border-radius: 16px;
   background-color: var(--color-5);
   position: relative;
 
+  @media (max-width: 500px) {      
+      display: none;
+    }
+
   h1{
     font-family: var(--font-header);
-    font-size: 27px;
+    font-size: 1.5rem;
     position:absolute;
-    top:12px;
-    left:16px;
+    top:1rem;
+    left:1rem
   }
 
   div{
     width: 100%;
     border: 1px solid var(--color-6);
     position: absolute;
-    top: 61px;
+    top: 3.5rem;
   }
 `;
 

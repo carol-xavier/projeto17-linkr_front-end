@@ -1,15 +1,19 @@
 import styled from "styled-components";
 import Header from "./Header/Header";
+import TrendingBox from "../TrendingBox";
 
 function MainScreen(prop) {
   const { children } = prop;
 
-  return(
+  return (
     <MainScreenContainer>
       <Header />
-      <main>
-        {children}
-      </main>      
+      <LayoutPage>
+        <main>
+          {children}
+        </main>
+        <TrendingBox />
+      </LayoutPage>
     </MainScreenContainer>
   );
 }
@@ -35,3 +39,7 @@ const MainScreenContainer = styled.section`
     padding-inline: var(--main-screen-padding-inline);
   }
 `
+
+const LayoutPage = styled.article`
+  display: flex;
+`;
