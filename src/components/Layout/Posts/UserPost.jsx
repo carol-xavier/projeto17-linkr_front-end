@@ -1,5 +1,6 @@
 // import imgDefault from "../../../assets/img/usericon.png";
 import { BsHeart } from "react-icons/bs";
+import { FaTrash } from "react-icons/fa"
 import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
@@ -17,13 +18,24 @@ function UserPost({ postData }) {
 				<p>13 likes</p>
 			</>
 		);
-	}
+	};
+
+	function deletePost(){
+		return (
+			<>
+			<button>
+				<FaTrash />
+			</button>
+			</>
+		)
+	};
 
 	return (
 		<PostContainer>
 			<section>
 				<img className="user" src={image} alt="" />
 				{handleLikes()}
+				{deletePost}
 			</section>
 			<section className="post-body">
 				<h2>{name}</h2>
