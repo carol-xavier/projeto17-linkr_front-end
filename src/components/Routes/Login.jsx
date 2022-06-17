@@ -1,28 +1,31 @@
-import { React, useContext, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { React, useContext, useEffect, useState} from 'react';
+import { Link, useNavigate} from 'react-router-dom';
 import { api } from '../../utils/api'
 import styled from 'styled-components';
-import { getContext } from '../../hooks/ContextAPI';
+import { getContext } from "../../hooks/ContextAPI"
+
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-   
- 
-
     const [disable, setDisable] = useState("");
+    const { token, setToken } = getContext()
+    let navigate = useNavigate();
+   
+   
 
     function userLogin(event) {
         event.preventDefault();
         setDisable("disable");
-
+        
+        
         api
             .post('/login', {
                 email: email,
                 password: password,
             })
             .then((res) => {
-                
-                window.location = "/timeline";
+                setToken(res.data);
+                navigate("/timeline");
             })
             .catch((err) => {
                 if (err.response.status === 401){

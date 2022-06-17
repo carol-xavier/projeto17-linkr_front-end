@@ -12,18 +12,19 @@ import UserPage from "../Routes/UserPage.jsx";
 
 
 function App() {
+ 
   return (
-    <Provider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/timeline" element={<Home />} />
-          <Route path="/sign-up" element={<Signup />} />
-          <Route path="/" element={<Login />} />
-          <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
-          <Route path="/user/:userId" element={<UserPage />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+      <Provider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/timeline" element={<Home />} />
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
+            <Route path="/user/:userId" element={<UserPage />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
   );
 }
 
