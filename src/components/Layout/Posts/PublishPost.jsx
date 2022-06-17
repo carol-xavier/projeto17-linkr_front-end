@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
-import image from "../../../assets/img/usericon.png";
+// import image from "../../../assets/img/usericon.png";
 import { ThreeDots } from "react-loader-spinner";
 import getHashtags from "../../../utils/getHashtags";
 import isValidUrl from "../../../utils/isValidUrl";
 import { api } from "../../../utils/api";
 
 function PublishPost({refresh, setRefresh}) {
+  const image = "test";
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({ link: "", postBody: "" });
   const [linkError, setLinkError] = useState(false);

@@ -38,9 +38,9 @@ function TrendingBox() {
 export default TrendingBox;
 
 const Box = styled.div`
-  margin-top: 3.8rem;
+  margin-top: 3.4rem;
   margin-left: 3rem;
-  width:12rem;
+  width:17rem;
   height: auto;
   border-radius: 16px;
   background-color: var(--color-5);
@@ -50,29 +50,26 @@ const Box = styled.div`
       display: none;
     }
 
-  h1{
+  &>h1{
     font-family: var(--font-logo-login-secundary);
     font-size: 1.5rem;
-    position:absolute;
-    top:1rem;
-    left:1rem
+    margin-top:1rem;
+    margin-left:1rem
   }
 
-  div{
+  &>div{
     width: 100%;
     border: 1px solid var(--color-6);
-    position: absolute;
-    top: 3.5rem;
+    margin-top: 0.5rem;
   }
 `;
 
 const Article = styled.article`
-    position: absolute;
-    height: 293px;
-    top: 83px;
-    left: 16px;
-    
-    p{
+    margin-top: 1rem ;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+  
+    &>p{
         margin-bottom: 10px;
         font-weight: var(--font-weight-bold);
     }
