@@ -3,13 +3,15 @@ import react, {createContext } from "react";
 const context = createContext();
 
 export function Provider(props) {
-	//const apiUrl = "https://link-r.herokuapp.com";
-  const apiUrl = "http://localhost:4002";
+  // TODO: remove apiUrl from here. Use the function 'api' instead.
+  const apiUrl = "http://localhost:4001";
+  const [refresh, setRefresh] = react.useState(false);
   
   return (
     <context.Provider
       value={{
-        apiUrl
+        apiUrl,
+        refresh, setRefresh
       }}
     >
       {props.children}
