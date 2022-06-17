@@ -6,7 +6,7 @@ import Header from "./Header/Header";
 import UserPost from "./Posts/UserPost";
 import TrendingBox from "./TrendingBox";
 
-function MainScreen({route, children}) {
+function MainScreen({refresh, route, children}) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,13 +29,14 @@ function MainScreen({route, children}) {
   }
 
   useEffect(() => {
+    setLoading(true);
     api.get(route)
 			.then(res => {
         setLoading(false);
         setPosts(res.data);
       })
 			.catch(errorGetPosts);
-  },[route])
+  },[refresh]);
 
   return(
     <MainScreenContainer>
