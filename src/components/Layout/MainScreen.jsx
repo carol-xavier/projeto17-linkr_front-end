@@ -18,6 +18,7 @@ function MainScreen({refresh, route, children}) {
     if(posts.length === 0){
       return <h2>There are no posts yet</h2>
     }
+    console.log(posts);
 
     return posts.map((post, id) => <UserPost key={id} postData={post} /> );
   }
@@ -91,6 +92,8 @@ const Section = styled.section`
     padding-block: 0.8rem;
     font-size: 1.8rem;
     padding-left: 0;
+
+    font-family: var(--font-logo-login-secundary);
 
     @media (max-width: 500px) {      
       padding-left: 0.8rem;

@@ -3,10 +3,9 @@ import axios from "axios";
 import styled from "styled-components";
 import { useState } from "react";
 
-import { getContext } from "../../../hooks/ContextAPI";
+import { api } from "../../../utils/api";
 
 export default function SearchUser() {
-	const { apiUrl } = getContext();
 	const [users, setUsers] = useState(null);
 
 	function getUsers(name) {
@@ -14,7 +13,7 @@ export default function SearchUser() {
 			setUsers(null);
 			return;
 		}
-		const promise = axios.get(`${apiUrl}/users/${name}`);
+		const promise = api.get(`/users/${name}`);
 		promise.then((res) => {
 			setUsers(res.data);
 		});

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import image from "../../../assets/img/usericon.png";
+// import image from "../../../assets/img/usericon.png";
 import { ThreeDots } from "react-loader-spinner";
 import getHashtags from "../../../utils/getHashtags";
 import isValidUrl from "../../../utils/isValidUrl";
@@ -63,7 +63,7 @@ function PublishPost({refresh, setRefresh}) {
   return(
     <PublishPostContainer>
       <section>
-        <img src={image} alt="" />
+        {/* <img src={image} alt="" /> */}
       </section>
       <form onSubmit={handlePost}>
         <p>What are you going to share today?</p>

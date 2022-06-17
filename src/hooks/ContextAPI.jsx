@@ -4,7 +4,7 @@ const context = createContext();
 
 export function Provider(props) {
   // TODO: remove apiUrl from here. Use the function 'api' instead.
-  const apiUrl = "http://localhost:4001";
+  const apiUrl = "http://localhost:4000";
   const [refresh, setRefresh] = react.useState(false);
   
   return (
@@ -15,7 +15,7 @@ export function Provider(props) {
       }}
     >
       {props.children}
-    </context.Provider>
+    </context.Provider> 
   );
 }
 export const getContext = () => react.useContext(context);

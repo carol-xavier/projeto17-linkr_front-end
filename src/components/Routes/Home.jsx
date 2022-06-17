@@ -4,7 +4,6 @@ import PublishPost from "../Layout/Posts/PublishPost";
 
 function Posts() {
   const [refresh, setRefresh] = useState(false);
-  console.log(refresh);
   return(
     <MainScreen route="/timeline" refresh={refresh} >
         <h1>timeline</h1>
@@ -14,5 +13,3 @@ function Posts() {
 }
 
 export default Posts;
-
-
