@@ -1,10 +1,6 @@
-import styled from "styled-components";
+import { useState } from "react";
 import MainScreen from "../Layout/MainScreen";
-import { useEffect, useState } from "react";
-import UserPost from "../Layout/Posts/UserPost";
-import { ThreeDots } from "react-loader-spinner";
 import PublishPost from "../Layout/Posts/PublishPost";
-import { api } from "../../utils/api";
 
 
 function Posts() {
@@ -41,9 +37,9 @@ function Posts() {
   },[])
 
   return(
-    <MainScreen route="/timeline" >
+    <MainScreen route="/timeline" refresh={refresh} >
         <h1>timeline</h1>
-        <PublishPost />
+        <PublishPost refresh={refresh} setRefresh={setRefresh} />
     </MainScreen>
   );
 }

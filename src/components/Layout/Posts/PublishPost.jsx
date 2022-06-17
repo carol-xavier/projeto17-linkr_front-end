@@ -6,7 +6,7 @@ import getHashtags from "../../../utils/getHashtags";
 import isValidUrl from "../../../utils/isValidUrl";
 import { api } from "../../../utils/api";
 
-function PublishPost() {
+function PublishPost({refresh, setRefresh}) {
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({ link: "", postBody: "" });
   const [linkError, setLinkError] = useState(false);
@@ -26,20 +26,21 @@ function PublishPost() {
       return;
     }
 
-    setLoading(true);
+    setLoading(false);
     
     const body = {
       ...postData,
       hashtags: getHashtags(postData.postBody)
     }
-    
+
     api.post('/timeline/post', body)
       .then(() => {
-        setLoading(false);
+        setRefresh(!refresh);
         setPostData({
           link: "",
           postBody: ""
         });
+        setLoading(false);
       })
       .catch((e) => {
         setLoading(false);
@@ -70,10 +71,16 @@ function PublishPost() {
           className={linkError ? "error" : ""}
           type="text" 
           placeholder="http://..." 
+          value={postData.link}
           name="link" onChange={handleChange} 
           required 
         />
-        <textarea placeholder="Awesome article about #javascript" name="postBody" onChange={handleChange} />
+        <textarea 
+          placeholder="Awesome article about #javascript" 
+          value={postData.postBody}
+          name="postBody" 
+          onChange={handleChange} 
+        />
         {buttonLogin()}
       </form>
     </PublishPostContainer>
