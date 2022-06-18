@@ -4,6 +4,7 @@ import { api } from "../../../utils/api";
 import { useState } from "react";
 import { getContext } from './../../../hooks/ContextAPI';
 import { ThreeDots } from "react-loader-spinner";
+//#TO DO ##Fix CSS of buttons
 
 Modal.setAppElement('body');
 
@@ -53,8 +54,8 @@ function DeletePopUp(props) {
                     <ThreeDots color="#fff" width={'100%'} height={'0.8rem'} />
                     :
                     <div>
-                        <button onClick={deletePost}>Yes, delete it</button>
-                        <button onClick={closeModal}>No, go back</button>
+                        <button className="no" onClick={closeModal}>No, go back</button>
+                        <button className="yes" onClick={deletePost}>Yes, delete it</button>
                     </div>
                     }
                 </PopUpStyle>
@@ -76,7 +77,7 @@ const customStyles = {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
-        width: '55%',
+        width: '40%',
         height: '25%',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
@@ -98,5 +99,13 @@ const PopUpStyle = styled.div`
     }
     &>div{
         margin-top: 1.4rem;
+    }
+    &>button.yes{
+        background-color: var(--color-4);
+        border: none;
+        color: blue;
+    }
+    &>button.no{
+
     }
 `;

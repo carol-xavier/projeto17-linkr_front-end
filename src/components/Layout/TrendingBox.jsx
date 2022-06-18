@@ -22,7 +22,7 @@ function TrendingBox() {
 			<div />
 			<Article>
 				{hashtagList.map((str, index) =>
-					<p onClick={() => {
+					<p key={index} onClick={() => {
 						navigate(`/hashtag/${str}`);
 						setRefresh(!refresh);
 					}}># {str}</p>
