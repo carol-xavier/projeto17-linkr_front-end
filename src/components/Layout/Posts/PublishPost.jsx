@@ -1,18 +1,20 @@
 import { useState } from "react";
 import styled from "styled-components";
-import image from "../../../assets/img/usericon.png";
+// import image from "../../../assets/img/usericon.png";
 import { ThreeDots } from "react-loader-spinner";
 import getHashtags from "../../../utils/getHashtags";
 import isValidUrl from "../../../utils/isValidUrl";
 import { api } from "../../../utils/api";
 import { getContext } from "../../../hooks/ContextAPI";
 
-function PublishPost({refresh, setRefresh}) {
-  const { header } = getContext();
+function PublishPost() {
+  const { header,refresh,setRefresh } = getContext();
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({ link: "", postBody: "" });
   const [linkError, setLinkError] = useState(false);
 
+  const image = "test";
+  
   function handleChange(e) {
     setLinkError(false);
     setPostData({

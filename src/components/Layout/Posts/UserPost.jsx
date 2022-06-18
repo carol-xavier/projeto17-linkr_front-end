@@ -2,6 +2,7 @@ import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
 import Likes from "./Likes";
+import DeleteIcon from "./DeleteIcon";
 
 function UserPost({ postData }) {
 	const { 
@@ -18,6 +19,7 @@ function UserPost({ postData }) {
 			<section>
 				<img className="user" src={image} alt="" />
 				<Likes postId={ postId } infoLikes={ infoLikes } />
+				<DeleteIcon postId={postId} />
 			</section>
 			<section className="post-body">
 				<h2>{name}</h2>
