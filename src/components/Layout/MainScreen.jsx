@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
+import { getContext } from "../../hooks/ContextAPI";
 import { api } from "../../utils/api";
 import Header from "./Header/Header";
 import UserPost from "./Posts/UserPost";
 import TrendingBox from "./TrendingBox";
 
 function MainScreen({refresh, route, children}) {
+  const { header } = getContext();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +32,8 @@ function MainScreen({refresh, route, children}) {
 
   useEffect(() => {
     setLoading(true);
-    api.get(route)
+    
+    api.get(route, header)
 			.then(res => {
         setLoading(false);
         setPosts(res.data);

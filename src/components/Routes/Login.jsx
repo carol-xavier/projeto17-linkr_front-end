@@ -24,9 +24,8 @@ function Login() {
                 password: password,
             })
             .then((res) => {
-                setToken({
-                    token: res.data    
-                });
+                setToken(res.data);
+                localStorage.setItem('token', res.data);
                 navigate("/timeline");
             })
             .catch((err) => {
