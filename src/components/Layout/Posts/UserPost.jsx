@@ -2,35 +2,45 @@ import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
 import Likes from "./Likes";
+import DeletePopUp from "./DeletePost";
+import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
 
-function UserPost({ postData }) {
-	const { 
-		image,
-		name, 
-		postId, 
-		postBody, 
-		metadata, 
-		infoLikes
-	} = postData;
+function UserPost(posts) {
+	console.log(posts);
+	const [popUp, setPopUp] = useState(false);
+	const [id, setId] = useState("");
 
-	return (
-		<PostContainer>
-			<section>
-				<img className="user" src={image} alt="" />
-				<Likes postId={ postId } likes={ infoLikes } />
-			</section>
-			{deletePost()}
-			{popUp && <DeletePopUp 
-				id={postId}
-				popUp={popUp} 
-				setPopUp={setPopUp}/>}
-			<section className="post-body">
-				<h2>{name}</h2>
-				<p><Hashtag>{postBody}</Hashtag></p>
-				<LinkPreview metaData={metadata} />
-			</section>
-		</PostContainer>
-	);
+	return posts.map((post) => {
+		const {
+			image,
+			name,
+			postId,
+			postBody,
+			metadata,
+			infoLikes
+		} = post;
+		return (
+			<PostContainer >
+				<section key={postId}>
+					<img className="user" src={image} alt="" />
+					<Likes postId={postId} likes={infoLikes} />
+					<button onClick={setPopUp(true)}>
+						<FaTrash />
+					</button>
+					{/* {popUp && <DeletePopUp
+						id={postId}
+						popUp={popUp}
+						setPopUp={setPopUp} />} */}
+				</section>
+				<section className="post-body">
+					<h2>{name}</h2>
+					<p><Hashtag>{postBody}</Hashtag></p>
+					<LinkPreview metaData={metadata} />
+				</section>
+			</PostContainer>
+		)
+	});
 }
 
 export default UserPost;

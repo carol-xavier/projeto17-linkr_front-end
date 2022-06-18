@@ -1,19 +1,16 @@
-import styled from "styled-components";
-import ModalPopUp from "./ModalPopUp";
 import Modal from "react-modal";
-
+import styled from "styled-components";
 import { api } from "../../../utils/api";
 import { useState } from "react";
 import { getContext } from './../../../hooks/ContextAPI';
 
 Modal.setAppElement('body');
 
-function DeletePopUp(props) {
+function ModalPopUp(postId){
     const { header } = getContext();
-    const { id, popUp, setPopUp } = props;
-    console.log(id);
-
+    console.log(postId);
     const [loading, setLoading] = useState(false);
+    const [popUp, setPopUp] = useState(false);
 
     function closeModal() {
         setPopUp(false);
@@ -29,7 +26,7 @@ function DeletePopUp(props) {
 
         setLoading(true);
         api
-            .delete(`/posts/${id}`, header)
+            .delete(`/posts/${postId}`, header)
             .then((res) => {
                 console.log(res.data);
                 setPopUp(false);
@@ -57,10 +54,9 @@ function DeletePopUp(props) {
             </Modal>
         </div>
     );
+}
 
-};
-
-export default DeletePopUp;
+export default ModalPopUp;
 
 const customStyles = {
     overlay: {
