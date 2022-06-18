@@ -3,13 +3,18 @@ import react, {createContext, useState } from "react";
 const context = createContext();
 
 export function Provider(props) {
-  // TODO: remove apiUrl from here. Use the function 'api' instead.
-  const apiUrl = "http://localhost:4001";
-  
+  const [ token, setToken ] = useState("");
+  const header = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }  
   return (
     <context.Provider
       value={{
-        apiUrl
+        token,
+        setToken,
+        header
       }}
     >
       {props.children}
