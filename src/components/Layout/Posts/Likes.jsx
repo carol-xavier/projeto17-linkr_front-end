@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { getContext } from "../../../hooks/ContextAPI";
 import { api } from "../../../utils/api";
 
-function Likes( postId, likeInfo) {
+function Likes({ postId, infoLikes }) {
   const { header } = getContext();
-  const { likes, liked } = likeInfo;
+  const { likes, liked } = infoLikes;
   const [qtdLikes, setQtdLikes] = useState(likes);
   const [isLiked, setIsLiked] = useState(liked);
 
@@ -14,8 +14,9 @@ function Likes( postId, likeInfo) {
     const body = {
       liked: !isLiked,
     }
-    api.post(`/posts/${postId}/like`,body, header)
+    api.post(`timeline/post/${postId}/like`,body, header)
       .then(res => {
+        console.log(res.data);
         setQtdLikes(res.data.likes);
         setIsLiked(res.data.liked);
       })
@@ -23,9 +24,9 @@ function Likes( postId, likeInfo) {
   }
 
   return (
-    <LikesContainer isLiked={liked}>
+    <LikesContainer isLiked={isLiked}>
       <button onClick={heartClick} >
-        {liked ? <BsHeartFill /> : <BsHeart />}
+        {isLiked ? <BsHeartFill /> : <BsHeart />}
       </button>
       <p>{qtdLikes} likes</p>
     </LikesContainer>
