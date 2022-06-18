@@ -1,36 +1,27 @@
-// import imgDefault from "../../../assets/img/usericon.png";
-import { BsHeart } from "react-icons/bs";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
+import Likes from "./Likes";
+import DeleteIcon from "./DeleteIcon";
 
 function UserPost({ postData }) {
-    const { name, postBody, metadata, userId } = postData;
-    const image = postData.image;
-
-    function handleLikes() {
-        return (
-            <>
-                <button>
-                    <BsHeart />
-                </button>
-                <p>13 likes</p>
-            </>
-        );
-    }
+    const { image, name, postId, postBody, metadata, infoLikes, userId } = postData;
 
     return (
         <PostContainer>
             <section>
                 <img className="user" src={image} alt="" />
-                {handleLikes()}
+                {/* <Likes postId={postId} infoLikes={infoLikes} /> */}
+            </section>
+            <section className="trashCan">
+                <DeleteIcon postId={postId} />
             </section>
             <section className="post-body">
-                <Link to={`/user/${userId}`}>
-                    <h2>{name}</h2>
-                </Link>
+				<Link to={`/user/${userId}`}>
+                	<h2>{name}</h2>
+				</Link>
                 <p>
                     <Hashtag>{postBody}</Hashtag>
                 </p>
@@ -50,6 +41,7 @@ const PostContainer = styled.article`
     overflow: hidden;
     margin-bottom: 1rem;
     background-color: var(--color-2);
+    position: relative;
 
     @media (min-width: 500px) {
         border-radius: 0.8rem;
@@ -58,6 +50,8 @@ const PostContainer = styled.article`
     & > section {
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
         width: 4rem;
         padding-right: 1rem;
 
@@ -66,30 +60,16 @@ const PostContainer = styled.article`
             width: var(--size-icon);
             height: var(--size-icon);
 
-            object-fit: cover;
-            object-position: center;
-            background-repeat: no-repeat;
-
             border-radius: 50%;
         }
 
-        button {
-            background: none;
-            padding-block: 0.8rem;
-
-            svg {
-                color: var(--text-color-main);
-            }
-        }
-
-        p {
-            width: 100%;
-            font-size: 70%;
-        }
+        border-radius: 50%;
     }
 
     & > section.post-body {
+        align-items: flex-start;
         width: calc(100% - 4rem);
+        padding-right: 0;
         font-weight: var(--font-weight-regular);
 
         h2 {
@@ -103,5 +83,10 @@ const PostContainer = styled.article`
             color: var(--text-color-secodary);
             margin-bottom: 0.8rem;
         }
+    }
+
+    & > section.trashCan {
+        position: absolute;
+        right: 3%;
     }
 `;

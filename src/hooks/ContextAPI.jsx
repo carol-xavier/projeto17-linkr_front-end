@@ -1,17 +1,21 @@
-import react, {createContext } from "react";
+import react, {createContext, useState } from "react";
+import persistHeader from "../utils/persistHeader";
 
 const context = createContext();
 
 export function Provider(props) {
-  // TODO: remove apiUrl from here. Use the function 'api' instead.
-  const apiUrl = "http://localhost:4000";
-  const [refresh, setRefresh] = react.useState(false);
-  
+  const [ token, setToken ] = useState("");
+  const [refresh,setRefresh] = useState(false);
+  const header = persistHeader();
+    
   return (
     <context.Provider
       value={{
-        apiUrl,
-        refresh, setRefresh
+        token,
+        setToken,
+        refresh,
+        setRefresh,
+        header
       }}
     >
       {props.children}

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
+import { getContext } from "../../hooks/ContextAPI";
 import { api } from "../../utils/api";
 import Header from "./Header/Header";
 import UserPost from "./Posts/UserPost";
 import TrendingBox from "./TrendingBox";
 
-function MainScreen({refresh, route, children}) {
+function MainScreen({ route, children}) {
+  const { header,refresh } = getContext();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +20,6 @@ function MainScreen({refresh, route, children}) {
     if(posts.length === 0){
       return <h2>There are no posts yet</h2>
     }
-    console.log(posts);
 
     return posts.map((post, id) => <UserPost key={id} postData={post} /> );
   }
@@ -31,7 +32,8 @@ function MainScreen({refresh, route, children}) {
 
   useEffect(() => {
     setLoading(true);
-    api.get(route)
+    
+    api.get(route, header)
 			.then(res => {
         setLoading(false);
         setPosts(res.data);
@@ -85,7 +87,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 70%;
+  width: 63%;
 
   &>h1 {
     width: 100%;

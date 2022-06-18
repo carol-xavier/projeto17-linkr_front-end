@@ -5,12 +5,16 @@ import { ThreeDots } from "react-loader-spinner";
 import getHashtags from "../../../utils/getHashtags";
 import isValidUrl from "../../../utils/isValidUrl";
 import { api } from "../../../utils/api";
+import { getContext } from "../../../hooks/ContextAPI";
 
-function PublishPost({refresh, setRefresh}) {
+function PublishPost() {
+  const { header,refresh,setRefresh } = getContext();
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({ link: "", postBody: "" });
   const [linkError, setLinkError] = useState(false);
 
+  const image = "test";
+  
   function handleChange(e) {
     setLinkError(false);
     setPostData({
@@ -21,6 +25,7 @@ function PublishPost({refresh, setRefresh}) {
 
   function handlePost(e) {
     e.preventDefault();
+
     if(!isValidUrl(postData.link)){
       setLinkError(true);
       return;
@@ -33,7 +38,7 @@ function PublishPost({refresh, setRefresh}) {
       hashtags: getHashtags(postData.postBody)
     }
 
-    api.post('/timeline/post', body)
+    api.post('/timeline/post', body, header)
       .then(() => {
         setRefresh(!refresh);
         setPostData({
