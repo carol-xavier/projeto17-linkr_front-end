@@ -68,7 +68,7 @@ function PublishPost() {
   return(
     <PublishPostContainer>
       <section>
-        <img src={image} alt="" />
+        {/* <img src={image} alt="" /> */}
       </section>
       <form onSubmit={handlePost}>
         <p>What are you going to share today?</p>

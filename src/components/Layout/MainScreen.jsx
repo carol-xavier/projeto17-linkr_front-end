@@ -95,6 +95,8 @@ const Section = styled.section`
     font-size: 1.8rem;
     padding-left: 0;
 
+    font-family: var(--font-logo-login-secundary);
+
     @media (max-width: 500px) {      
       padding-left: 0.8rem;
     }

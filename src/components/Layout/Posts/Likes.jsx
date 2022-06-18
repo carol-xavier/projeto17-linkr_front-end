@@ -5,6 +5,7 @@ import { getContext } from "../../../hooks/ContextAPI";
 import { api } from "../../../utils/api";
 
 function Likes({ postId, infoLikes }) {
+  console.log(infoLikes);
   const { header } = getContext();
   const { likes, liked } = infoLikes;
   const [qtdLikes, setQtdLikes] = useState(likes);

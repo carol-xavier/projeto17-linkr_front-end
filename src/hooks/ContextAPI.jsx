@@ -19,7 +19,7 @@ export function Provider(props) {
       }}
     >
       {props.children}
-    </context.Provider>
+    </context.Provider> 
   );
 }
 export const getContext = () => react.useContext(context);

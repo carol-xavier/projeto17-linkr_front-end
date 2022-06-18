@@ -1,94 +1,46 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { ThreeDots } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 
-import { getContext } from "../../hooks/ContextAPI";
+import { api } from "../../utils/api";
 
 import MainScreen from "../Layout/MainScreen";
-import UserPost from "../Layout/Posts/UserPost";
-import TrendingBox from "../Layout/TrendingBox";
+import { getContext } from "../../hooks/ContextAPI";
 
 export default function UserPage() {
-    const { apiUrl } = getContext();
-    const [userPosts, setUserPosts] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState({
+        name: "",
+        image: "",
+    });
     const { userId } = useParams();
-
-    function assemblyPosts() {
-        if (loading) {
-            return <ThreeDots color="#fff" width={"100%"} height={"1.5rem"} />;
-        }
-
-        if (userPosts.length === 0) {
-            return <h2>There are no posts yet</h2>;
-        }
-
-        return userPosts.map((post, id) => (
-            <UserPost key={id} postData={post} />
-        ));
-    }
-
-    function errorGetPosts(e) {
-        setLoading(false);
-        console.log(e);
-        window.alert(
-            "An error occurred while trying to fetch the posts, please refresh the page."
-        );
-    }
+    const route = `/user/${userId}`;
+    const { header } = getContext();
 
     useEffect(() => {
-        axios
-            .get(`${apiUrl}/user/${userId}`)
+        api.get(`${route}?posts=false`, header)
             .then((res) => {
-                setLoading(false);
-                setUserPosts(res.data);
+                setUser({ name: res.data.name, image: res.data.image });
             })
-            .catch(errorGetPosts);
-    }, [apiUrl]);
+            .catch();
+    }, []);
 
     return (
-        <MainScreen>
-            <PostsContainer>
-                {userPosts ? (
-                    <div className="title">
-                        <img src={userPosts[0].image} alt="" />
-                        <h1>{userPosts[0].name}'s posts</h1>
-                    </div>
-                ) : (
-                    <></>
-                )}
-
-                {assemblyPosts()}
-            </PostsContainer>
-            <TrendingBox />
+        <MainScreen route={route}>
+            <TitleContainer className="title">
+                <img src={user.image} alt="" />
+                <h1>{user.name}'s posts</h1>
+            </TitleContainer>
         </MainScreen>
     );
 }
 
-const PostsContainer = styled.section`
+const TitleContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    margin: 60px 0 48px;
     width: 100%;
+    align-items: center;
 
-    .title {
-        display: flex;
-        margin: 60px 0 48px;
-    }
-
-    h1 {
-        padding-block: 0.8rem;
-        font-size: 1.8rem;
-        padding-left: 0;
-        font-weight: var(--font-weight-bold);
-
-        @media (max-width: 500px) {
-            padding-left: 0.8rem;
-        }
-    }
-
-    .title img{
+    img {
         width: 50px;
         height: 50px;
         margin-right: 12px;
@@ -98,8 +50,8 @@ const PostsContainer = styled.section`
         border-radius: 50%;
     }
 
-    & > h2 {
-        padding: 0.8rem;
-        color: var(--text-color-secodary);
+    h1 {
+        font-family: var(--font-logo-login-secundary);
+        font-size: 1.8rem;
     }
 `;

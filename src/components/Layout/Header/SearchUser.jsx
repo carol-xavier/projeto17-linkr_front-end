@@ -1,20 +1,21 @@
 import { DebounceInput } from "react-debounce-input";
-import axios from "axios";
 import styled from "styled-components";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
+import { api } from "../../../utils/api";
 import { getContext } from "../../../hooks/ContextAPI";
 
 export default function SearchUser() {
-	const { apiUrl } = getContext();
 	const [users, setUsers] = useState(null);
+	const {header} = getContext();
 
 	function getUsers(name) {
 		if (name.length < 3) {
 			setUsers(null);
 			return;
 		}
-		const promise = axios.get(`${apiUrl}/users/${name}`);
+		const promise = api.get(`/users/${name}`, header);
 		promise.then((res) => {
 			setUsers(res.data);
 		});
@@ -32,10 +33,10 @@ export default function SearchUser() {
 		if (users.length > 0) {
 			return users.map((user) => {
 				return (
-					<div key={user.id}>
+					<Link to={`/user/${user.id}`} key={user.id}>
 						<img src={user.image} alt="" />
 						<p>{user.name}</p>
-					</div>
+					</Link>
 				);
 			});
 		} else {
@@ -83,13 +84,13 @@ const Container = styled.div`
 		background-color: #e7e7e7;
 	}
 
-	div div {
+	div a {
 		display: flex;
 		align-items: center;
 		margin-bottom: 15px;
 	}
 
-	div div img {
+	div a img {
 		width: 39px;
 		height: 39px;
 		margin-right: 12px;
