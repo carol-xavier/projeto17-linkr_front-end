@@ -1,14 +1,12 @@
 import react, {createContext, useState } from "react";
+import persistHeader from "../utils/persistHeader";
 
 const context = createContext();
 
 export function Provider(props) {
   const [ token, setToken ] = useState("");
-  const header = {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }  
+  const header = persistHeader();
+    
   return (
     <context.Provider
       value={{

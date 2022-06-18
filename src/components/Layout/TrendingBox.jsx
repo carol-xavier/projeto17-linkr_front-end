@@ -1,23 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { getContext } from '../../hooks/ContextAPI';
 import { api } from "../../utils/api";
-//#TODO: ## Get **token** from contextAPI
 
 function TrendingBox() {
+	const { header } = getContext();
 	const navigate = useNavigate();
 	const [hashtagList, setHashtagList] = useState([]);
 
 	useEffect(() => {
-
-		/* const config = {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			}
-		}; */
-
 		api
-			.get('/hashtags')
+			.get('/hashtags', header)
 			.then((res) => setHashtagList(res.data))
 			.catch((err) => console.error(err));
 	}, []); 
