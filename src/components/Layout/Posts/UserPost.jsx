@@ -2,14 +2,15 @@ import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
 import Likes from "./Likes";
+import DeleteIcon from "./DeleteIcon";
 
 function UserPost({ postData }) {
-	const { 
+	const {
 		image,
-		name, 
-		postId, 
-		postBody, 
-		metadata, 
+		name,
+		postId,
+		postBody,
+		metadata,
 		infoLikes
 	} = postData;
 
@@ -17,7 +18,10 @@ function UserPost({ postData }) {
 		<PostContainer>
 			<section>
 				<img className="user" src={image} alt="" />
-				<Likes postId={ postId } infoLikes={ infoLikes } />
+				<Likes postId={postId} infoLikes={infoLikes} />
+			</section>
+			<section className="trashCan">
+				<DeleteIcon postId={postId} />
 			</section>
 			<section className="post-body">
 				<h2>{name}</h2>
@@ -38,6 +42,7 @@ const PostContainer = styled.article`
 	overflow: hidden;
 	margin-bottom: 1rem;
 	background-color: var(--color-2);
+	position:relative;
 
 	@media (min-width: 500px) {
 			border-radius: 0.8rem;
@@ -51,8 +56,6 @@ const PostContainer = styled.article`
 		width: 4rem;
 		padding-right: 1rem;
 
-
-	
 		img.user {
 			--size-icon: 2.5rem;
 			width: var(--size-icon);
@@ -82,5 +85,10 @@ const PostContainer = styled.article`
       color: var(--text-color-secodary);
       margin-bottom: 0.8rem;
 		}
+	}
+
+	&>section.trashCan{
+		position: absolute;
+		right:3%;
 	}
 `;

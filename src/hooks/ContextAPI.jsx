@@ -5,6 +5,7 @@ const context = createContext();
 
 export function Provider(props) {
   const [ token, setToken ] = useState("");
+  const [refresh,setRefresh] = useState(false);
   const header = persistHeader();
     
   return (
@@ -12,6 +13,8 @@ export function Provider(props) {
       value={{
         token,
         setToken,
+        refresh,
+        setRefresh,
         header
       }}
     >

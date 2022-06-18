@@ -7,8 +7,8 @@ import Header from "./Header/Header";
 import UserPost from "./Posts/UserPost";
 import TrendingBox from "./TrendingBox";
 
-function MainScreen({refresh, route, children}) {
-  const { header } = getContext();
+function MainScreen({ route, children}) {
+  const { header,refresh } = getContext();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -87,7 +87,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 70%;
+  width: 63%;
 
   &>h1 {
     width: 100%;
