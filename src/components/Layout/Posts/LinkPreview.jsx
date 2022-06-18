@@ -26,6 +26,7 @@ const LinkPreviewContainer = styled.article`
   max-width: 100%;
   height: auto;
   padding: 0.5rem;
+  padding-left: 0;
   border-radius: 0.5rem;;
   
   &>a {

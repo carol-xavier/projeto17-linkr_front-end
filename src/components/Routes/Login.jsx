@@ -25,6 +25,7 @@ function Login() {
             })
             .then((res) => {
                 setToken(res.data);
+                localStorage.setItem('token', res.data);
                 navigate("/timeline");
             })
             .catch((err) => {
