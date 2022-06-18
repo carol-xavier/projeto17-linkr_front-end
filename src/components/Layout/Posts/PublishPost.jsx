@@ -36,7 +36,7 @@ function PublishPost({refresh, setRefresh}) {
 
     api.post('/timeline/post', body)
       .then(() => {
-        setRefresh(!refresh);
+        // setRefresh(!refresh);
         setPostData({
           link: "",
           postBody: ""

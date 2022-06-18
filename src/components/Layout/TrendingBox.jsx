@@ -4,12 +4,9 @@ import { api } from "./../../utils/api";
 import { getContext } from '../../hooks/ContextAPI';
 import styled from 'styled-components';
 
-//#TODO: ## Get **token** from contextAPI
-
 function TrendingBox() {
   const navigate = useNavigate();
   const { token } = getContext();
-  console.log(token) //TESTARRRRRRRRRRRRR
   const [hashtagList, setHashtagList] = useState([]);
  
   useEffect(() => {
@@ -43,8 +40,8 @@ export default TrendingBox;
 
 const Box = styled.div`
   margin-top: 3.4rem;
-  margin-left: 2rem;
-  width:30%;
+  margin-left: 1rem;
+  width:37%;
   height: auto;
   border-radius: 16px;
   background-color: var(--color-5);

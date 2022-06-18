@@ -1,14 +1,19 @@
 // import imgDefault from "../../../assets/img/usericon.png";
 import { BsHeart } from "react-icons/bs";
-import { FaTrash } from "react-icons/fa"
+import { FaTrash } from "react-icons/fa";
 import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
+import {DeletePopUp} from "./DeletePost";
+import { useState } from "react";
 //#TO DO ##CSS do handleToken
 
 function UserPost({ postData }) {
 	const { name, postBody, metadata } = postData;
 	const image = postData.image;
+
+	const [popUp, setPopUp] = useState(false);
+	const [postId, setPostId] = useState("");
 
 	function handleLikes() { 
 		return (
@@ -24,7 +29,7 @@ function UserPost({ postData }) {
 	function deletePost() {
 		return (
 			<>
-				<button>
+				<button onClick={(e) => {setPopUp(true); setPostId(e.id)}}>
 					<FaTrash />
 				</button>
 			</>
@@ -38,6 +43,10 @@ function UserPost({ postData }) {
 				{handleLikes()}
 			</section>
 			{deletePost()}
+			{popUp && <DeletePopUp 
+				id={postId}
+				popUp={popUp} 
+				setPopUp={setPopUp}/>}
 			<section className="post-body">
 				<h2>{name}</h2>
 				<p><Hashtag>{postBody}</Hashtag></p>

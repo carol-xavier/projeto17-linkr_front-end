@@ -38,7 +38,8 @@ function MainScreen({refresh, route, children}) {
     };
 
     setLoading(true);
-    api.get(route,config)
+    api
+      .get(route,config)
 			.then(res => {
         setLoading(false);
         setPosts(res.data);
@@ -92,7 +93,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 70%;
+  width: 63%;
 
   &>h1 {
     width: 100%;
