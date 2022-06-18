@@ -11,38 +11,6 @@ function UserPost(posts) {
 	const [popUp, setPopUp] = useState(false);
 	const [id, setId] = useState("");
 
-<<<<<<< HEAD
-	return posts.map((post) => {
-		const {
-			image,
-			name,
-			postId,
-			postBody,
-			metadata,
-			infoLikes
-		} = post;
-		return (
-			<PostContainer >
-				<section key={postId}>
-					<img className="user" src={image} alt="" />
-					<Likes postId={postId} likes={infoLikes} />
-					<button onClick={setPopUp(true)}>
-						<FaTrash />
-					</button>
-					{/* {popUp && <DeletePopUp
-						id={postId}
-						popUp={popUp}
-						setPopUp={setPopUp} />} */}
-				</section>
-				<section className="post-body">
-					<h2>{name}</h2>
-					<p><Hashtag>{postBody}</Hashtag></p>
-					<LinkPreview metaData={metadata} />
-				</section>
-			</PostContainer>
-		)
-	});
-=======
 	return (
 		<PostContainer>
 			<section>
@@ -56,7 +24,6 @@ function UserPost(posts) {
 			</section>
 		</PostContainer>
 	);
->>>>>>> main
 }
 
 export default UserPost;
