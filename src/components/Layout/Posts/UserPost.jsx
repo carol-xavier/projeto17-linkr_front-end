@@ -17,7 +17,7 @@ function UserPost({ postData }) {
 		<PostContainer>
 			<section>
 				<img className="user" src={image} alt="" />
-				<Likes postId={ postId } likes={ infoLikes } />
+				<Likes postId={ postId } infoLikes={ infoLikes } />
 			</section>
 			<section className="post-body">
 				<h2>{name}</h2>
