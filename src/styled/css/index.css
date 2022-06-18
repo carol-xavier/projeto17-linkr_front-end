@@ -90,3 +90,7 @@ body {
         color: var(--color-4);
     	font-family: var(--font-logo-login-secundary);
 }
+
+a{
+  cursor: pointer;
+}

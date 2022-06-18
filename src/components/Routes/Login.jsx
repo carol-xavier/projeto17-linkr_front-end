@@ -11,12 +11,23 @@ function Login() {
     const { token, setToken } = getContext()
     let navigate = useNavigate();
    
+    const localToken = JSON.parse(localStorage.getItem('token'));
+        if (localToken) {
+            api
+                .post('/session', {
+                    token: localToken.token
+                })
+                .then ((res) => {
+                    setToken(res.data);
+                    navigate("/timeline");
+                })
+                .catch ((err) => console.log(err))
+        }
    
 
     function userLogin(event) {
         event.preventDefault();
         setDisable("disable");
-        
         
         api
             .post('/login', {
@@ -25,7 +36,9 @@ function Login() {
             })
             .then((res) => {
                 setToken(res.data);
-                localStorage.setItem('token', res.data);
+                localStorage.setItem('token', JSON.stringify({
+                    token: res.data
+                }));
                 navigate("/timeline");
             })
             .catch((err) => {
