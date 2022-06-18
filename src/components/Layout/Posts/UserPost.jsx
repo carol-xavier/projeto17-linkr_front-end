@@ -11,6 +11,7 @@ function UserPost(posts) {
 	const [popUp, setPopUp] = useState(false);
 	const [id, setId] = useState("");
 
+<<<<<<< HEAD
 	return posts.map((post) => {
 		const {
 			image,
@@ -41,6 +42,21 @@ function UserPost(posts) {
 			</PostContainer>
 		)
 	});
+=======
+	return (
+		<PostContainer>
+			<section>
+				<img className="user" src={image} alt="" />
+				<Likes postId={ postId } infoLikes={ infoLikes } />
+			</section>
+			<section className="post-body">
+				<h2>{name}</h2>
+				<p><Hashtag>{postBody}</Hashtag></p>
+				<LinkPreview metaData={metadata} />
+			</section>
+		</PostContainer>
+	);
+>>>>>>> main
 }
 
 export default UserPost;
