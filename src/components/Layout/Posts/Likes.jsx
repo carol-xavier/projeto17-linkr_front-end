@@ -7,7 +7,6 @@ import { api } from "../../../utils/api";
 import handleInfosLikes from "../../../utils/handleInfosLikes";
 
 function Likes({ postId, infoLikes }) {
-  console.log(infoLikes);
   const { header } = getContext();
   const { likes, liked, namePeople} = infoLikes;
   const [names, setNames] = useState(namePeople);
@@ -22,7 +21,6 @@ function Likes({ postId, infoLikes }) {
   
 
   function heartClick() {
-    console.log("heartClick");
     const body = {
       liked: !isLiked,
     }
