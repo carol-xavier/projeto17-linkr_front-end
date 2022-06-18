@@ -1,24 +1,39 @@
 import { useState } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import ReactTooltip from "react-tooltip";
 import styled from "styled-components";
 import { getContext } from "../../../hooks/ContextAPI";
 import { api } from "../../../utils/api";
+import handleInfosLikes from "../../../utils/handleInfosLikes";
 
 function Likes({ postId, infoLikes }) {
-  console.log(infoLikes);
   const { header } = getContext();
-  const { likes, liked } = infoLikes;
-  const [qtdLikes, setQtdLikes] = useState(likes);
+  const { likes, liked, namePeople} = infoLikes;
+  const [names, setNames] = useState(namePeople);
   const [isLiked, setIsLiked] = useState(liked);
+  const [qtdLikes, setQtdLikes] = useState(parseInt(likes));
+  const [dataTooltip, setDataTooltip] = useState(handleInfosLikes(
+    isLiked,
+    qtdLikes,
+    names
+  ));
+
+  
 
   function heartClick() {
     const body = {
       liked: !isLiked,
     }
     api.post(`timeline/post/${postId}/like`,body, header)
-      .then(res => {
-        setQtdLikes(res.data.likes);
-        setIsLiked(res.data.liked);
+      .then(({data}) => {
+        setNames(data.namePeople);
+        setIsLiked(data.liked);
+        setQtdLikes(parseInt(data.likes));
+        setDataTooltip(handleInfosLikes(
+          data.liked,
+          parseInt(data.likes),
+          data.namePeople
+        ));
       })
       .catch(e => console.log(e));
   }
@@ -28,7 +43,12 @@ function Likes({ postId, infoLikes }) {
       <button onClick={heartClick} >
         {isLiked ? <BsHeartFill /> : <BsHeart />}
       </button>
-      <p>{qtdLikes} likes</p>
+      <ReactTooltip id="tooltip" place="bottom" type="dark" effect="solid" />
+        <p
+          data-for="tooltip"
+          data-tip={ dataTooltip }
+          data-iscapture="false"
+        >{qtdLikes} likes</p>
     </LikesContainer>
   );
 }
@@ -51,6 +71,7 @@ const LikesContainer = styled.div`
 
     svg {
       color: var(--color-heart);
+      cursor: pointer;
     }
   }
 
@@ -58,5 +79,6 @@ const LikesContainer = styled.div`
     text-align: center;
     width: 100%;
     font-size: 70%;
+    cursor: default;
   }
 `
