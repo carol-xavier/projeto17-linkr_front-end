@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { api } from "./../../utils/api";
 import { getContext } from '../../hooks/ContextAPI';
 import styled from 'styled-components';
-import { getContext } from '../../hooks/ContextAPI';
-import { api } from "../../utils/api";
 
 function TrendingBox() {
 	const { header } = getContext();

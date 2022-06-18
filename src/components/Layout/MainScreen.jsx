@@ -31,12 +31,7 @@ function MainScreen({refresh, route, children}) {
   }
 
   useEffect(() => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    };
-
+   
     setLoading(true);
     
     api

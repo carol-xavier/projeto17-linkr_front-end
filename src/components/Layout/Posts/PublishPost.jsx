@@ -13,6 +13,8 @@ function PublishPost({refresh, setRefresh}) {
   const [postData, setPostData] = useState({ link: "", postBody: "" });
   const [linkError, setLinkError] = useState(false);
 
+  const image = "test";
+
   function handleChange(e) {
     setLinkError(false);
     setPostData({
@@ -38,7 +40,7 @@ function PublishPost({refresh, setRefresh}) {
 
     api.post('/timeline/post', body, header)
       .then(() => {
-        // setRefresh(!refresh);
+        setRefresh(!refresh);
         setPostData({
           link: "",
           postBody: ""
