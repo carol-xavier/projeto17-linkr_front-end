@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { api } from "../../utils/api";
 
 import MainScreen from "../Layout/MainScreen";
+import { getContext } from "../../hooks/ContextAPI";
 
 export default function UserPage() {
     const [user, setUser] = useState({
@@ -13,11 +14,12 @@ export default function UserPage() {
     });
     const { userId } = useParams();
     const route = `/user/${userId}`;
+    const { header } = getContext();
 
     useEffect(() => {
-        api.get(`/user/${userId}?posts=false`)
+        api.get(`${route}?posts=false`, header)
             .then((res) => {
-                setUser({name: res.data.name, image: res.data.image});
+                setUser({ name: res.data.name, image: res.data.image });
             })
             .catch();
     }, []);
@@ -48,7 +50,7 @@ const TitleContainer = styled.div`
         border-radius: 50%;
     }
 
-    h1{
+    h1 {
         font-family: var(--font-logo-login-secundary);
         font-size: 1.8rem;
     }

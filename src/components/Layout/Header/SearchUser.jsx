@@ -4,16 +4,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { api } from "../../../utils/api";
+import { getContext } from "../../../hooks/ContextAPI";
 
 export default function SearchUser() {
 	const [users, setUsers] = useState(null);
+	const {header} = getContext();
 
 	function getUsers(name) {
 		if (name.length < 3) {
 			setUsers(null);
 			return;
 		}
-		const promise = api.get(`/users/${name}`);
+		const promise = api.get(`/users/${name}`, header);
 		promise.then((res) => {
 			setUsers(res.data);
 		});
