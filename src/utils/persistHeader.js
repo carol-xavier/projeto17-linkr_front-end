@@ -1,8 +1,9 @@
 const persistHeader = () => {
-  const { token } = localStorage.getItem('token');
-  if (token) {
+  const tokenData = localStorage.getItem('token');
+  if (tokenData) {
+    console.log('tokenData', tokenData);
     return {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${tokenData.token}` }
     };
   }
   return {};
