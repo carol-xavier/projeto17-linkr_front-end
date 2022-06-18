@@ -3,37 +3,32 @@ import { useNavigate } from 'react-router-dom';
 import { api } from "./../../utils/api";
 import { getContext } from '../../hooks/ContextAPI';
 import styled from 'styled-components';
+import { getContext } from '../../hooks/ContextAPI';
+import { api } from "../../utils/api";
 
 function TrendingBox() {
-  const navigate = useNavigate();
-  const { token } = getContext();
-  const [hashtagList, setHashtagList] = useState([]);
- 
-  useEffect(() => {
+	const { header } = getContext();
+	const navigate = useNavigate();
+	const [hashtagList, setHashtagList] = useState([]);
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    };
+	useEffect(() => {
+		api
+			.get('/hashtags', header)
+			.then((res) => setHashtagList(res.data))
+			.catch((err) => console.error(err));
+	}, []); 
 
-    api
-      .get('/hashtags',config)
-      .then((res) => setHashtagList(res.data))
-      .catch((err) => console.error(err));
-  }, [token]);
-
-  return (
-    <Box>
-      <h1>trending</h1>
-      <div />
-      <Article>
-        {hashtagList.map((str, index) =>
-          <p onClick={() => navigate(`/hashtag/${str}`)}># {str}</p>
-        )}
-      </Article>
-    </Box>
-  )
+	return (
+		<Box>
+			<h1>trending</h1>
+			<div />
+			<Article>
+				{hashtagList.map((str, index) =>
+					   <p onClick={() => navigate(`hashtag/${str}`)}># {str}</p>
+				)}
+			</Article>
+		</Box>
+	)
 };
 
 export default TrendingBox;

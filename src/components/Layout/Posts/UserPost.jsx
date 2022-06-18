@@ -1,46 +1,23 @@
-// import imgDefault from "../../../assets/img/usericon.png";
-import { BsHeart } from "react-icons/bs";
-import { FaTrash } from "react-icons/fa";
 import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
-import {DeletePopUp} from "./DeletePost";
-import { useState } from "react";
-//#TO DO ##CSS do handleToken
+import Likes from "./Likes";
 
 function UserPost({ postData }) {
-	const { name, postBody, metadata } = postData;
-	const image = postData.image;
-
-	const [popUp, setPopUp] = useState(false);
-	const [postId, setPostId] = useState("");
-
-	function handleLikes() { 
-		return (
-			<>
-				<button>
-					<BsHeart />
-				</button>
-				<p>13 likes</p>
-			</>
-		);
-	};
-
-	function deletePost() {
-		return (
-			<>
-				<button onClick={(e) => {setPopUp(true); setPostId(e.id)}}>
-					<FaTrash />
-				</button>
-			</>
-		)
-	};
+	const { 
+		image,
+		name, 
+		postId, 
+		postBody, 
+		metadata, 
+		infoLikes
+	} = postData;
 
 	return (
 		<PostContainer>
 			<section>
 				<img className="user" src={image} alt="" />
-				{handleLikes()}
+				<Likes postId={ postId } likes={ infoLikes } />
 			</section>
 			{deletePost()}
 			{popUp && <DeletePopUp 
@@ -74,6 +51,8 @@ const PostContainer = styled.article`
 	& > section {
 		display: flex;
 		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
 		width: 4rem;
 		padding-right: 1rem;
 
@@ -90,24 +69,12 @@ const PostContainer = styled.article`
 
 			border-radius: 50%;
 		}
-
-		button {
-			background: none;
-			padding-block: 0.8rem;
-
-			svg {
-				color: var(--text-color-main);
-			}
-		}
-
-		p {
-			width: 100%;
-			font-size: 70%;
-		}
 	}
 
 	&>section.post-body {
+		align-items: flex-start;
 		width: calc(100% - 4rem);
+		padding-right: 0;
 		font-weight: var(--font-weight-regular);
 		
 		h2 {
