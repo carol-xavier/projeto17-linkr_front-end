@@ -21,7 +21,7 @@ function MainScreen({ route, children}) {
       return <h2>There are no posts yet</h2>
     }
 
-    return posts.map((post, id) => <UserPost key={id} postData={post} /> );
+    return posts.map((post, index) => <UserPost key={index} postData={post} />);
   }
 
   function errorGetPosts(e) {

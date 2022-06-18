@@ -4,7 +4,7 @@ function LinkPreview({metaData}) {
   const {title, description, image, link} = metaData;
   return (
     <LinkPreviewContainer>
-      <a href={link} target="_blank" rel="noopener">
+      <a href={link} target="_blank" rel="noreferrer">
         <section>
           <p>{title}</p>
           <small>{description}</small>
