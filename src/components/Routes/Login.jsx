@@ -11,7 +11,7 @@ function Login() {
     const { token, setToken } = getContext()
     let navigate = useNavigate();
    
-    const localToken = JSON.parse(localStorage.getItem('token'));
+    const localToken = localStorage.getItem('token');
         if (localToken) {
             api
                 .post('/session', {
@@ -36,9 +36,7 @@ function Login() {
             })
             .then((res) => {
                 setToken(res.data);
-                localStorage.setItem('token', JSON.stringify({
-                    token: res.data
-                }));
+                localStorage.setItem('token', res.data);
                 navigate("/timeline");
             })
             .catch((err) => {
