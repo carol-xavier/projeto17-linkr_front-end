@@ -32,7 +32,7 @@ function MainScreen({refresh, route, children}) {
 
   useEffect(() => {
     setLoading(true);
-    console.log("header", header);
+    
     api.get(route, header)
 			.then(res => {
         setLoading(false);
