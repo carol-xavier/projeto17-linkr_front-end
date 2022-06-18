@@ -16,7 +16,6 @@ function Likes({ postId, infoLikes }) {
     }
     api.post(`timeline/post/${postId}/like`,body, header)
       .then(res => {
-        console.log(res.data);
         setQtdLikes(res.data.likes);
         setIsLiked(res.data.liked);
       })
