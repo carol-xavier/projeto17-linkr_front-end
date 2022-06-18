@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import styled from "styled-components";
+import { getContext } from "../../../hooks/ContextAPI";
 import { api } from "../../../utils/api";
 
-function Likes(postId, likeInfo) {
+function Likes( postId, likeInfo) {
+  const { header } = getContext();
   const { likes, liked } = likeInfo;
   const [qtdLikes, setQtdLikes] = useState(likes);
   const [isLiked, setIsLiked] = useState(liked);
@@ -12,7 +14,7 @@ function Likes(postId, likeInfo) {
     const body = {
       liked: !isLiked,
     }
-    api.post(`/posts/${postId}/like`,body, /* TODO: header */)
+    api.post(`/posts/${postId}/like`,body, header)
       .then(res => {
         setQtdLikes(res.data.likes);
         setIsLiked(res.data.liked);

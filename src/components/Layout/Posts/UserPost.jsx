@@ -1,19 +1,23 @@
-// import imgDefault from "../../../assets/img/usericon.png";
-import { BsHeart } from "react-icons/bs";
 import styled from "styled-components";
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
 import Likes from "./Likes";
 
 function UserPost({ postData }) {
-	const { name, postBody, metadata } = postData;
-	const image = postData.image;
+	const { 
+		image,
+		name, 
+		postId, 
+		postBody, 
+		metadata, 
+		infoLikes
+	} = postData;
 
 	return (
 		<PostContainer>
 			<section>
 				<img className="user" src={image} alt="" />
-				<Likes />
+				<Likes postId={ postId } likes={ infoLikes } />
 			</section>
 			<section className="post-body">
 				<h2>{name}</h2>
