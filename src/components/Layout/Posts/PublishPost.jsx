@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-// import image from "../../../assets/img/usericon.png";
 import { ThreeDots } from "react-loader-spinner";
 import getHashtags from "../../../utils/getHashtags";
 import isValidUrl from "../../../utils/isValidUrl";
@@ -8,7 +7,7 @@ import { api } from "../../../utils/api";
 import { getContext } from "../../../hooks/ContextAPI";
 
 function PublishPost() {
-  const { header,refresh,setRefresh } = getContext();
+  const { header, imgUser ,refresh,setRefresh } = getContext();
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({ link: "", postBody: "" });
   const [linkError, setLinkError] = useState(false);
@@ -68,7 +67,7 @@ function PublishPost() {
   return(
     <PublishPostContainer>
       <section>
-        <img src={image} alt="" /> */}
+        <img src={imgUser} alt="" />
       </section>
       <form onSubmit={handlePost}>
         <p>What are you going to share today?</p>

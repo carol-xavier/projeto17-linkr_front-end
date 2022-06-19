@@ -1,8 +1,10 @@
+import { getContext } from "../../../hooks/ContextAPI";
 import { AiOutlineDown } from "react-icons/ai";
 import { useState } from "react";
 import styled from "styled-components";
 
 function ShowUser() {
+  const { imgUser } = getContext();
   const [showButton, setShowButton] = useState(false);
 
   function handleButton() {
@@ -15,7 +17,7 @@ function ShowUser() {
         <AiOutlineDown />
       </button>
       <figure>
-        <img src="https://avatars3.githubusercontent.com/u/527098?v=3&s=460" alt=""/>
+        <img src={imgUser} alt="" />
       </figure>
       <button className="logout">Logout</button>
     </ShowUserContainer>

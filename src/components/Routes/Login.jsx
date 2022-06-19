@@ -12,13 +12,17 @@ function Login() {
 	autoLogin();
 	
 	function autoLogin() {
-		const localToken = getConfigData().token;
+		const localToken = getConfigData()?.token;
 
 		if (localToken) {
 			const body = { token: localToken };
 			api
 				.post('/session', body)
-				.then (() => { navigate('/timeline') })
+				.then (() => { 
+					setTimeout(() => {
+						navigate('/timeline');
+				 	}, 500);
+				})
 				.catch ((err) => console.log(err))
 		}	
 	}
