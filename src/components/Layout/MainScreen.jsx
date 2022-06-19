@@ -94,7 +94,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 63%;
+  width: 70%;
 
   @media (max-width: 650px) {
 		width: 100%;
