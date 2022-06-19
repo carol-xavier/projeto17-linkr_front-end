@@ -1,23 +1,35 @@
-import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import { useNavigate} from 'react-router-dom';
 import { useState } from "react";
 import styled from "styled-components";
 
+import { getContext } from "../../../hooks/ContextAPI";
+
 function ShowUser() {
   const [showButton, setShowButton] = useState(false);
+  const { setToken } = getContext();
+  let navigate = useNavigate();
+  
 
   function handleButton() {
     setShowButton(!showButton);
   }
 
+  function logOff() {
+    localStorage.clear();
+    setToken("");
+    navigate("/");
+  }
+
   return (
-    <ShowUserContainer showButton={showButton} >
-      <button onClick={handleButton}>
-        <AiOutlineDown />
+    <ShowUserContainer showButton={showButton} onClick={handleButton} >
+      <button >
+        {showButton ? (<AiOutlineUp />) : (<AiOutlineDown />)}
       </button>
       <figure>
         <img src="https://avatars3.githubusercontent.com/u/527098?v=3&s=460" alt=""/>
       </figure>
-      <button className="logout">Logout</button>
+      <button className="logout" onClick={logOff}>Logout</button>
     </ShowUserContainer>
   )
 }

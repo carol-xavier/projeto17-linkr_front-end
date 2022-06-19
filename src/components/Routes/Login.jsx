@@ -8,14 +8,14 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [disable, setDisable] = useState("");
-    const { token, setToken } = getContext()
+    const { setToken } = getContext()
     let navigate = useNavigate();
    
     const localToken = localStorage.getItem('token');
         if (localToken) {
             api
                 .post('/session', {
-                    token: localToken.token
+                    token: localToken
                 })
                 .then ((res) => {
                     setToken(res.data);
