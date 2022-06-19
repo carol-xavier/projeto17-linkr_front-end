@@ -30,7 +30,7 @@ function PublishPost() {
       return;
     }
 
-    setLoading(false);
+    setLoading(true);
     
     const body = {
       ...postData,
