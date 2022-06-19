@@ -21,7 +21,14 @@ function MainScreen({ route, children}) {
       return <h2>There are no posts yet</h2>
     }
 
-    return posts.map((post, index) => <UserPost key={index} postData={post} />);
+    const listOfPosts = posts.map((post, index) => 
+      <UserPost key={index} postData={post} />
+    );
+
+    // TODO: Add pagination here
+    return (
+      listOfPosts
+    )
   }
 
   function errorGetPosts(e) {
