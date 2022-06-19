@@ -96,6 +96,10 @@ const Section = styled.section`
   align-items: center;
   width: 63%;
 
+  @media (max-width: 650px) {
+		width: 100%;
+	}
+
   &>h1 {
     width: 100%;
     padding-block: 0.8rem;

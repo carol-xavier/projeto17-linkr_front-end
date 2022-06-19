@@ -42,6 +42,10 @@ const Box = styled.div`
 	border-radius: 16px;
 	background-color: var(--color-5);
 
+	@media (max-width: 650px) {
+		display: none;
+	}
+
   &>h1{
 	font-family: var(--font-header);
 	font-size: 1.5rem;

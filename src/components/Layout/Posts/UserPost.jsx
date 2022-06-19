@@ -25,9 +25,6 @@ function UserPost({ postData }) {
 		<p  >
 			<Hashtag>{postBody}</Hashtag>
 		</p>
-		<text>
-			{postBody}
-		</text>
 		<LinkPreview metaData={metadata} />
 			</section>
 		</PostContainer>
