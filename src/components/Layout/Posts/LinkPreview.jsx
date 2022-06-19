@@ -25,8 +25,7 @@ const LinkPreviewContainer = styled.article`
   width: 100%;
   max-width: 100%;
   height: auto;
-  padding: 0.5rem;
-  padding-left: 0;
+  max-height: 7rem;
   border-radius: 0.5rem;;
   
   &>a {
@@ -36,10 +35,6 @@ const LinkPreviewContainer = styled.article`
     height: auto;
     text-decoration: none;
     overflow: hidden;
-
-    @media (max-width: 500px) {      
-      max-height: 6rem;
-    }
     
     section {
       --preview-color-1: #CECECE;
