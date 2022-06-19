@@ -8,10 +8,9 @@ import { ThreeDots } from "react-loader-spinner";
 
 Modal.setAppElement('body');
 
-function DeletePopUp(props) {
+function DeletePopUp({ id, popUp, setPopUp}) {
     const { header } = getContext();
-    const { id, popUp, setPopUp } = props;
-    const { refresh,setRefresh } = getContext();
+    const { refresh, setRefresh } = getContext();
 
     const [loading, setLoading] = useState(false);
 
@@ -77,12 +76,12 @@ const customStyles = {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
-        width: '40%',
-        height: '25%',
+        width: 'var(--width-popup)',
+        height: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         borderRadius: '30px',
-        padding: '2rem',
+        padding: '2rem'
     },
 };
 
@@ -99,13 +98,34 @@ const PopUpStyle = styled.div`
     }
     &>div{
         margin-top: 1.4rem;
-    }
-    &>button.yes{
-        background-color: var(--color-4);
-        border: none;
-        color: blue;
-    }
-    &>button.no{
 
+        button {
+            width: auto;
+            height: 1.5rem;
+            padding-inline: 0.8rem;
+            margin-inline: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        button.yes {
+            background: var(--color-1);
+            color: var(--color-4);
+
+            &:hover {
+                background: var(--color-button-hover);
+            }
+        }
+
+        button.no{
+            background: var(--color-4);
+            color: var(--color-1);
+
+            &:hover {
+                background: var(--color-3);
+            }
+        }
     }
+    
 `;
