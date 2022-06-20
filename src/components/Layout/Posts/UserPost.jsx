@@ -7,8 +7,15 @@ import Likes from "./Likes";
 import DeleteIcon from "./DeleteIcon";
 
 function UserPost({ postData }) {
-    const { image, name, postId, postBody, metadata, infoLikes, userId } =
-        postData;
+    const { image, 
+        name, 
+        userId,
+        postId, 
+        postBody,
+        isOwner, 
+        metadata, 
+        infoLikes, 
+     } = postData;
 
     return (
         <PostContainer>
@@ -16,16 +23,16 @@ function UserPost({ postData }) {
                 <img className="user" src={image} alt="" />
                 <Likes postId={postId} infoLikes={infoLikes} />
             </section>
-            <section className="trashCan">
-                <DeleteIcon postId={postId} />
-            </section>
             <section className="post-body">
-                <Link to={`/user/${userId}`}>
-                    <h2>{name}</h2>
-                </Link>
-                <p>
-                    <Hashtag>{postBody}</Hashtag>
-                </p>
+                <section className="header-post">
+                    <Link to={`/user/${userId}`}>
+                        <h2>{name}</h2>
+                    </Link>
+                    <section className="commands">
+                        <DeleteIcon visible={ isOwner } postId={postId} />
+                    </section>
+                </section>
+                <p><Hashtag>{postBody}</Hashtag></p>
                 <LinkPreview metaData={metadata} />
             </section>
         </PostContainer>
@@ -62,6 +69,9 @@ const PostContainer = styled.article`
             height: var(--size-icon);
 
             border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            background-repeat: no-repeat;
         }
     }
 
@@ -70,6 +80,23 @@ const PostContainer = styled.article`
         width: calc(100% - 4rem);
         padding-right: 0;
         font-weight: var(--font-weight-regular);
+
+        & > section.header-post {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+       
+            & > section.commands {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+            }
+        }
+
 
         h2 {
             margin-bottom: 0.5rem;
@@ -82,10 +109,5 @@ const PostContainer = styled.article`
             color: var(--text-color-secodary);
             margin-bottom: 0.8rem;
         }
-    }
-
-    & > section.trashCan {
-        position: absolute;
-        right: 3%;
     }
 `;

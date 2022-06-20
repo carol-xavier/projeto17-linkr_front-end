@@ -3,7 +3,7 @@ import {FaTrash} from "react-icons/fa";
 import styled from "styled-components";
 import DeletePopUp from "./DeletePopUp";
 
-function DeleteIcon({postId}){
+function DeleteIcon({postId, visible}) {
     const [popUp, setPopUp] = useState(false);
     
     function handleClick(){
@@ -11,7 +11,7 @@ function DeleteIcon({postId}){
     };
     
     return (
-        <TrashCan>
+        <TrashCan visible={visible} >
           <button onClick={handleClick} >
             <FaTrash />
           </button>
@@ -26,6 +26,8 @@ function DeleteIcon({postId}){
 export default DeleteIcon;
 
 const TrashCan = styled.div`
+  display: ${props => props.visible ? "flex" : "none"};
+  
   &>button{
     background-color: transparent;
     cursor:pointer;
