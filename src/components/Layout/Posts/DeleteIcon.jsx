@@ -1,9 +1,9 @@
 import { useState } from "react";
-import {FaTrash} from "react-icons/fa";
+import {BiTrashAlt} from "react-icons/bi";
 import styled from "styled-components";
 import DeletePopUp from "./DeletePopUp";
 
-function DeleteIcon({postId}){
+function DeleteIcon({postId}) {
     const [popUp, setPopUp] = useState(false);
     
     function handleClick(){
@@ -11,9 +11,9 @@ function DeleteIcon({postId}){
     };
     
     return (
-        <TrashCan>
+        <TrashCan >
           <button onClick={handleClick} >
-            <FaTrash />
+            <BiTrashAlt />
           </button>
           {popUp ? <DeletePopUp 
           id={postId}
@@ -25,7 +25,7 @@ function DeleteIcon({postId}){
 
 export default DeleteIcon;
 
-const TrashCan = styled.div`
+const TrashCan = styled.div`  
   &>button{
     background-color: transparent;
     cursor:pointer;
