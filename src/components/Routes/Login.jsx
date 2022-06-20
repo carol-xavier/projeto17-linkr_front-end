@@ -3,6 +3,7 @@ import { Link, useNavigate} from 'react-router-dom';
 import { api } from '../../utils/api'
 import styled from 'styled-components';
 import { getContext } from '../../hooks/ContextAPI';
+import { ThreeDots } from "react-loader-spinner";
 
 function Login() {
 	const [email, setEmail] = useState("");
@@ -86,7 +87,7 @@ function Login() {
 					/>  
 					{disable === "" ?
 						(<button type="submit" className='button-auth'>Log In</button>) :
-						(<button type="submit" className='disable-button button-auth' disabled = {disable}>Loading</button>)
+						(<button type="submit" className='disable-button button-auth' disabled = {disable}><ThreeDots color="#fff" width={'100%'} height={'0.8rem'} /></button>)
 					}                                        
 				</form>
 				<Link className='link' to="/sign-up">First time? Create an account!</Link>

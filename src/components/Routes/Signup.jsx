@@ -1,17 +1,17 @@
 import { React, useState} from 'react';
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
-
 import { api } from '../../utils/api';
 import styled from 'styled-components';
+import { ThreeDots } from "react-loader-spinner";
 
 function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [imgUrl, setimgUrl] = useState("");
-
     const [disable, setDisable] = useState("");
+    let navigate = useNavigate();
 
     function registerUser(event) {
         event.preventDefault();
@@ -26,7 +26,7 @@ function Signup() {
             })
             .then((res) => {
                 console.log(res.data);
-                window.location = "/";
+                navigate('/');
             })
             .catch((err) => {
                 if (err.response.status === 409){
@@ -76,7 +76,7 @@ function Signup() {
                     />
                     {disable === "" ?
                         (<button type="submit" className='button-auth'>Sing Up</button>) :
-                        (<button type="submit" className='disable-button button-auth' disabled = {disable}>Loading</button>)
+                        (<button type="submit" className='disable-button button-auth' disabled = {disable}><ThreeDots color="#fff" width={'100%'} height={'0.8rem'} /></button>)
                     }                                        
                 </form>
                 <Link className='link' to="/">Switch back to log in</Link>
