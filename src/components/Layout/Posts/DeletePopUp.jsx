@@ -8,16 +8,9 @@ import { ThreeDots } from "react-loader-spinner";
 
 Modal.setAppElement('body');
 
-<<<<<<< HEAD
-function DeletePopUp(props) {
-    const { header } = getContext();
-    const { id, popUp, setPopUp } = props;
-    const { refresh,setRefresh } = getContext();
-=======
 function DeletePopUp({ id, popUp, setPopUp}) {
     const { header } = getContext();
     const { refresh, setRefresh } = getContext();
->>>>>>> main
 
     const [loading, setLoading] = useState(false);
 
@@ -83,21 +76,12 @@ const customStyles = {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
-<<<<<<< HEAD
-        width: '40%',
-        height: '25%',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: '30px',
-        padding: '2rem',
-=======
         width: 'var(--width-popup)',
         height: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         borderRadius: '30px',
         padding: '2rem'
->>>>>>> main
     },
 };
 
@@ -105,26 +89,6 @@ const PopUpStyle = styled.div`
    display: flex;
    flex-direction: column;
    text-align: center;
-<<<<<<< HEAD
-    
-    &>h2{
-       color: var(--color-4); 
-       font-family: var(--font-popUp);
-       font-weight: var(--font-weight-bold);
-       font-size: 1.3rem;
-    }
-    &>div{
-        margin-top: 1.4rem;
-    }
-    &>button.yes{
-        background-color: var(--color-4);
-        border: none;
-        color: blue;
-    }
-    &>button.no{
-
-    }
-=======
     
     &>h2{
        color: var(--color-4); 
@@ -164,5 +128,4 @@ const PopUpStyle = styled.div`
         }
     }
     
->>>>>>> main
 `;
