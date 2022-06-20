@@ -1,12 +1,4 @@
 const persistHeader = () => {
-<<<<<<< HEAD
-  const tokenData = localStorage.getItem('token');
-  
-  if (tokenData) {
-    
-    return {
-      headers: { Authorization: `Bearer ${tokenData}` }
-=======
   const jsonConfigData = localStorage.getItem('configData');
   
   if (!jsonConfigData) {
@@ -20,7 +12,6 @@ const persistHeader = () => {
       headers: {
         Authorization: `Bearer ${token}`
       }
->>>>>>> main
     };
     
     return { header, imgUser };

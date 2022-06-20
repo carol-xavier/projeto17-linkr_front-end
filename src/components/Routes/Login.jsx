@@ -4,31 +4,10 @@ import { api } from '../../utils/api'
 import styled from 'styled-components';
 
 function Login() {
-<<<<<<< HEAD
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [disable, setDisable] = useState("");
-    const { setToken } = getContext()
-    let navigate = useNavigate();
-   
-    const localToken = localStorage.getItem('token');
-        if (localToken) {
-            api
-                .post('/session', {
-                    token: localToken
-                })
-                .then ((res) => {
-                    setToken(res.data);
-                    navigate("/timeline");
-                })
-                .catch ((err) => console.log(err))
-        }
-=======
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [disable, setDisable] = useState("");
 	let navigate = useNavigate();
->>>>>>> main
    
 	autoLogin();
 	
@@ -122,7 +101,6 @@ const Box = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 	@media (max-width: 600px) {
 		flex-direction: column;
 	}
@@ -136,7 +114,6 @@ const TitleContainer = styled.div`
 	flex-direction: column;
 	background-color: var(--color-2);
 	
-
 	h1 {
 		font-size: 90px;
 		letter-spacing: 0.05em;
@@ -148,14 +125,12 @@ const TitleContainer = styled.div`
 		font-family: var(--font-logo-login-secundary);
 		font-weight: var(--font-weight-bold);
 	}
-
 	@media (max-width: 600px) {
 		width: 100%;
 		height: 40%;
 		justify-content: center;
 		align-items: center;
 		padding: 0;
-
 		p {
 			font-size: 25px;
 			width: 270px;
@@ -172,14 +147,12 @@ const FormsContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	
-
 	form {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 	}
-
 	.link {
 		margin-top: 13px;
 		text-decoration: underline;
@@ -188,7 +161,6 @@ const FormsContainer = styled.div`
 	
 	@media (max-width: 600px) {
 		justify-content: flex-start;
-
 		form {
 			margin-top: 40px;
 		}

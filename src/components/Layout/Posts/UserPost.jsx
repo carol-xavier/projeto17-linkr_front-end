@@ -31,7 +31,7 @@ function UserPost({ postData }) {
 				<h2>{name}</h2>
 			</Link>
 		<p  >
-		{editable ?  <Editable value={postBody} onChange={console.log("ola")} /> : <p><Hashtag>{postBody}</Hashtag></p>}
+		{editable ?  <Editable value={postBody} onChange={alert("ola")} /> : <p><Hashtag>{postBody}</Hashtag></p>}
 		</p>
 		<LinkPreview metaData={metadata} />
 			</section>
