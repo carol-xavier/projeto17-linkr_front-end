@@ -13,10 +13,12 @@ export default function Editable ({ value, onChange, children, ...props }) {
   });
 
   function onKeyPress (event) {
+    console.log(event.key)
     if (event.key === 'Enter') {
-      onChange(state);
+      console.log("enter pressed")
       setEditing(false);
-    }
+    } 
+    
   }
 
   return (

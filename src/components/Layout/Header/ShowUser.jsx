@@ -1,13 +1,14 @@
 import { getContext } from "../../../hooks/ContextAPI";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { useNavigate} from 'react-router-dom';
-import { useState } from "react";
+import { React, useEffect, useState, useRef} from 'react';
 import styled from "styled-components";
 
 function ShowUser() {
   const { imgUser, setToken } = getContext();
   const [showButton, setShowButton] = useState(false);
   let navigate = useNavigate();
+  const ref = useRef()
 
   function handleButton() {
     setShowButton(!showButton);
@@ -17,9 +18,20 @@ function ShowUser() {
     setToken("");
     navigate("/");
   }
+  useEffect(() => {
+		const checkIfClickedOutside = e => {
+		  if (showButton && ref.current && !ref.current.contains(e.target)) {
+        setShowButton(false);
+		  }
+		}
+		document.addEventListener("mousedown", checkIfClickedOutside)
+		return () => {
+		  document.removeEventListener("mousedown", checkIfClickedOutside)
+		}
+	  }, [showButton]);
 
   return (
-    <ShowUserContainer showButton={showButton} onClick={handleButton} >
+    <ShowUserContainer ref={ref} showButton={showButton} onClick={handleButton} >
       <button >
         {showButton ? (<AiOutlineUp />) : (<AiOutlineDown />)}
       </button>

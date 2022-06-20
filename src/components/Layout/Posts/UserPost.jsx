@@ -1,4 +1,4 @@
-import { React, useContext, useEffect, useState} from 'react';
+import { React, useContext, useEffect, useState, useRef} from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LinkPreview from "./LinkPreview";
@@ -11,10 +11,25 @@ import { ImPencil2 } from "react-icons/im";
 function UserPost({ postData }) {
 	const { image, name, postId, postBody, metadata, infoLikes, userId } = postData;
 	const [editable, setEditable] = useState(false);
+	const ref = useRef()
 
 	function handleButton() {
 		setEditable(!editable)
 	}
+
+	useEffect(() => {
+		const checkIfClickedOutside = e => {
+		  // If the menu is open and the clicked target is not within the menu,
+		  // then close the menu
+		  if (editable && ref.current && !ref.current.contains(e.target)) {
+			setEditable(false)
+		  }
+		}
+		document.addEventListener("mousedown", checkIfClickedOutside)
+		return () => {
+		  document.removeEventListener("mousedown", checkIfClickedOutside)
+		}
+	  }, [editable]);
 
 	return (
 		<PostContainer >
@@ -23,16 +38,18 @@ function UserPost({ postData }) {
 				<Likes postId={postId} infoLikes={infoLikes} />
 			</section>
 			<section className="trashCan">
+				<div className='test'>
 				<ImPencil2 className='edit' onClick={handleButton} />
 				<DeleteIcon postId={postId} />
+				</div>
 			</section>
 			<section className="post-body">
 			<Link to={`/user/${userId}`}>
 				<h2>{name}</h2>
 			</Link>
-		<p  >
-		{editable ?  <Editable value={postBody} onChange={console.log("text change")} /> : <p><Hashtag>{postBody}</Hashtag></p>}
-		</p>
+				<p ref={ref}>
+					{editable ?  <Editable value={postBody} onChange={console.log("text change")} /> : <p><Hashtag>{postBody}</Hashtag></p>}
+				</p>
 		<LinkPreview metaData={metadata} />
 			</section>
 		</PostContainer>
@@ -95,9 +112,16 @@ const PostContainer = styled.article`
 
 	& > section.trashCan {
 		position: absolute;
-		right: 3%;
+		right: 0%;
 		width: 100px;
 		
+		.test {
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+		}
 	}
 	
 `;
