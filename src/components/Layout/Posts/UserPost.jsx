@@ -27,12 +27,12 @@ function UserPost({ postData }) {
 				<DeleteIcon postId={postId} />
 			</section>
 			<section className="post-body">
-		<Link to={`/user/${userId}`}>
-			<h2>{name}</h2>
-		</Link>
-		
+			<Link to={`/user/${userId}`}>
+				<h2>{name}</h2>
+			</Link>
+		<p  >
 		{editable ?  <Editable value={postBody} onChange={console.log("ola")} /> : <p><Hashtag>{postBody}</Hashtag></p>}
-		
+		</p>
 		<LinkPreview metaData={metadata} />
 			</section>
 		</PostContainer>
@@ -71,7 +71,6 @@ const PostContainer = styled.article`
 
 			border-radius: 50%;
 		}
-
 	}
 
 	& > section.post-body {

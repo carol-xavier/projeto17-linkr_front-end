@@ -26,6 +26,7 @@
 
 	--main-screen-padding-inline: 0px;
 	--heigth-header: 3rem;
+  --width-popup: 95%;
 
 	box-sizing: border-box;
 }

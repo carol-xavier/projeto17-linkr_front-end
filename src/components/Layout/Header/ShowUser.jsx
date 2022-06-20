@@ -1,11 +1,12 @@
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { useNavigate} from 'react-router-dom';
+import { getContext } from "../../../hooks/ContextAPI";
 import { useState } from "react";
 import styled from "styled-components";
 
-import { getContext } from "../../../hooks/ContextAPI";
 
 function ShowUser() {
+  const { imgUser } = getContext();
   const [showButton, setShowButton] = useState(false);
   const { setToken } = getContext();
   let navigate = useNavigate();
@@ -27,7 +28,7 @@ function ShowUser() {
         {showButton ? (<AiOutlineUp />) : (<AiOutlineDown />)}
       </button>
       <figure>
-        <img src="https://avatars3.githubusercontent.com/u/527098?v=3&s=460" alt=""/>
+        <img src={imgUser} alt="" />
       </figure>
       <button className="logout" onClick={logOff}>Logout</button>
     </ShowUserContainer>

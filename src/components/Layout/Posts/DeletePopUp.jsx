@@ -8,10 +8,16 @@ import { ThreeDots } from "react-loader-spinner";
 
 Modal.setAppElement('body');
 
+<<<<<<< HEAD
 function DeletePopUp(props) {
     const { header } = getContext();
     const { id, popUp, setPopUp } = props;
     const { refresh,setRefresh } = getContext();
+=======
+function DeletePopUp({ id, popUp, setPopUp}) {
+    const { header } = getContext();
+    const { refresh, setRefresh } = getContext();
+>>>>>>> main
 
     const [loading, setLoading] = useState(false);
 
@@ -77,12 +83,21 @@ const customStyles = {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
+<<<<<<< HEAD
         width: '40%',
         height: '25%',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         borderRadius: '30px',
         padding: '2rem',
+=======
+        width: 'var(--width-popup)',
+        height: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: '30px',
+        padding: '2rem'
+>>>>>>> main
     },
 };
 
@@ -90,6 +105,7 @@ const PopUpStyle = styled.div`
    display: flex;
    flex-direction: column;
    text-align: center;
+<<<<<<< HEAD
     
     &>h2{
        color: var(--color-4); 
@@ -108,4 +124,45 @@ const PopUpStyle = styled.div`
     &>button.no{
 
     }
+=======
+    
+    &>h2{
+       color: var(--color-4); 
+       font-family: var(--font-popUp);
+       font-weight: var(--font-weight-bold);
+       font-size: 1.3rem;
+    }
+    &>div{
+        margin-top: 1.4rem;
+
+        button {
+            width: auto;
+            height: 1.5rem;
+            padding-inline: 0.8rem;
+            margin-inline: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        button.yes {
+            background: var(--color-1);
+            color: var(--color-4);
+
+            &:hover {
+                background: var(--color-button-hover);
+            }
+        }
+
+        button.no{
+            background: var(--color-4);
+            color: var(--color-1);
+
+            &:hover {
+                background: var(--color-3);
+            }
+        }
+    }
+    
+>>>>>>> main
 `;
