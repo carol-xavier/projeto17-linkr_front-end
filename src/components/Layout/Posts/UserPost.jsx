@@ -28,8 +28,6 @@ function UserPost({ postData }) {
 
 	useEffect(() => {
 		const checkIfClickedOutside = e => {
-		  // If the menu is open and the clicked target is not within the menu,
-		  // then close the menu
 		  if (editable && ref.current && !ref.current.contains(e.target)) {
 			setEditable(false)
 		  }
