@@ -19,10 +19,10 @@ function UserPost({ postData }) {
 				<DeleteIcon postId={postId} />
 			</section>
 			<section className="post-body">
-		<Link to={`/user/${userId}`}>
-			<h2>{name}</h2>
-		</Link>
-		<p>
+			<Link to={`/user/${userId}`}>
+				<h2>{name}</h2>
+			</Link>
+		<p  >
 			<Hashtag>{postBody}</Hashtag>
 		</p>
 		<LinkPreview metaData={metadata} />
@@ -62,8 +62,6 @@ const PostContainer = styled.article`
 
 			border-radius: 50%;
 		}
-
-		border-radius: 50%;
 	}
 
 	& > section.post-body {

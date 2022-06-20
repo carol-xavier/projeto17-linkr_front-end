@@ -35,31 +35,33 @@ function TrendingBox() {
 export default TrendingBox;
 
 const Box = styled.div`
-	width: 37%;
+	width: 30%;
 	height: auto;
 	margin-top: 3.4rem;
 	margin-left: 3rem;
-	border-radius: 16px;
+	border-radius: 13px;
 	background-color: var(--color-5);
 
+	@media (max-width: 650px) {
+		display: none;
+	}
+
   &>h1{
-	font-family: var(--font-header);
-	font-size: 1.5rem;
-	margin-top:1rem;
-	margin-left:1rem;
+		font-size: 1.3rem;
+		margin-block: 0.7rem;
+		margin-left: 0.6rem;
   }
 
   &>div{
 		display: flex;
 		width: 100%;
 		border: 1px solid var(--color-6);
-		margin-top:1rem;
   }
 `;
 
 const Article = styled.article`
-	margin-top: 0.7rem;
-	margin-left:1rem;
+	margin-block: 0.7rem;
+	margin-left:0.6rem;
 	
 	&>p{
 		margin-bottom: 0.5rem;
