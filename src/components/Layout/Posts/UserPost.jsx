@@ -19,8 +19,6 @@ function UserPost({ postData }) {
 
 	useEffect(() => {
 		const checkIfClickedOutside = e => {
-		  // If the menu is open and the clicked target is not within the menu,
-		  // then close the menu
 		  if (editable && ref.current && !ref.current.contains(e.target)) {
 			setEditable(false)
 		  }
@@ -38,7 +36,7 @@ function UserPost({ postData }) {
 				<Likes postId={postId} infoLikes={infoLikes} />
 			</section>
 			<section className="trashCan">
-				<div className='test'>
+				<div className='trashCanContainer'>
 				<ImPencil2 className='edit' onClick={handleButton} />
 				<DeleteIcon postId={postId} />
 				</div>
@@ -115,7 +113,7 @@ const PostContainer = styled.article`
 		right: 0%;
 		width: 100px;
 		
-		.test {
+		.trashCanContainer {
 			height: 100%;
 			width: 100%;
 			display: flex;
