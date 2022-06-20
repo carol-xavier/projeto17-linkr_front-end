@@ -36,7 +36,7 @@ export default function UserPage() {
 
 const TitleContainer = styled.div`
     display: flex;
-    margin: 60px 0 48px;
+    margin: 0.8rem;
     width: 100%;
     align-items: center;
 
@@ -53,5 +53,9 @@ const TitleContainer = styled.div`
     h1 {
         font-family: var(--font-logo-login-secundary);
         font-size: 1.8rem;
+    }
+
+    @media (max-width: 500px) {
+        padding-left: 0.8rem;
     }
 `;

@@ -2,11 +2,13 @@ import { React, useState} from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import { api } from '../../utils/api'
 import styled from 'styled-components';
+import { getContext } from '../../hooks/ContextAPI';
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [disable, setDisable] = useState("");
+	const {refresh, setRefresh} = getContext();
 	let navigate = useNavigate();
    
 	autoLogin();
@@ -49,7 +51,8 @@ function Login() {
 			})
 			.then((res) => {
 				handleLocalStorage(res.data);
-				navigate("/timeline");
+				setRefresh(!refresh);
+				//navigate("/timeline");
 			})
 			.catch((err) => {
 				if (err.response.status === 401){
