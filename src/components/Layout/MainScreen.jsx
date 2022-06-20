@@ -64,7 +64,7 @@ const MainScreenContainer = styled.section`
   align-items: flex-start;
 
   width: 100%;
-  padding-top: var(--heigth-header);
+  padding-top: var(--main-screen-padding-top);
     
   overflow-y: auto;
   overflow-x: hidden;
