@@ -57,10 +57,6 @@ const Box = styled.div`
 		width: 100%;
 		border: 1px solid var(--color-6);
   }
-
-  @media (max-width: 750px) {
-	  display: none;
-  }
 `;
 
 const Article = styled.article`
