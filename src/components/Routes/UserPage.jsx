@@ -14,7 +14,7 @@ export default function UserPage() {
     });
     const { userId } = useParams();
     const route = `/user/${userId}`;
-    const { header } = getContext();
+    const { header, refresh } = getContext();
 
     useEffect(() => {
         api.get(`${route}?posts=false`, header)
@@ -22,7 +22,7 @@ export default function UserPage() {
                 setUser({ name: res.data.name, image: res.data.image });
             })
             .catch();
-    }, []);
+    }, [refresh]);
 
     return (
         <MainScreen route={route}>

@@ -8,7 +8,7 @@ import { getContext } from "../../../hooks/ContextAPI";
 
 export default function SearchUser() {
     const [users, setUsers] = useState(null);
-    const { header } = getContext();
+    const { header, refresh, setRefresh } = getContext();
 
     function getUsers(name) {
         if (name.length < 3) {
@@ -29,11 +29,20 @@ export default function SearchUser() {
         });
     }
 
+    function clearInput(){
+        setRefresh(!refresh);
+        setUsers(null);
+    }
+
     function showUsers(users) {
         if (users.length > 0) {
             return users.map((user) => {
                 return (
-                    <Link to={`/user/${user.id}`} key={user.id}>
+                    <Link
+                        to={`/user/${user.id}`}
+                        key={user.id}
+                        onClick={clearInput}
+                    >
                         <img src={user.image} alt="" />
                         <p>{user.name}</p>
                     </Link>
