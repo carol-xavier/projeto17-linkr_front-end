@@ -119,6 +119,10 @@ const PublishPostContainer = styled.article`
       border-radius: 50%;
 
       margin-right: 0.8rem;
+
+      @media (max-width: 500px) {
+        display: none;
+      }
     }
   }
 
