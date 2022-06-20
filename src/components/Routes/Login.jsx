@@ -52,7 +52,6 @@ function Login() {
 			.then((res) => {
 				handleLocalStorage(res.data);
 				setRefresh(!refresh);
-				//navigate("/timeline");
 			})
 			.catch((err) => {
 				if (err.response.status === 401){
