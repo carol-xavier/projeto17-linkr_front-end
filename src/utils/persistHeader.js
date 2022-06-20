@@ -1,11 +1,10 @@
+export default persistHeader;
+
 const persistHeader = () => {
   const tokenData = localStorage.getItem('token');
   
   if (tokenData) {
-<<<<<<< HEAD
     
-=======
->>>>>>> main
     return {
       headers: { Authorization: `Bearer ${tokenData}` }
     };
