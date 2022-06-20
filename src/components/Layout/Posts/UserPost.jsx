@@ -1,30 +1,38 @@
+import { React, useContext, useEffect, useState} from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
 import Likes from "./Likes";
 import DeleteIcon from "./DeleteIcon";
+import Editable from '../../../utils/editable';
+import { ImPencil2 } from "react-icons/im";
 
 function UserPost({ postData }) {
 	const { image, name, postId, postBody, metadata, infoLikes, userId } = postData;
+	const [editable, setEditable] = useState(false);
+
+	function handleButton() {
+		setEditable(!editable)
+	}
 
 	return (
-		<PostContainer>
+		<PostContainer >
 			<section>
 				<img className="user" src={image} alt="" />
 				<Likes postId={postId} infoLikes={infoLikes} />
 			</section>
 			<section className="trashCan">
+				<ImPencil2 className='edit' onClick={handleButton} />
 				<DeleteIcon postId={postId} />
 			</section>
 			<section className="post-body">
 		<Link to={`/user/${userId}`}>
 			<h2>{name}</h2>
 		</Link>
-		<p>
-			<Hashtag>{postBody}</Hashtag>
-		</p>
+		
+		{editable ?  <Editable value={postBody} onChange={console.log("ola")} /> : <p><Hashtag>{postBody}</Hashtag></p>}
+		
 		<LinkPreview metaData={metadata} />
 			</section>
 		</PostContainer>
@@ -34,6 +42,7 @@ function UserPost({ postData }) {
 export default UserPost;
 
 const PostContainer = styled.article`
+
 	display: flex;
 	width: 100%;
 	height: auto;
@@ -63,7 +72,6 @@ const PostContainer = styled.article`
 			border-radius: 50%;
 		}
 
-		border-radius: 50%;
 	}
 
 	& > section.post-body {
@@ -71,6 +79,7 @@ const PostContainer = styled.article`
 		width: calc(100% - 4rem);
 		padding-right: 0;
 		font-weight: var(--font-weight-regular);
+		
 
 		h2 {
 			margin-bottom: 0.5rem;
@@ -88,5 +97,8 @@ const PostContainer = styled.article`
 	& > section.trashCan {
 		position: absolute;
 		right: 3%;
+		width: 100px;
+		
 	}
+	
 `;
