@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { getContext } from '../hooks/ContextAPI';
+import { api } from './api';
 
 import Input from './input';
 
-export default function Editable ({ value, onChange, children, ...props }) {
+export default function Editable ({postId, value, onChange, children, ...props }) {
+  const { header, refrash, setRefresh } = getContext();
   const [editing, setEditing] = useState(true);
   const [state, setState] = useState(value);
 
@@ -12,13 +15,20 @@ export default function Editable ({ value, onChange, children, ...props }) {
     }
   });
 
+  function handleChange (e) {
+    const body = { newText: state };
+    api.put(`/posts/${postId}`, body, header )
+      .then(() => setRefresh(!refrash))
+      .catch(err => console.log(err));
+  }
+
   function onKeyPress (event) {
-    console.log(event.key)
     if (event.key === 'Enter') {
-      console.log("enter pressed")
-      setEditing(false);
-    } 
+      handleChange();
     
+    } else if (event.key === 'Escape') {
+      setEditing(false);
+    }
   }
 
   return (

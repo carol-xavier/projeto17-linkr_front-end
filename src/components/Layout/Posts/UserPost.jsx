@@ -47,9 +47,9 @@ function UserPost({ postData }) {
 			<Link to={`/user/${userId}`}>
 				<h2>{name}</h2>
 			</Link>
-				<p ref={ref}>
-					{editable ?  <Editable value={postBody} onChange={console.log("text change")} /> : <p><Hashtag>{postBody}</Hashtag></p>}
-				</p>
+            <p ref={ref}>
+                {editable ?  <Editable postId={postId} value={postBody} /> : <p><Hashtag>{postBody}</Hashtag></p>}
+            </p>
 		<LinkPreview metaData={metadata} />
 			</section>
 		</PostContainer>
