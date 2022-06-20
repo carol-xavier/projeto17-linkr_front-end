@@ -3,12 +3,13 @@
     --main-screen-padding-inline: 2rem;
     --main-screen-padding-top: var(--heigth-header);
 
+    --width-popup: 26rem;
   }
 }
 
 @media (min-width: 700px) {
   * {
-    --main-screen-padding-inline: 8rem;
+    --main-screen-padding-inline: 4rem;
 
   }
 }

@@ -6,8 +6,8 @@ const context = createContext();
 export function Provider(props) {
   const [ token, setToken ] = useState("");
   const [refresh,setRefresh] = useState(false);
-  const header = persistHeader();
-    
+  const { header, imgUser } = persistHeader();
+
   return (
     <context.Provider
       value={{
@@ -15,7 +15,8 @@ export function Provider(props) {
         setToken,
         refresh,
         setRefresh,
-        header
+        header,
+        imgUser
       }}
     >
       {props.children}

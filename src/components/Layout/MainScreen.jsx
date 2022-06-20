@@ -21,7 +21,14 @@ function MainScreen({ route, children}) {
       return <h2>There are no posts yet</h2>
     }
 
-    return posts.map((post, index) => <UserPost key={index} postData={post} />);
+    const listOfPosts = posts.map((post, index) => 
+      <UserPost key={index} postData={post} />
+    );
+
+    // TODO: Add pagination here
+    return (
+      listOfPosts
+    )
   }
 
   function errorGetPosts(e) {
@@ -87,7 +94,11 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 63%;
+  width: 70%;
+
+  @media (max-width: 650px) {
+		width: 100%;
+	}
 
   &>h1 {
     width: 100%;

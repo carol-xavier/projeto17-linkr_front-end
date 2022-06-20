@@ -15,10 +15,10 @@ function DeleteIcon({postId}){
           <button onClick={handleClick} >
             <FaTrash />
           </button>
-          {popUp && <DeletePopUp 
+          {popUp ? <DeletePopUp 
           id={postId}
           popUp={popUp}
-          setPopUp={setPopUp}/>}
+          setPopUp={setPopUp}/> : <> </>}
         </TrashCan>
       );
 }
