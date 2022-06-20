@@ -51,7 +51,7 @@ function UserPost({ postData }) {
                     <Link to={`/user/${userId}`}>
                         <h2>{name}</h2>
                     </Link>
-                    <CommandsContainer visible={ true }>
+                    <CommandsContainer visible={ isOwner }>
 				        <MdOutlineEdit className='edit' onClick={handleButton} />
                         <DeleteIcon postId={postId} />
                     </CommandsContainer>
