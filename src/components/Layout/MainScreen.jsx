@@ -82,11 +82,14 @@ const MainScreenContainer = styled.section`
     justify-content: space-between;
     align-items: flex-start;
 
+    position: relative;
+
     width: 100%;
     height: 100%;
 
     padding-inline: var(--main-screen-padding-inline);
   }
+
 `
 
 const Section = styled.section`
@@ -102,7 +105,7 @@ const Section = styled.section`
 
   &>h1 {
     width: 100%;
-    padding-block: 0.8rem;
+    padding-block: 1.45rem;
     font-size: 1.8rem;
     padding-left: 0;
 

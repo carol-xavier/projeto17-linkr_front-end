@@ -37,7 +37,7 @@ export default TrendingBox;
 const Box = styled.div`
 	width: 30%;
 	height: auto;
-	margin-top: 3.4rem;
+	margin-top: 4.6rem;
 	margin-left: 3rem;
 	border-radius: 13px;
 	background-color: var(--color-5);

@@ -62,12 +62,12 @@ const ShowUserContainer = styled.article`
   &>figure {
     display: flex;
     align-items: center;
-    width: var(--heigth-header);
-    height: var(--heigth-header);
+    width: var(--height-header);
+    height: var(--height-header);
     border-radius: 50%;
     img {
-      width: var(--heigth-header);
-      height: var(--heigth-header);
+      width: var(--height-header);
+      height: var(--height-header);
       padding: 0.3rem;
       object-fit: cover;
       object-position: center;
@@ -82,7 +82,7 @@ const ShowUserContainer = styled.article`
     width: 100%;
     height: 2rem;
     position: absolute;
-    top: var(--heigth-header);
+    top: var(--height-header);
     
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
