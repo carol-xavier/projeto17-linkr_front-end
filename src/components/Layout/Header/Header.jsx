@@ -32,7 +32,7 @@ const HeaderContainer = styled.header`
     z-index: 1;
 
     width: 100%;
-    height: var(--heigth-header);
+    height: var(--height-header);
     padding-inline: 10px;
 
     background-color: var(--color-2);

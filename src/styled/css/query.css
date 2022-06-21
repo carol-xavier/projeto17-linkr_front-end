@@ -1,7 +1,7 @@
 @media (min-width: 500px) {
   * {
     --main-screen-padding-inline: 2rem;
-    --main-screen-padding-top: var(--heigth-header);
+    --main-screen-padding-top: var(--height-header);
 
     --width-popup: 26rem;
   }
