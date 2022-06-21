@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import { api } from "../../utils/api";
 
@@ -16,6 +16,7 @@ export default function UserPage() {
     const { userId } = useParams();
     const route = `/user/${userId}`;
     const { header, refresh } = getContext();
+    const { following, isOwner } = useLocation().state;
 
     useEffect(() => {
         api.get(`${route}?posts=false`, header)
@@ -32,7 +33,7 @@ export default function UserPage() {
                     <img src={user.image} alt="" />
                     <h1>{user.name}'s posts</h1>
                 </article>
-                <ButtonFollow />
+                <ButtonFollow userId={userId} follow={following} isOwner={isOwner} />
             </TitleContainer>
         </MainScreen>
     );

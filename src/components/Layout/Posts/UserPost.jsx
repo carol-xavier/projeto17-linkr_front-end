@@ -14,6 +14,7 @@ function UserPost({ postData }) {
         userId,
         postId, 
         postBody,
+        following,
         isOwner, 
         metadata, 
         infoLikes, 
@@ -36,7 +37,7 @@ function UserPost({ postData }) {
 		return () => {
 		  document.removeEventListener("mousedown", checkIfClickedOutside)
 		}
-	  }, [editable]);
+	}, [editable]);
 
 	return (
         <PostContainer>
@@ -46,7 +47,7 @@ function UserPost({ postData }) {
             </section>
             <section className="post-body">
                 <section className="header-post">
-                    <Link to={`/user/${userId}`}>
+                    <Link to={`/user/${userId}`} state={ { following, isOwner } }>
                         <h2>{name}</h2>
                     </Link>
                     <CommandsContainer visible={ isOwner }>

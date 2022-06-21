@@ -4,23 +4,34 @@ import styled from "styled-components";
 import { getContext } from "../../../hooks/ContextAPI";
 import { api } from "../../../utils/api";
 
-function ButtonFollow({ userId, follow }) {
+function ButtonFollow({ userId, follow, isOwner }) {
   const { header } = getContext();
-  const [following, setFollowing] = useState( follow );
-  const [loading, setLoading] = useState( false );
+  const [ following, setFollowing ] = useState( follow );
+  const [ loading, setLoading ] = useState( false );
+
+  if( isOwner ){
+    return <></>
+  }
+
+  function sussessFollow() {
+    setLoading( false );
+    setFollowing(!following);
+  }
+
+  function errorFollow(e) {
+    setLoading( false );
+    console.log(e);
+    window.alert(
+      "Cannot perform this action, please try again later."
+    );
+  }
 
   function handleFollow() {
     const body = { follow: !following };
     setLoading( true );
     api.post(`/users/${userId}/follow`, body, header)
-      .then(res => {
-        setLoading( false );
-        setFollowing(!following);
-      })
-      .catch(err => {
-        setLoading( false );
-        console.log(err);
-      });
+      .then(sussessFollow)
+      .catch(errorFollow);
   }
 
   function innerButton() {
