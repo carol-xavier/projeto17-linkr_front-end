@@ -6,6 +6,7 @@ import { api } from "../../utils/api";
 
 import MainScreen from "../Layout/MainScreen";
 import { getContext } from "../../hooks/ContextAPI";
+import ButtonFollow from "../Layout/UserPage/ButtonFollow";
 
 export default function UserPage() {
     const [user, setUser] = useState({
@@ -31,7 +32,7 @@ export default function UserPage() {
                     <img src={user.image} alt="" />
                     <h1>{user.name}'s posts</h1>
                 </article>
-                <button className="follow">Follow</button>
+                <ButtonFollow />
             </TitleContainer>
         </MainScreen>
     );
@@ -70,25 +71,5 @@ const TitleContainer = styled.div`
             font-family: var(--font-logo-login-secundary);
             font-size: 1.8rem;
         } 
-    }
-
-    .follow {
-        display: flex;
-        justify-self: end;
-        
-        padding: 0.3rem 1rem;
-        margin-top: 0.7rem;
-        font-size: 0.8rem;
-        
-        border: none;
-        border-radius: 5px;
-        background-color: var(--color-1);
-        color: var(--color-2);
-        
-        @media (min-width: 500px) {
-            position: fixed;
-            right: var(--main-screen-padding-inline);
-            top: calc(var(--height-header) + 2rem);
-        }
     }
 `;
