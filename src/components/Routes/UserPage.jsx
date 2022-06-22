@@ -1,30 +1,46 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-
 import { api } from "../../utils/api";
+import { useParams } from "react-router-dom";
+import { getContext } from "../../hooks/ContextAPI";
+import { useEffect, useState } from "react";
 
 import MainScreen from "../Layout/MainScreen";
-import { getContext } from "../../hooks/ContextAPI";
 import ButtonFollow from "../Layout/UserPage/ButtonFollow";
 
 export default function UserPage() {
+    const { header, refresh } = getContext();
+    const { userId } = useParams();
+
+    const [followInfo, setFollowInfo] = useState();
     const [user, setUser] = useState({
         name: "",
-        image: "",
+        image: ""
     });
-    const { userId } = useParams();
+
     const route = `/user/${userId}`;
-    const { header, refresh } = getContext();
-    const { following, isOwner } = useLocation().state;
 
     useEffect(() => {
         api.get(`${route}?posts=false`, header)
             .then((res) => {
-                setUser({ name: res.data.name, image: res.data.image });
+                const { name, image, following, isOwner } = res.data;
+                setUser({ name, image });
+                setFollowInfo({ following, isOwner });
             })
             .catch();
     }, [refresh]);
+
+    function handleFollowButton() {
+        if(followInfo) {
+            return (
+                <ButtonFollow
+                    userId={userId} 
+                    follow={followInfo.following} 
+                    isOwner={followInfo.isOwner} 
+                />
+            )
+        } 
+        return <></>
+    }
 
     return (
         <MainScreen route={route}>
@@ -33,7 +49,7 @@ export default function UserPage() {
                     <img src={user.image} alt="" />
                     <h1>{user.name}'s posts</h1>
                 </article>
-                <ButtonFollow userId={userId} follow={following} isOwner={isOwner} />
+                {handleFollowButton()}
             </TitleContainer>
         </MainScreen>
     );
