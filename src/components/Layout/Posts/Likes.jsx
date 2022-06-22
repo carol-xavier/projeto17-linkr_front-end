@@ -21,19 +21,16 @@ function Likes({ postId, infoLikes }) {
   
 
   function heartClick() {
-    const body = {
-      liked: !isLiked,
-    }
-    api.post(`timeline/post/${postId}/like`,body, header)
+    api.post(`/posts/${postId}/like`, {}, header)
       .then(({data}) => {
         setNames(data.namePeople);
-        setIsLiked(data.liked);
         setQtdLikes(parseInt(data.likes));
         setDataTooltip(handleInfosLikes(
-          data.liked,
+          !isLiked,
           parseInt(data.likes),
           data.namePeople
         ));
+        setIsLiked(currentLiked => !currentLiked);
       })
       .catch(e => console.log(e));
   }
