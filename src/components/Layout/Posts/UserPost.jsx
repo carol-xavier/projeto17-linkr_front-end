@@ -7,6 +7,7 @@ import Likes from "./Likes";
 import DeleteIcon from "./DeleteIcon";
 import Editable from '../../../utils/editable';
 import { MdOutlineEdit } from "react-icons/md";
+import Reposts from './Reposts';
 
 function UserPost({ postData }) {
 	const { image, 
@@ -18,6 +19,7 @@ function UserPost({ postData }) {
         isOwner, 
         metadata, 
         infoLikes, 
+        infoRepost
      } = postData;
 
 	const [editable, setEditable] = useState(false);
@@ -44,6 +46,7 @@ function UserPost({ postData }) {
             <section>
                 <img className="user" src={image} alt="" />
                 <Likes postId={postId} infoLikes={infoLikes} />
+                <Reposts postId={postId} infoRepost={infoRepost} />
             </section>
             <section className="post-body">
                 <section className="header-post">

@@ -1,35 +1,35 @@
 * {
-	--font-logo: 'Oxygen', sans-serif;
-	--font-main: 'Oxygen', sans-serif;
-	--font-logo-login: 'Passion One', cursive;
-	--font-logo-login-secundary: 'Oswald', sans-serif;
+    --font-logo: "Oxygen", sans-serif;
+    --font-main: "Oxygen", sans-serif;
+    --font-logo-login: "Passion One", cursive;
+    --font-logo-login-secundary: "Oswald", sans-serif;
 
-	--color-1: #1877F2;
-	--color-2: #151515;
-	--color-3: #333333; 
-	--color-4: #FFFFFF;
-	
-	--color-5: #171717;
-	--color-6: #484848;
-  --color-red: #AC0000;
+    --color-1: #1877f2;
+    --color-2: #151515;
+    --color-3: #333333;
+    --color-4: #ffffff;
 
-	--color-button-hover: #569fff;
+    --color-5: #171717;
+    --color-6: #484848;
+    --color-red: #ac0000;
 
-	--text-color-main: #fff;
-  --text-color-secodary: #B7B7B7;
-  --text-color-tertiary: #9B9595;
-	--text-color-placeholder: #9F9F9F;
+    --color-button-hover: #569fff;
 
-	--font-weight-bold: 700;
-	--font-weight-regular: 400;
-	--font-weight-small: 300;
+    --text-color-main: #fff;
+    --text-color-secodary: #b7b7b7;
+    --text-color-tertiary: #9b9595;
+    --text-color-placeholder: #9f9f9f;
 
-	--main-screen-padding-inline: 0px;
-  --main-screen-padding-top: 6rem;
-	--height-header: 3rem;
-  --width-popup: 95%;
+    --font-weight-bold: 700;
+    --font-weight-regular: 400;
+    --font-weight-small: 300;
 
-	box-sizing: border-box;
+    --main-screen-padding-inline: 0px;
+    --main-screen-padding-top: 6rem;
+    --height-header: 3rem;
+    --width-popup: 95%;
+
+    box-sizing: border-box;
 }
 
 body {
@@ -44,55 +44,53 @@ body {
     color: var(--text-color-main);
 }
 
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+    width: 100%;
+    height: 100%;
 
-.root{  
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	
-	width: 100%;
-	height: 100%;
+    overflow: hidden;
 
-	overflow: hidden;
-
-	font-family: var(--font-main);
-	font-size: var(--font-size-main);
-	
+    font-family: var(--font-main);
+    font-size: var(--font-size-main);
 }
 
 .input-auth {
-        width: 350px;
-        height: 50px;
-        margin-top: 7px;
-        padding: 0 17px;
-        background: var(--color-4);
-        border: 1px solid var(--text-color-placeholder);
-        box-sizing: border-box;
-        border-radius: 6px;
-        font-size: 20px;
-		font-weight: var(--font-weight-bold);
-        line-height: 25px;
-        color: var(--text-color-placeholder);
-        font-family: var(--font-logo-login-secundary);
+    width: 350px;
+    height: 50px;
+    margin-top: 7px;
+    padding: 0 17px;
+    background: var(--color-4);
+    border: 1px solid var(--text-color-placeholder);
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    line-height: 25px;
+    color: var(--text-color-placeholder);
+    font-family: var(--font-logo-login-secundary);
 }
 
 .button-auth {
-		width: 350px;
-        height: 50px;
-        margin-top: 7px;
-        padding: 0 17px;
-        background: var(--color-1);
-        border: 1px solid var(--text-color-placeholder);
-        box-sizing: border-box;
-        border-radius: 6px;
-        font-size: 20px;
-		font-weight: var(--font-weight-bold);
-        line-height: 25px;
-        color: var(--color-4);
-    	font-family: var(--font-logo-login-secundary);
+    width: 350px;
+    height: 50px;
+    margin-top: 7px;
+    padding: 0 17px;
+    background: var(--color-1);
+    border: 1px solid var(--text-color-placeholder);
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    line-height: 25px;
+    color: var(--color-4);
+    font-family: var(--font-logo-login-secundary);
 }
 
-a{
-  cursor: pointer;
+a,
+button {
+    cursor: pointer;
 }
