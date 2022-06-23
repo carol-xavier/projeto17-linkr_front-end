@@ -115,6 +115,7 @@ const Container = styled.div`
 
     @media (max-width: 500px) {
         position: absolute;
+        z-index: 1;
         top: 62px;
         left: 0;
         width: calc(100% - 20px);

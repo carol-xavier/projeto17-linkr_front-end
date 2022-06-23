@@ -57,6 +57,7 @@ const ButtonFollowContainer = styled.button`
   --background-button: ${props => props.following ? 'var(--color-4)' : 'var(--color-1)'};
   --color-button: ${props => props.following ? 'var(--color-1)' : 'var(--color-4)'};
   --hover-background-button: ${props => props.following ? 'var(--color-3)' : 'var(--color-button-hover)'};
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,9 +76,19 @@ const ButtonFollowContainer = styled.button`
     background-color: var(--hover-background-button);
   }
   
-  @media (min-width: 500px) {
-    position: fixed;
-    right: var(--main-screen-padding-inline);
-    top: calc(var(--height-header) + 1.2rem);
+  @media (max-width: 500px) {
+    & {
+      right: var(--main-screen-padding-inline);
+      top: calc(var(--height-header) + 1.2rem);
+    }
+  }
+
+  @media (min-width: 650px) {
+    & {
+      position: fixed;
+      background-color: red;
+      right: var(--main-screen-padding-inline);
+      top: calc(var(--height-header) + 1.2rem);
+    }
   }
 `
