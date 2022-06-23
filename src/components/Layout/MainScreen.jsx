@@ -97,7 +97,7 @@ const MainScreenContainer = styled.section`
     justify-content: space-between;
     align-items: flex-start;
 
-    position: relative;
+    position: static;
 
     width: 100%;
     height: 100%;

@@ -9,9 +9,13 @@ import Editable from '../../../utils/editable';
 import { MdOutlineEdit } from "react-icons/md";
 import Reposts from './Reposts';
 import Comments from './Comments';
+import { CgRepeat } from 'react-icons/cg';
 
 function UserPost({ postData }) {
-	const { image, 
+    const [editable, setEditable] = useState(false);
+    const ref = useRef()
+	const { 
+        image, 
         name, 
         userId,
         postId, 
@@ -19,12 +23,10 @@ function UserPost({ postData }) {
         following,
         isOwner, 
         metadata, 
-        infoLikes, 
-        infoRepost
-     } = postData;
-
-	const [editable, setEditable] = useState(false);
-	const ref = useRef()
+        infoLikes,        
+        reposts,
+        repostInfo
+    } = postData;
 
 	function handleButton() {
 		setEditable(!editable)
@@ -35,9 +37,26 @@ function UserPost({ postData }) {
             <section>
                 <img className="user" src={image} alt="" />
                 <Likes postId={postId} infoLikes={infoLikes} />
-                <Reposts postId={postId} infoRepost={infoRepost} />
+                <Reposts postId={postId} reposts={reposts}/>
             </section>
         )
+    }
+
+    function showRepostInfo() {
+        if (repostInfo === false) return <></>;
+        let name;
+        if (isOwner && repostInfo.userId === userId) {
+            name = "you";
+        } else {
+            name = repostInfo.userName;
+        }
+
+        return (
+            <RepostContainer>
+                <CgRepeat />
+                <p>Re-posted by <Link to={`/user/${repostInfo.userId}`}>{name}</Link></p>
+            </RepostContainer>
+        );
     }
 
     function descriptionPost() {
@@ -76,6 +95,7 @@ function UserPost({ postData }) {
 
 	return (
         <BaseContainer>
+            {showRepostInfo()}
             <PostContainer>
                 { sideInfoPost() }
                 <section className="post-body">
@@ -105,7 +125,6 @@ const BaseContainer = styled.article`
 `
 
 const PostContainer = styled.section`
-
 	display: flex;
 	width: 100%;
 	height: auto;
@@ -169,7 +188,6 @@ const PostContainer = styled.section`
     }
 `;
 
-
 const CommandsContainer = styled.section`
     display: ${props => props.visible ? 'flex' : 'none'};
     flex-direction: row;
@@ -185,3 +203,40 @@ const CommandsContainer = styled.section`
     }
 `;
 
+const RepostContainer = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 33px;
+    padding: 10px;
+    position: relative;
+    background-color: #1e1e1e;
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        background-color: transparent;
+        width: 16px;
+        height: 50px;
+        box-shadow: 0 -16px 0 0 #1E1E1E;
+        bottom: -50px;
+    }
+    &::before{
+        border-top-left-radius: 16px;
+        left: 0;
+    }
+    &::after{
+        border-top-right-radius: 16px;
+        right: 0;
+    }
+    p, p a{
+        font-size: 11px;
+    }
+    p a{
+        font-weight: var(--font-weight-bold);
+        color: var(--color-4)
+    }
+    svg{
+        font-size: 23px;
+    }
+`;
