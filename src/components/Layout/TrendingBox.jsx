@@ -50,6 +50,7 @@ const Box = styled.div`
 		font-size: 1.3rem;
 		margin-block: 0.7rem;
 		margin-left: 0.6rem;
+		cursor: default;
   }
 
   &>div{
@@ -66,5 +67,6 @@ const Article = styled.article`
 	&>p{
 		margin-bottom: 0.5rem;
 		font-weight: var(--font-weight-bold);
+		cursor: pointer;
 	}
 `;
