@@ -8,6 +8,7 @@ import DeleteIcon from "./DeleteIcon";
 import Editable from '../../../utils/editable';
 import { MdOutlineEdit } from "react-icons/md";
 import Reposts from './Reposts';
+import Comments from './Comments';
 
 function UserPost({ postData }) {
 	const { image, 
@@ -29,6 +30,38 @@ function UserPost({ postData }) {
 		setEditable(!editable)
 	}
 
+    function sideInfoPost() {
+        return (
+            <section>
+                <img className="user" src={image} alt="" />
+                <Likes postId={postId} infoLikes={infoLikes} />
+                <Reposts postId={postId} infoRepost={infoRepost} />
+            </section>
+        )
+    }
+
+    function descriptionPost() {
+        return (
+            <>
+            <section className="header-post">
+                <Link to={`/user/${userId}`} state={ { following, isOwner } }>
+                    <h2>{name}</h2>
+                </Link>
+                <CommandsContainer visible={ isOwner }>
+                    <MdOutlineEdit className='edit' onClick={handleButton} />
+                    <DeleteIcon postId={postId} />
+                </CommandsContainer>
+            </section>
+            <p ref={ref}>
+                {editable
+                    ? <Editable postId={postId} value={postBody} /> 
+                    : <p><Hashtag>{postBody}</Hashtag></p>
+                }
+            </p>
+            </>
+        )
+    }
+
 	useEffect(() => {
 		const checkIfClickedOutside = e => {
 		  if (editable && ref.current && !ref.current.contains(e.target)) {
@@ -42,44 +75,42 @@ function UserPost({ postData }) {
 	}, [editable]);
 
 	return (
-        <PostContainer>
-            <section>
-                <img className="user" src={image} alt="" />
-                <Likes postId={postId} infoLikes={infoLikes} />
-                <Reposts postId={postId} infoRepost={infoRepost} />
-            </section>
-            <section className="post-body">
-                <section className="header-post">
-                    <Link to={`/user/${userId}`} state={ { following, isOwner } }>
-                        <h2>{name}</h2>
-                    </Link>
-                    <CommandsContainer visible={ isOwner }>
-				        <MdOutlineEdit className='edit' onClick={handleButton} />
-                        <DeleteIcon postId={postId} />
-                    </CommandsContainer>
+        <BaseContainer>
+            <PostContainer>
+                { sideInfoPost() }
+                <section className="post-body">
+                    { descriptionPost() }
+                    <LinkPreview metaData={ metadata } />
                 </section>
-                <p ref={ref}>
-                    {editable
-                        ? <Editable postId={postId} value={postBody} /> 
-                        : <p><Hashtag>{postBody}</Hashtag></p>
-                    }
-                </p>
-                <LinkPreview metaData={metadata} />
-            </section>
-        </PostContainer>
+            </PostContainer>
+            <Comments />
+        </BaseContainer>
 	);
 }
 
 export default UserPost;
 
-const PostContainer = styled.article`
+const BaseContainer = styled.article`
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin-bottom: 1rem;
+	background-color: var(--color-3);
+
+    @media (min-width: 500px) {
+        border-radius: 0.8rem;
+    }
+`
+
+const PostContainer = styled.section`
 
 	display: flex;
 	width: 100%;
 	height: auto;
 	padding: 1rem;
 	overflow: hidden;
-	margin-bottom: 1rem;
 	background-color: var(--color-2);
 	position: relative;
 
@@ -87,18 +118,18 @@ const PostContainer = styled.article`
 		border-radius: 0.8rem;
 	}
 
-	& > section {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		width: 4rem;
-		padding-right: 1rem;
+    &>section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 4rem;
+        padding-right: 1rem;
 
-		img.user {
-			--size-icon: 2.5rem;
-			width: var(--size-icon);
-			height: var(--size-icon);
+        img.user {
+            --size-icon: 2.5rem;
+            width: var(--size-icon);
+            height: var(--size-icon);
 
             border-radius: 50%;
             object-fit: cover;
@@ -153,3 +184,4 @@ const CommandsContainer = styled.section`
         }
     }
 `;
+
