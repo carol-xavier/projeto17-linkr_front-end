@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { api } from '../../utils/api';
 import styled from 'styled-components';
 import { ThreeDots } from "react-loader-spinner";
+import AuthScreen from '../Layout/AuthScreen';
 
 function Signup() {
     const [name, setName] = useState("");
@@ -39,118 +40,57 @@ function Signup() {
     }
 
     return (
-        <Box>
-            <TitleContainer>
-                    <h1>Linkr</h1>
-                    <p>save, share and discover the best links on the web</p>
-            </TitleContainer>
-            <FormsContainer>
-                <form onSubmit={registerUser}>
-                    <input className='input-auth'
-                        type='email'
-                        placeholder='e-mail'
-                        value={email}
-                        required
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                    <input className='input-auth'
-                        type='password'
-                        placeholder='password'
-                        value={password}
-                        required
-                        onChange={e => setPassword(e.target.value)}
-                    />
-                    <input className='input-auth'
-                        type='text'
-                        placeholder='username'
-                        value={name}
-                        required
-                        onChange={e => setName(e.target.value)}
-                    />
-                    <input className='input-auth'
-                        type='url'
-                        placeholder='picture url'
-                        value={imgUrl}
-                        required
-                        onChange={e => setimgUrl(e.target.value)}
-                    />
-                    {disable === "" ?
-                        (<button type="submit" className='button-auth'>Sing Up</button>) :
-                        (<button type="submit" className='disable-button button-auth' disabled = {disable}><ThreeDots color="#fff" width={'100%'} height={'0.8rem'} /></button>)
-                    }                                        
-                </form>
+        <AuthScreen>
+            <FormsContainer onSubmit={registerUser}>
+                <input className='input-auth'
+                    type='email'
+                    placeholder='e-mail'
+                    value={email}
+                    required
+                    onChange={e => setEmail(e.target.value)}
+                />
+                <input className='input-auth'
+                    type='password'
+                    placeholder='password'
+                    value={password}
+                    required
+                    onChange={e => setPassword(e.target.value)}
+                />
+                <input className='input-auth'
+                    type='text'
+                    placeholder='username'
+                    value={name}
+                    required
+                    onChange={e => setName(e.target.value)}
+                />
+                <input className='input-auth'
+                    type='url'
+                    placeholder='picture url'
+                    value={imgUrl}
+                    required
+                    onChange={e => setimgUrl(e.target.value)}
+                />
+                {disable === "" ?
+                    (<button type="submit" className='button-auth'>Sing Up</button>) :
+                    (<button type="submit" className='disable-button button-auth' disabled = {disable}><ThreeDots color="#fff" width={'100%'} height={'0.8rem'} /></button>)
+                }
                 <Link className='link' to="/">Switch back to log in</Link>
             </FormsContainer>
-        </Box>
+        </AuthScreen>
     )
 }
 
 export default Signup;
 
-const Box = styled.div`
-    width: 100%;
-    height: 100%;
+const FormsContainer = styled.form`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    @media (max-width: 600px) {
-        flex-direction: column;
-    }
-    
-`
-
-const TitleContainer = styled.div`
-    width: 77%;
-    height: 100%;
-    display: flex;
-    padding: 80px 0 0 120px;
-    flex-direction: column;
-    background-color: var(--color-2);
-    
-
-    h1 {
-        font-size: 90px;
-        letter-spacing: 0.05em;
-        font-family: var(--font-logo-login);
-    }
-    p {
-        width: 320px;
-        font-size: 30px;
-        font-family: var(--font-logo-login-secundary);
-        font-weight: var(--font-weight-bold);
-    }
-
-    @media (max-width: 600px) {
-        width: 100%;
-        height: 40%;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-
-        p {
-            font-size: 25px;
-            width: 270px;
-            text-align: center;
-        }
-    }
-`
-
-const FormsContainer = styled.div`
+    width: 50%;
     height: 100%;
     padding: 0 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-
-    form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
 
     .link {
         margin-top: 13px;
@@ -158,11 +98,19 @@ const FormsContainer = styled.div`
         color: var(--color-4);
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
         justify-content: flex-start;
+        width: 100%;
+				height: 65%;
+        padding-top: 1rem;
+        padding-inline: 5rem;
 
         form {
             margin-top: 40px;
         }
     } 
+
+    @media (max-width: 500px) {
+        padding-inline: 1rem;
+    }
 `

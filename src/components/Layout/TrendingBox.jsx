@@ -17,7 +17,9 @@ function TrendingBox() {
 	}, [header]);
 
 	return (
-		<Box>
+		<>
+		<Base />
+		<TrendingBoxContainer>
 			<h1>trending</h1>
 			<div />
 			<Article>
@@ -26,21 +28,44 @@ function TrendingBox() {
 						navigate(`/hashtag/${str}`);
 						setRefresh(!refresh);
 					}}># {str}</p>
-				)}
+					)}
 			</Article>
-		</Box>
+		</TrendingBoxContainer>
+		</>
 	)
 };
 
 export default TrendingBox;
 
-const Box = styled.div`
+const Base = styled.article`	
 	width: 30%;
-	height: auto;
-	margin-top: 4.6rem;
+	position: static;
 	margin-left: 3rem;
 	border-radius: 13px;
+
+	@media (max-width: 650px) {
+		display: none;
+	}
+`
+
+const TrendingBoxContainer = styled.div`
+	--width-main: calc( 100% - ( 2 * var( --main-screen-padding-inline )) );
+	--width: calc( var( --width-main ) * 0.3 );
+
+	width: var( --width );
+	max-width: var( --width );
+	height: auto;
+	position: absolute;
+	right: var(--main-screen-padding-inline);
+	top: calc( var( --height-header) + 4.6rem );
+
+	border-radius: 13px;
 	background-color: var(--color-5);
+
+	@media (max-width: 750px){
+		width: calc( var( --width) - 1rem);
+		max-width: calc( var( --width) - 1rem);
+	}
 
 	@media (max-width: 650px) {
 		display: none;
@@ -50,6 +75,7 @@ const Box = styled.div`
 		font-size: 1.3rem;
 		margin-block: 0.7rem;
 		margin-left: 0.6rem;
+		cursor: default;
   }
 
   &>div{
@@ -66,5 +92,6 @@ const Article = styled.article`
 	&>p{
 		margin-bottom: 0.5rem;
 		font-weight: var(--font-weight-bold);
+		cursor: pointer;
 	}
 `;

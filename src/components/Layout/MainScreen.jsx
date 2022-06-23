@@ -97,7 +97,7 @@ const MainScreenContainer = styled.section`
     justify-content: space-between;
     align-items: flex-start;
 
-    position: relative;
+    position: static;
 
     width: 100%;
     height: 100%;
@@ -125,6 +125,7 @@ const Section = styled.section`
     padding-left: 0;
 
     font-family: var(--font-logo-login-secundary);
+    cursor: default;
 
     @media (max-width: 500px) {      
       padding-left: 0.8rem;

@@ -28,7 +28,7 @@ function ShowUser() {
 		return () => {
 		  document.removeEventListener("mousedown", checkIfClickedOutside)
 		}
-	  }, [showButton]);
+  }, [showButton]);
 
   return (
     <ShowUserContainer ref={ref} showButton={showButton} onClick={handleButton} >
@@ -52,6 +52,7 @@ const ShowUserContainer = styled.article`
   height:100%;
   width: auto;
   position: relative;
+
   &>button {
     background: none;
     svg {
@@ -59,6 +60,7 @@ const ShowUserContainer = styled.article`
       font-size: 1.1rem;
     }
   }
+
   &>figure {
     display: flex;
     align-items: center;
@@ -75,6 +77,7 @@ const ShowUserContainer = styled.article`
       border-radius: 50%;
     }
   }
+  
   button.logout {
     display: var(--display-button);
     justify-content: center;
