@@ -5,7 +5,7 @@ import {useState} from "react";
 import { getContext } from "../../../hooks/ContextAPI";
 import RespostPopUp from "./RepostPopUp";
 
-export default function Reposts({ postId, infoRepost }) {
+export default function Reposts({ postId, reposts }) {
     const [popUp, setPopUp] = useState(false);
 
     function repost(){
@@ -16,7 +16,7 @@ export default function Reposts({ postId, infoRepost }) {
             <button onClick={repost}>
                 <CgRepeat />
             </button>
-            <p>{infoRepost} re-post</p>
+            <p>{reposts} re-post</p>
             {popUp ? <RespostPopUp postId={postId} setPopUp={setPopUp} popUp={popUp} /> : <></>}
         </Container>
     );
