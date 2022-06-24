@@ -82,6 +82,7 @@ function MainScreen({ route, children}) {
         <Section>
           { children }
           <InfiniteScroll
+            className="infinit-scroll"
             height= {450}
             pageStart={0}
             loadMore={() => nextDownload()}
@@ -146,6 +147,10 @@ const Section = styled.section`
   @media (max-width: 650px) {
 		width: 100%;
 	}
+
+  .infinit-scroll {
+    width: 100%;
+  }
 
   &>h1 {
     width: 100%;

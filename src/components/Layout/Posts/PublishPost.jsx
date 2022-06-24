@@ -11,8 +11,6 @@ function PublishPost() {
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({ link: "", postBody: "" });
   const [linkError, setLinkError] = useState(false);
-
-  const image = "test";
   
   function handleChange(e) {
     setLinkError(false);

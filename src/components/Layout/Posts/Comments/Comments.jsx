@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import PostComment from "./PostComment";
-import img from "../../../../assets/img/usericon.png"
 import { api } from "../../../../utils/api";
 import { useState } from "react";
 import { getContext } from "../../../../hooks/ContextAPI";
+import { nanoid } from "nanoid";
 
 function Comments({ comments, setComments, postId }) {
-  const { header } = getContext();
+  const { header, imgUser } = getContext();
   const [ commentText, setCommentText ] = useState("");
 
   function assembleComments() {
@@ -16,7 +16,7 @@ function Comments({ comments, setComments, postId }) {
 
     return (
       <article>
-        { comments.map( (comment, index) => <PostComment key={ comment.id } comment={ comment } /> ) }
+        { comments.map( (comment) => <PostComment key={ nanoid(6) } comment={ comment } /> ) }
       </article>
     );
   }
@@ -43,7 +43,7 @@ function Comments({ comments, setComments, postId }) {
         { assembleComments() }
       </section>
       <form onSubmit={ handleComment }>
-        <img src={ img } alt="" />
+        <img src={ imgUser } alt="" />
         <input 
           type="text"
           value={ commentText }

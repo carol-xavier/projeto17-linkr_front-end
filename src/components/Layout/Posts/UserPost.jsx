@@ -125,6 +125,7 @@ const BaseContainer = styled.article`
     display: flex;
     flex-direction: column;
 	width: 100%;
+    max-width: 100%;
 	height: auto;
 	overflow: hidden;
 	margin-bottom: 1rem;
@@ -140,7 +141,6 @@ const PostContainer = styled.section`
 	width: 100%;
 	height: auto;
 	padding: 1rem;
-	overflow: hidden;
 	background-color: var(--color-2);
 	position: relative;
 
@@ -204,7 +204,6 @@ const CommandsContainer = styled.section`
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;
 
     &>.edit {
         cursor: pointer;
