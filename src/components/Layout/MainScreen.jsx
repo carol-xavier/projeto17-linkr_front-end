@@ -84,7 +84,6 @@ function MainScreen({ route, children}) {
         if (res.data.count > totalPosts){
           setNewPosts(res.data.count-totalPosts);
           setShowButton(true);
-          console.log("tem poots novo")
         }
       })
       .catch((e) => {

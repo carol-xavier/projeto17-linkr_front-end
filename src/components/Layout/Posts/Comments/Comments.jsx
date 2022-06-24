@@ -5,7 +5,7 @@ import { useState } from "react";
 import { getContext } from "../../../../hooks/ContextAPI";
 import { nanoid } from "nanoid";
 
-function Comments({ comments, setComments, postId }) {
+function Comments({ comments, setComments, postId, redirect }) {
   const { header, imgUser } = getContext();
   const [ commentText, setCommentText ] = useState("");
 
@@ -16,7 +16,11 @@ function Comments({ comments, setComments, postId }) {
 
     return (
       <article>
-        { comments.map( (comment) => <PostComment key={ nanoid(6) } comment={ comment } /> ) }
+        { comments.map( (comment) => <PostComment 
+          key={ nanoid(6) } 
+          comment={ comment } 
+          redirect={ redirect } 
+        /> ) }
       </article>
     );
   }
@@ -46,6 +50,7 @@ function Comments({ comments, setComments, postId }) {
         <img src={ imgUser } alt="" />
         <input 
           type="text"
+          name="commentInput"
           value={ commentText }
           onChange={ handleChangeComment }
           placeholder="write a comment..."
