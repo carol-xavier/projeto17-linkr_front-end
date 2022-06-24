@@ -8,7 +8,6 @@ function ButtonComments({ postId, qtdComments, setComments, handleShowComments }
   const { header } = getContext();
 
   function findComments() {
-    console.log('entrou button')
     if( showComments ) {
       setShowComments( false );
       return
@@ -26,7 +25,7 @@ function ButtonComments({ postId, qtdComments, setComments, handleShowComments }
 
   return (
     <ButtonCommentsContainer>
-      <button onClick={findComments}>
+      <button name="button-comments" onClick={findComments}>
           <AiOutlineComment />
       </button>
       <p>{ qtdComments } comments</p>

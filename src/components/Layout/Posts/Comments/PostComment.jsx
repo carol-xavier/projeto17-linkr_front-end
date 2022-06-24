@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function PostComment({ comment }) {
+function PostComment({ comment, userId, redirect }) {
   const { image, name, commentText, state } = comment;
 
   function stateUser() {
@@ -10,11 +11,22 @@ function PostComment({ comment }) {
     return <span> • { senderIsMine }</span>
   }
 
+  function handleRedirectUserPage() {
+    return (
+      <Link
+        to={`/user/${ redirect.userId }`} 
+        state={ redirect }
+      >
+        <h3>{ name }</h3>
+      </Link>
+    )
+  }
+
   return (
     <PostCommentContainer>
       <img src={ image } alt="" />
       <div className="describe">
-        <h3>{ name } { stateUser() }</h3>
+        <h3>{ handleRedirectUserPage() } { stateUser() }</h3>
         <p>{ commentText }</p>
       </div>
     </PostCommentContainer>
@@ -50,6 +62,7 @@ const PostCommentContainer = styled.article`
       font-size: 0.9rem;
       margin-bottom: 5px;
       color: var( --color-4 );
+      cursor: pointer;
 
       span {
         font-size: 0.85rem;
