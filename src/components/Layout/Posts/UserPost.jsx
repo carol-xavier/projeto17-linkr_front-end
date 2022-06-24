@@ -93,7 +93,6 @@ function UserPost({ postData }) {
     }
 
     function commentsPost() {
-        console.log('comments', comments)
         return (
             showComments && 
             <Comments

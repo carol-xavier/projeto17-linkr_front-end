@@ -30,8 +30,7 @@ const LinkPreviewContainer = styled.article`
   display: flex;
   width: 100%;
   max-width: 100%;
-  height: auto;
-  max-height: 7rem;
+  height: 8rem;
   border-radius: 0.5rem;;
   
   &>a {
