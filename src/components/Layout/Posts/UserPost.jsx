@@ -12,7 +12,6 @@ import Editable from "../../../utils/editable";
 import Reposts from "./Reposts";
 
 function UserPost({ postData }) {
-    console.log(postData);
     const {
         image,
         name,

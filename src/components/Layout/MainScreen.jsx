@@ -68,8 +68,8 @@ function MainScreen({ route, children}) {
   }
 
   function nextDownload() {
-    if (posts.length + 1 < totalPosts){
-      loadPosts(posts.length + 1)
+    if (posts.length + 10 < totalPosts){
+      loadPosts(posts.length + 10)
     } else {
       loadPosts(totalPosts)
     }
