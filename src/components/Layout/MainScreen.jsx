@@ -20,7 +20,6 @@ function MainScreen({ route, children}) {
     api.get(`${route}/number`, header)
       .then((res) => {
         setTotalPosts(parseInt(res.data.count));
-        console.log(totalPosts, posts.length)
       })
       .catch((e) => {
         console.log(e)
