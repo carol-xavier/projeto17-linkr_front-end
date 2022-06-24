@@ -1,36 +1,56 @@
-import { React, useEffect, useState, useRef } from "react";
+import { React, useEffect, useState, useRef} from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { MdOutlineEdit } from "react-icons/md";
-import { CgRepeat } from "react-icons/cg";
-
 import LinkPreview from "./LinkPreview";
 import Hashtag from "./Hashtag";
 import Likes from "./Likes";
 import DeleteIcon from "./DeleteIcon";
-import Editable from "../../../utils/editable";
-import Reposts from "./Reposts";
+import Editable from '../../../utils/editable';
+import { MdOutlineEdit } from "react-icons/md";
+import Reposts from './Reposts';
+import Comments from './Comments/Comments';
+import { CgRepeat } from 'react-icons/cg';
+import ButtonComments from './Comments/ButtonComments';
 
 function UserPost({ postData }) {
-    const {
-        image,
-        name,
+    const [editable, setEditable] = useState(false);
+    const [ showComments, setShowComments ] = useState( false );
+
+    const [ comments, setComments ] = useState({});
+    const ref = useRef()
+	const { 
+        image, 
+        name, 
         userId,
-        postId,
+        postId, 
         postBody,
         following,
-        isOwner,
-        metadata,
+        isOwner, 
+        metadata, 
         infoLikes,
+        qtdComments,        
         reposts,
-        repostInfo,
+        repostInfo
     } = postData;
 
-    const [editable, setEditable] = useState(false);
-    const ref = useRef();
+	function handleButton() {
+		setEditable(!editable)
+	}
 
-    function handleButton() {
-        setEditable(!editable);
+    function sideInfoPost() {
+        return (
+            <section>
+                <img className="user" src={image} alt="" />
+                <Likes postId={postId} infoLikes={infoLikes} />
+                <ButtonComments 
+                    handleShowComments={{ showComments, setShowComments }}
+                    postId={ postId } 
+                    qtdComments={ qtdComments } 
+                    setComments={ setComments }
+                />
+                <Reposts postId={postId} reposts={reposts}/>
+            </section>
+        )
     }
 
     function showRepostInfo() {
@@ -50,82 +70,91 @@ function UserPost({ postData }) {
         );
     }
 
-    useEffect(() => {
-        const checkIfClickedOutside = (e) => {
-            if (editable && ref.current && !ref.current.contains(e.target)) {
-                setEditable(false);
-            }
-        };
-        document.addEventListener("mousedown", checkIfClickedOutside);
-        return () => {
-            document.removeEventListener("mousedown", checkIfClickedOutside);
-        };
-    }, [editable]);
+    function descriptionPost() {
+        return (
+            <>
+            <section className="header-post">
+                <Link to={`/user/${userId}`} state={ { following, isOwner } }>
+                    <h2>{name}</h2>
+                </Link>
+                <CommandsContainer visible={ isOwner }>
+                    <MdOutlineEdit className='edit' onClick={handleButton} />
+                    <DeleteIcon postId={postId} />
+                </CommandsContainer>
+            </section>
+            <p ref={ref}>
+                {editable
+                    ? <Editable postId={postId} value={postBody} /> 
+                    : <p><Hashtag>{postBody}</Hashtag></p>
+                }
+            </p>
+            </>
+        )
+    }
 
-    return (
-        <>
+	useEffect(() => {
+		const checkIfClickedOutside = e => {
+		  if (editable && ref.current && !ref.current.contains(e.target)) {
+			setEditable(false)
+		  }
+		}
+		document.addEventListener("mousedown", checkIfClickedOutside)
+		return () => {
+		  document.removeEventListener("mousedown", checkIfClickedOutside)
+		}
+	}, [editable]);
+
+	return (
+        <BaseContainer>
             {showRepostInfo()}
             <PostContainer>
-                <section>
-                    <img className="user" src={image} alt="" />
-                    <Likes postId={postId} infoLikes={infoLikes} />
-                    <Reposts postId={postId} reposts={reposts} />
-                </section>
+                { sideInfoPost() }
                 <section className="post-body">
-                    <section className="header-post">
-                        <Link
-                            to={`/user/${userId}`}
-                            state={{ following, isOwner }}
-                        >
-                            <h2>{name}</h2>
-                        </Link>
-                        <CommandsContainer visible={isOwner}>
-                            <MdOutlineEdit
-                                className="edit"
-                                onClick={handleButton}
-                            />
-                            <DeleteIcon postId={postId} />
-                        </CommandsContainer>
-                    </section>
-                    <p ref={ref}>
-                        {editable ? (
-                            <Editable postId={postId} value={postBody} />
-                        ) : (
-                            <p>
-                                <Hashtag>{postBody}</Hashtag>
-                            </p>
-                        )}
-                    </p>
-                    <LinkPreview metaData={metadata} />
+                    { descriptionPost() }
+                    <LinkPreview metaData={ metadata } />
                 </section>
             </PostContainer>
-        </>
-    );
+            { showComments && <Comments comments={ comments } setComments={ setComments } postId={ postId } /> }
+        </BaseContainer>
+	);
 }
 
 export default UserPost;
 
-const PostContainer = styled.article`
+const BaseContainer = styled.article`
     display: flex;
-    width: 100%;
-    height: auto;
-    padding: 1rem;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    background-color: var(--color-2);
-    position: relative;
+    flex-direction: column;
+	width: 100%;
+    max-width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin-bottom: 1rem;
+	background-color: var(--color-7);
 
     @media (min-width: 500px) {
         border-radius: 0.8rem;
     }
+`
 
-    & > section {
+const PostContainer = styled.section`
+	display: flex;
+	width: 100%;
+	height: auto;
+	padding: 1rem;
+	background-color: var(--color-2);
+	position: relative;
+
+	@media (min-width: 500px) {
+		border-radius: 0.8rem;
+	}
+
+    &>section {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        width: 4rem;
-        padding-right: 1rem;
+        width: 4.7rem;
+        padding-right: 0.5rem;
 
         img.user {
             --size-icon: 2.5rem;
@@ -139,11 +168,12 @@ const PostContainer = styled.article`
         }
     }
 
-    & > section.post-body {
-        align-items: flex-start;
-        width: calc(100% - 4rem);
-        padding-right: 0;
-        font-weight: var(--font-weight-regular);
+	& > section.post-body {
+		align-items: flex-start;
+		width: calc(100% - 4.7rem);
+		padding-right: 0;
+		font-weight: var(--font-weight-regular);
+		
 
         & > section.header-post {
             display: flex;
@@ -152,6 +182,7 @@ const PostContainer = styled.article`
             align-items: center;
             width: 100%;
         }
+
 
         h2 {
             margin-bottom: 0.5rem;
@@ -162,8 +193,22 @@ const PostContainer = styled.article`
         p {
             width: 100%;
             font-size: 0.9rem;
-            color: var(--text-color-secodary);
+            color: var(--text-color-secondary);
             margin-bottom: 0.8rem;
+        }
+    }
+`;
+
+const CommandsContainer = styled.section`
+    display: ${props => props.visible ? 'flex' : 'none'};
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    &>.edit {
+        cursor: pointer;
+        &:hover {
+            color: var(--color-1);
         }
     }
 `;
@@ -175,56 +220,33 @@ const RepostContainer = styled.div`
     height: 33px;
     padding: 10px;
     position: relative;
-    background-color: #1e1e1e;
-    border-radius: 16px 16px 0 0;
-
+    background-color: var( --color-7 );
     &::before,
     &::after {
         content: "";
         position: absolute;
-
         background-color: transparent;
         width: 16px;
         height: 50px;
         box-shadow: 0 -16px 0 0 #1E1E1E;
         bottom: -50px;
     }
-
     &::before{
         border-top-left-radius: 16px;
         left: 0;
     }
-
     &::after{
         border-top-right-radius: 16px;
         right: 0;
     }
-
     p, p a{
         font-size: 11px;
     }
-
     p a{
         font-weight: var(--font-weight-bold);
         color: var(--color-4)
     }
-
     svg{
         font-size: 23px;
-    }
-`;
-
-const CommandsContainer = styled.section`
-    display: ${(props) => (props.visible ? "flex" : "none")};
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-
-    & > .edit {
-        cursor: pointer;
-        &:hover {
-            color: var(--color-1);
-        }
     }
 `;

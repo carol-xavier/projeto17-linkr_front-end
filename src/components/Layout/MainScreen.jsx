@@ -82,6 +82,7 @@ function MainScreen({ route, children}) {
         <Section>
           { children }
           <InfiniteScroll
+            className="infinit-scroll"
             height= {450}
             pageStart={0}
             loadMore={() => nextDownload()}
@@ -147,6 +148,10 @@ const Section = styled.section`
 		width: 100%;
 	}
 
+  .infinit-scroll {
+    width: 100%;
+  }
+
   &>h1 {
     width: 100%;
     padding-block: 1.45rem;
@@ -163,6 +168,6 @@ const Section = styled.section`
 
   &>h2 {
     padding: 0.8rem;
-    color: var(--text-color-secodary);
+    color: var(--text-color-secondary);
   }
 `
