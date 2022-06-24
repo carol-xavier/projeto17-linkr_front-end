@@ -26,7 +26,6 @@ function Signup() {
                 imgUrl: imgUrl
             })
             .then((res) => {
-                console.log(res.data);
                 navigate('/');
             })
             .catch((err) => {
