@@ -26,7 +26,7 @@ function TrendingBox() {
 				{hashtagList.map((str, index) =>
 					<p key={index} onClick={() => {
 						navigate(`/hashtag/${str}`);
-						setRefresh(!refresh);
+						window.location.reload();
 					}}># {str}</p>
 					)}
 			</Article>
