@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef  } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
@@ -7,6 +7,8 @@ import { api } from "../../utils/api";
 import Header from "./Header/Header";
 import UserPost from "./Posts/UserPost";
 import TrendingBox from "./TrendingBox";
+import useInterval from "../../utils/useInterval.js";
+import { IoIosRefresh } from "react-icons/io";
 
 
 
@@ -14,7 +16,9 @@ function MainScreen({ route, children}) {
   const { header } = getContext();
   const [ posts, setPosts ] = useState([]);
   const [ followingSomeone, setFollowingSomeone ] = useState( false );
-  const [totalPosts, setTotalPosts] = useState(0);
+  const [ totalPosts, setTotalPosts ] = useState(0);
+  const [ newPosts, setNewPosts ] = useState(0);
+  const [ showButton, setShowButton] = useState(false);
 
   useEffect(() =>{
     api.get(`${route}/number`, header)
@@ -27,8 +31,6 @@ function MainScreen({ route, children}) {
   }, [])
 
   function assemblyPosts(){
-    
-
     if( !posts.length && route === '/timeline' ) return infoMessage();
 
     const listOfPosts = posts.map((post, index) => 
@@ -47,6 +49,7 @@ function MainScreen({ route, children}) {
 
     return <h2>You don't follow anyone yet. Search for new friends</h2>
   }
+
 
   function errorGetPosts(e) {
     console.log( e );
@@ -75,12 +78,32 @@ function MainScreen({ route, children}) {
     }
   }
 
+  useInterval(() => {
+    api.get(`${route}/number`, header)
+      .then((res) => {
+        if (res.data.count > totalPosts){
+          setNewPosts(res.data.count-totalPosts);
+          setShowButton(true);
+          console.log("tem poots novo")
+        }
+      })
+      .catch((e) => {
+        console.log(e)
+      }); 
+  }, 15000)
+
   return(
     <MainScreenContainer id="scrollParentElement">
       <Header />
       <main>
         <Section>
           { children }
+          <button 
+            style={showButton ? {display: "block"} : {display: "none"}}
+            onClick={() => window.location.reload()} 
+          >
+            {newPosts} new posts, load more! <IoIosRefresh className="icon"/>
+          </button>
           <InfiniteScroll
             className="infinit-scroll"
             height= {450}
@@ -134,7 +157,6 @@ const MainScreenContainer = styled.section`
 
     padding-inline: var(--main-screen-padding-inline);
   }
-
 `
 
 const Section = styled.section`
@@ -169,5 +191,22 @@ const Section = styled.section`
   &>h2 {
     padding: 0.8rem;
     color: var(--text-color-secondary);
+  }
+
+  &>button {
+    width: 100%;
+    height: 3.5rem;
+    margin: 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0.5rem;
+    background-color: var(--color-1);
+    color: var(--color-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>.icon{
+      margin-left: 0.4rem;
+    }
   }
 `
