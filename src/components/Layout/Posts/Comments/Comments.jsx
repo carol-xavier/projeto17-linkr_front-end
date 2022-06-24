@@ -16,7 +16,11 @@ function Comments({ comments, setComments, postId, redirect }) {
 
     return (
       <article>
-        { comments.map( (comment) => <PostComment key={ nanoid(6) } comment={ comment } redirect={ redirect } /> ) }
+        { comments.map( (comment) => <PostComment 
+          key={ nanoid(6) } 
+          comment={ comment } 
+          redirect={ redirect } 
+        /> ) }
       </article>
     );
   }

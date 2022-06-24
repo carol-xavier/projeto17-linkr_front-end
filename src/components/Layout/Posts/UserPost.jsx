@@ -93,13 +93,14 @@ function UserPost({ postData }) {
     }
 
     function commentsPost() {
+        console.log('comments', comments)
         return (
             showComments && 
             <Comments
                 comments={ comments } 
                 setComments={ setComments } 
                 postId={ postId } 
-                redirect={{ userId, following, isOwner }}
+                redirect={{ following, isOwner }}
             />
         )
     }
