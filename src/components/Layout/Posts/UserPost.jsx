@@ -113,7 +113,7 @@ function UserPost({ postData }) {
                     <LinkPreview metaData={ metadata } />
                 </section>
             </PostContainer>
-            { showComments && <Comments comments={ comments } /> }
+            { showComments && <Comments comments={ comments } setComments={ setComments } postId={ postId } /> }
         </BaseContainer>
 	);
 }

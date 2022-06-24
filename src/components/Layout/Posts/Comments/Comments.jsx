@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import PostComment from "./PostComment";
 import img from "../../../../assets/img/usericon.png"
+import { api } from "../../../../utils/api";
+import { useState } from "react";
+import { getContext } from "../../../../hooks/ContextAPI";
 
-function Comments({ comments, setComments }) {
+function Comments({ comments, setComments, postId }) {
+  const { header } = getContext();
+  const [ commentText, setCommentText ] = useState("");
 
   function assembleComments() {
     if( !comments.length ) {
@@ -11,9 +16,25 @@ function Comments({ comments, setComments }) {
 
     return (
       <article>
-        { comments.map( comment => <PostComment key={ comment.id } comment={ comment } /> ) }
+        { comments.map( (comment, index) => <PostComment key={ comment.id } comment={ comment } /> ) }
       </article>
-    )
+    );
+  }
+
+  function handleChangeComment( e ) {
+    setCommentText( e.target.value );
+  }
+
+  function handleComment( e ) {
+    e.preventDefault();    
+    const body = { commentText };
+
+    api.post(`/posts/${postId}/comment`,body, header )
+      .then( ( res ) => {
+        setCommentText("");
+        setComments( res.data );
+      })
+      .catch( e => console.log( e ));
   }
 
   return (
@@ -21,10 +42,15 @@ function Comments({ comments, setComments }) {
       <section>
         { assembleComments() }
       </section>
-      <article className="input-comment">
+      <form onSubmit={ handleComment }>
         <img src={ img } alt="" />
-        <input type="text" placeholder="write a comment..." id="" />
-      </article>
+        <input 
+          type="text"
+          value={ commentText }
+          onChange={ handleChangeComment }
+          placeholder="write a comment..."
+        />
+      </form>
     </CommentsContainer>
   )
 }
@@ -49,7 +75,7 @@ const CommentsContainer = styled.section`
     overflow-y: auto;
   }
 
-  .input-comment {
+  &>form {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,6 +97,7 @@ const CommentsContainer = styled.section`
       padding-left: 5px;
 
       background-color: var( --color-3);
+      color: var( --text-color-secondary );
     }
   }
   
