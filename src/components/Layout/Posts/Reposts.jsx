@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { CgRepeat } from "react-icons/cg";
 import {useState} from "react";
-
-import { getContext } from "../../../hooks/ContextAPI";
 import RespostPopUp from "./RepostPopUp";
 
 export default function Reposts({ postId, reposts }) {

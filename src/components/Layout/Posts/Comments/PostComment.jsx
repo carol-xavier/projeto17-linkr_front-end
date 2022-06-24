@@ -1,21 +1,29 @@
 import styled from "styled-components";
-import img from "../../../../assets/img/usericon.png"
 
-function CommentOnPost() {
+function PostComment({ comment }) {
+  const { image, name, commentText, state } = comment;
+
+  function stateUser() {
+    if( state === '' ) return '';
+
+    const senderIsMine = state === 'author' ? "post's author" : state;
+    return <span> • { senderIsMine }</span>
+  }
+
   return (
-    <CommentOnPostContainer>
-      <img src={ img } alt="" />
+    <PostCommentContainer>
+      <img src={ image } alt="" />
       <div className="describe">
-        <h3>João Avatares <span> • following </span></h3>
-        <p>Adorei esse post, ajuda muito a usar MaterialUI Adorei esse post, ajuda muito a usar MaterialUI Adorei esse post, ajuda muito a usar MaterialUI</p>
+        <h3>{ name } { stateUser() }</h3>
+        <p>{ commentText }</p>
       </div>
-    </CommentOnPostContainer>
+    </PostCommentContainer>
   )
 }
 
-export default CommentOnPost;
+export default PostComment;
 
-const CommentOnPostContainer = styled.article`
+const PostCommentContainer = styled.article`
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -86,7 +86,6 @@ const ButtonFollowContainer = styled.button`
   @media (min-width: 650px) {
     & {
       position: fixed;
-      background-color: red;
       right: var(--main-screen-padding-inline);
       top: calc(var(--height-header) + 1.2rem);
     }

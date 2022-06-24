@@ -10,9 +10,13 @@ import { MdOutlineEdit } from "react-icons/md";
 import Reposts from './Reposts';
 import Comments from './Comments/Comments';
 import { CgRepeat } from 'react-icons/cg';
+import ButtonComments from './Comments/ButtonComments';
 
 function UserPost({ postData }) {
     const [editable, setEditable] = useState(false);
+    const [ showComments, setShowComments ] = useState( false );
+
+    const [ comments, setComments ] = useState({});
     const ref = useRef()
 	const { 
         image, 
@@ -37,6 +41,12 @@ function UserPost({ postData }) {
             <section>
                 <img className="user" src={image} alt="" />
                 <Likes postId={postId} infoLikes={infoLikes} />
+                <ButtonComments 
+                    handleShowComments={{ showComments, setShowComments }}
+                    postId={ postId } 
+                    qtdComments={ 1 } 
+                    setComments={ setComments }
+                />
                 <Reposts postId={postId} reposts={reposts}/>
             </section>
         )
@@ -103,7 +113,7 @@ function UserPost({ postData }) {
                     <LinkPreview metaData={ metadata } />
                 </section>
             </PostContainer>
-            <Comments />
+            { showComments && <Comments comments={ comments } /> }
         </BaseContainer>
 	);
 }
@@ -142,8 +152,8 @@ const PostContainer = styled.section`
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        width: 4rem;
-        padding-right: 1rem;
+        width: 4.7rem;
+        padding-right: 0.5rem;
 
         img.user {
             --size-icon: 2.5rem;
@@ -159,7 +169,7 @@ const PostContainer = styled.section`
 
 	& > section.post-body {
 		align-items: flex-start;
-		width: calc(100% - 4rem);
+		width: calc(100% - 4.7rem);
 		padding-right: 0;
 		font-weight: var(--font-weight-regular);
 		

@@ -1,12 +1,26 @@
 import styled from "styled-components";
-import CommentOnPost from "./CommentOnPost";
+import PostComment from "./PostComment";
 import img from "../../../../assets/img/usericon.png"
 
-function Comments() {
+function Comments({ comments, setComments }) {
+
+  function assembleComments() {
+    if( !comments.length ) {
+      return <></>;
+    }
+
+    return (
+      <article>
+        { comments.map( comment => <PostComment key={ comment.id } comment={ comment } /> ) }
+      </article>
+    )
+  }
+
   return (
     <CommentsContainer>
-      <CommentOnPost />
-      <CommentOnPost />
+      <section>
+        { assembleComments() }
+      </section>
       <article className="input-comment">
         <img src={ img } alt="" />
         <input type="text" placeholder="write a comment..." id="" />
@@ -25,6 +39,15 @@ const CommentsContainer = styled.section`
   height: auto;
 
   padding-inline: 15px;
+
+  &>section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 25rem;
+
+    overflow-y: auto;
+  }
 
   .input-comment {
     display: flex;
