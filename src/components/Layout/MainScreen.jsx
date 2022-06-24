@@ -134,6 +134,6 @@ const Section = styled.section`
 
   &>h2 {
     padding: 0.8rem;
-    color: var(--text-color-secodary);
+    color: var(--text-color-secondary);
   }
 `

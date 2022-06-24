@@ -8,7 +8,7 @@ import DeleteIcon from "./DeleteIcon";
 import Editable from '../../../utils/editable';
 import { MdOutlineEdit } from "react-icons/md";
 import Reposts from './Reposts';
-import Comments from './Comments';
+import Comments from './Comments/Comments';
 import { CgRepeat } from 'react-icons/cg';
 
 function UserPost({ postData }) {
@@ -117,7 +117,7 @@ const BaseContainer = styled.article`
 	height: auto;
 	overflow: hidden;
 	margin-bottom: 1rem;
-	background-color: var(--color-3);
+	background-color: var(--color-7);
 
     @media (min-width: 500px) {
         border-radius: 0.8rem;
@@ -182,7 +182,7 @@ const PostContainer = styled.section`
         p {
             width: 100%;
             font-size: 0.9rem;
-            color: var(--text-color-secodary);
+            color: var(--text-color-secondary);
             margin-bottom: 0.8rem;
         }
     }
@@ -210,7 +210,7 @@ const RepostContainer = styled.div`
     height: 33px;
     padding: 10px;
     position: relative;
-    background-color: #1e1e1e;
+    background-color: var( --color-7 );
     &::before,
     &::after {
         content: "";
