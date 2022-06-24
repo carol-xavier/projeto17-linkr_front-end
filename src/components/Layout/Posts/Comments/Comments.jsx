@@ -5,11 +5,7 @@ import { useState } from "react";
 import { getContext } from "../../../../hooks/ContextAPI";
 import { nanoid } from "nanoid";
 
-<<<<<<< HEAD
 function Comments({ comments, setComments, postId, redirect }) {
-=======
-function Comments({ comments, setComments, postId }) {
->>>>>>> cebf3388f8e35563ef819ad58da9e2e0e2b29577
   const { header, imgUser } = getContext();
   const [ commentText, setCommentText ] = useState("");
 
