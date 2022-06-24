@@ -13,7 +13,7 @@ import { CgRepeat } from 'react-icons/cg';
 import ButtonComments from './Comments/ButtonComments';
 
 function UserPost({ postData }) {
-    const [editable, setEditable] = useState(false);
+    const [ editable, setEditable ] = useState(false);
     const [ showComments, setShowComments ] = useState( false );
 
     const [ comments, setComments ] = useState({});
@@ -42,7 +42,7 @@ function UserPost({ postData }) {
             <section>
                 <img className="user" src={image} alt="" />
                 <Likes postId={postId} infoLikes={infoLikes} />
-                <ButtonComments 
+                <ButtonComments
                     handleShowComments={{ showComments, setShowComments }}
                     postId={ postId } 
                     qtdComments={ qtdComments } 
@@ -92,6 +92,18 @@ function UserPost({ postData }) {
         )
     }
 
+    function commentsPost() {
+        return (
+            showComments && 
+            <Comments
+                comments={ comments } 
+                setComments={ setComments } 
+                postId={ postId } 
+                redirect={{ following, isOwner }}
+            />
+        )
+    }
+
 	useEffect(() => {
 		const checkIfClickedOutside = e => {
 		  if (editable && ref.current && !ref.current.contains(e.target)) {
@@ -105,16 +117,16 @@ function UserPost({ postData }) {
 	}, [editable]);
 
 	return (
-        <BaseContainer>
+        <BaseContainer >
             {showRepostInfo()}
-            <PostContainer>
+            <PostContainer >
                 { sideInfoPost() }
                 <section className="post-body">
                     { descriptionPost() }
                     <LinkPreview metaData={ metadata } />
                 </section>
             </PostContainer>
-            { showComments && <Comments comments={ comments } setComments={ setComments } postId={ postId } /> }
+            { commentsPost() }
         </BaseContainer>
 	);
 }
