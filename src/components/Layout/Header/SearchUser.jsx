@@ -2,6 +2,7 @@ import { DebounceInput } from "react-debounce-input";
 import styled from "styled-components";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { GoPrimitiveDot } from "react-icons/go";
 
 import { api } from "../../../utils/api";
 import { getContext } from "../../../hooks/ContextAPI";
@@ -29,7 +30,7 @@ export default function SearchUser() {
         });
     }
 
-    function clearInput(){
+    function clearInput() {
         setRefresh(!refresh);
         setUsers(null);
     }
@@ -45,6 +46,14 @@ export default function SearchUser() {
                     >
                         <img src={user.image} alt="" />
                         <p>{user.name}</p>
+                        {user.following ? (
+                            <>
+                                <GoPrimitiveDot />
+                                <p className="following">following</p>
+                            </>
+                        ) : (
+                            <></>
+                        )}
                     </Link>
                 );
             });
@@ -111,6 +120,16 @@ const Container = styled.div`
     p {
         color: #515151;
         font-size: 19px;
+    }
+
+    div a svg{
+        color: #C5C5C5;
+        margin: 0 7px;
+    }
+
+    div a p.following{
+        color: #C5C5C5;
+        
     }
 
     @media (max-width: 500px) {

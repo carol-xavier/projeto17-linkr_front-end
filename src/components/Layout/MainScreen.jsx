@@ -20,7 +20,6 @@ function MainScreen({ route, children}) {
     api.get(`${route}/number`, header)
       .then((res) => {
         setTotalPosts(parseInt(res.data.count));
-        console.log(totalPosts, posts.length)
       })
       .catch((e) => {
         console.log(e)
@@ -69,8 +68,8 @@ function MainScreen({ route, children}) {
   }
 
   function nextDownload() {
-    if (posts.length + 1 < totalPosts){
-      loadPosts(posts.length + 1)
+    if (posts.length + 10 < totalPosts){
+      loadPosts(posts.length + 10)
     } else {
       loadPosts(totalPosts)
     }
