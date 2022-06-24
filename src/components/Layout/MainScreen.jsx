@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
 import { getContext } from "../../hooks/ContextAPI";
@@ -7,18 +8,27 @@ import Header from "./Header/Header";
 import UserPost from "./Posts/UserPost";
 import TrendingBox from "./TrendingBox";
 
+
+
 function MainScreen({ route, children}) {
-  const { header,refresh } = getContext();
+  const { header } = getContext();
   const [ posts, setPosts ] = useState([]);
   const [ followingSomeone, setFollowingSomeone ] = useState( false );
-  const [ loading, setLoading ] = useState( true );
+  const [totalPosts, setTotalPosts] = useState(0);
 
-  
+  useEffect(() =>{
+    api.get(`${route}/number`, header)
+      .then((res) => {
+        setTotalPosts(parseInt(res.data.count));
+        console.log(totalPosts, posts.length)
+      })
+      .catch((e) => {
+        console.log(e)
+      });
+  }, [])
 
   function assemblyPosts(){
-    if(loading){
-      return <ThreeDots color="#fff" width={'100%'} height={'1.5rem'} />
-    }
+    
 
     if( !posts.length && route === '/timeline' ) return infoMessage();
 
@@ -26,7 +36,6 @@ function MainScreen({ route, children}) {
       <UserPost key={index} postData={post} />
     );
 
-    // TODO: Add pagination here
     return (
       listOfPosts
     )
@@ -41,7 +50,6 @@ function MainScreen({ route, children}) {
   }
 
   function errorGetPosts(e) {
-    setLoading( false );
     console.log( e );
     window.alert("An error occurred while trying to fetch the posts, please refresh the page.");
   }
@@ -50,26 +58,48 @@ function MainScreen({ route, children}) {
     const posts = data.posts || data;
     const followingSomeone = data?.followingSomeone || false;
     
-    setLoading( false );
     setFollowingSomeone( followingSomeone );
     setPosts( posts );
   }
 
-  useEffect(() => {
-    setLoading( true );
-    
-    api.get( route, header)
-			.then( successGetPosts )
-			.catch( errorGetPosts );
-  },[ refresh ]);
+  function loadPosts(limit) {
+    api.get (`${route}/?limit=${limit}`, header)
+      .then(successGetPosts)
+      .catch(errorGetPosts)
+  }
+
+  function nextDownload() {
+    if (posts.length + 1 < totalPosts){
+      loadPosts(posts.length + 1)
+    } else {
+      loadPosts(totalPosts)
+    }
+  }
 
   return(
-    <MainScreenContainer>
+    <MainScreenContainer id="scrollParentElement">
       <Header />
       <main>
         <Section>
           { children }
-          { assemblyPosts() }
+          <InfiniteScroll
+            height= {450}
+            pageStart={0}
+            loadMore={() => nextDownload()}
+            hasMore={posts.length === totalPosts ? (false):(true)}
+            threshold={10}
+            loader={
+              <div className="loader" key={0}>
+                <ThreeDots color="#fff" width={'100%'} height={'1.5rem'} />
+              </div>
+            }
+            useWindow={false}
+            getScrollParent={()=>
+              document.getElementById("scrollParentElement")
+            }
+          >
+            { assemblyPosts() }
+          </InfiniteScroll>
         </Section>
         <TrendingBox />
       </main>      
