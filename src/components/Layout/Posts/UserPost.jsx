@@ -27,7 +27,8 @@ function UserPost({ postData }) {
         following,
         isOwner, 
         metadata, 
-        infoLikes,        
+        infoLikes,
+        qtdComments,        
         reposts,
         repostInfo
     } = postData;
@@ -44,7 +45,7 @@ function UserPost({ postData }) {
                 <ButtonComments 
                     handleShowComments={{ showComments, setShowComments }}
                     postId={ postId } 
-                    qtdComments={ 1 } 
+                    qtdComments={ qtdComments } 
                     setComments={ setComments }
                 />
                 <Reposts postId={postId} reposts={reposts}/>
